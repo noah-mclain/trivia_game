@@ -1,10 +1,10 @@
 {
-    "java.completion.filteredTypes": [
-        "com.sun.*",
-        "sun.*",
-        "jdk.*",
-        "org.graalvm.*",
-        "io.micrometer.shaded.*"
-    ],
-    "workbench.colorTheme": "SynthWave '84"
+  "java.completion.filteredTypes": [
+    "com.sun.*",
+    "sun.*",
+    "jdk.*",
+    "org.graalvm.*",
+    "io.micrometer.shaded.*"
+  ],
+  "workbench.colorTheme": "PinkBlue Monodark"
 }
