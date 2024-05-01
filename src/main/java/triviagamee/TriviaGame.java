@@ -3,6 +3,7 @@ package triviagamee;
 // import java.io.*;
 // import java.net.*;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 //import javafx.scene.Group;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
@@ -13,6 +14,9 @@ import javafx.scene.control.*;
 //import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
+
+import java.io.IOException;
+
 import javafx.animation.*;
 import javafx.util.Duration;
 import javafx.scene.media.*;
@@ -37,9 +41,9 @@ public class TriviaGame extends Application {
     // this is apparently the main entry point for all javaFX applications, and
     // where i intialize the UI and define what
     // should be shown in the application window
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
     
-        //el gui da very very bayez 
+        //el gui da very very bayez z
 
         Text triviatext = new Text("TRIVIA!");
         triviatext.setEffect(new Glow(0.8));
@@ -52,13 +56,23 @@ public class TriviaGame extends Application {
         startgame.setStyle("-fx-border-color: transparent;");
         //there should be a text field here where user enters the ip address 
 
+        //  FXMLLoader loader = new FXMLLoader(getClass().getResource("start_menu.fxml"));
+        //  Scene scene = new Scene(loader.load());
+
+        //  StartMenuController startMenuController = loader.getController();
+        // // ... (Interact with the controller if needed)
+
+        // primaryStage.setScene(scene);
+        // primaryStage.show();
+
+
         startgame.setOnAction(e -> {
             playSound("audios/90s-game-ui-6-185099.mp3");
             String serverIP = ipfield.getText();
             //dk why this isnt working ive been coding for 11 hours im ded
            // connect(serverIP);
             connectionStatus.setFill(Color.GREEN);
-            Gamestart();
+            onStartGameClick();
         });
         connectionStatus = new Circle(10);
         connectionStatus.setFill(Color.RED);
@@ -70,7 +84,7 @@ public class TriviaGame extends Application {
         primaryStage.show();
     }
 
-    public void Gamestart() {
+    public void onStartGameClick() {
         // hn3ml implement lel game logic hena
 
         //should have used this vid bs kont bamoot, we can do this for the questions lama tezhar htb2a gamda awy
