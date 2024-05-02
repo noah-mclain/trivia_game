@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -18,6 +19,10 @@ import javafx.scene.paint.Color;
 
 public class LoginMenuController {
     String check="amputate";
+
+    @FXML
+    private ImageView Logo;
+
 
     @FXML TextField userInputText;
     @FXML TextField passwordInputText;
