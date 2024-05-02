@@ -5,6 +5,7 @@ import java.net.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
@@ -37,8 +38,10 @@ public class TriviaGame extends Application {
 
    
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.setTitle("Hello!");
         stage.setScene(scene);

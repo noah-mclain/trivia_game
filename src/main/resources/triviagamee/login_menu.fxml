@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
       <ImageView fx:id="bgView" fitHeight="872.0" fitWidth="1109.0" opacity="0.13" pickOnBounds="true">
          <image>
@@ -26,7 +26,7 @@
          <image>
             <Image url="@../photos/Pngtreetrivia_poster_6706386.png" />
          </image></ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="340.0" layoutX="256.0" layoutY="502.0" strokeType="INSIDE" width="237.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="340.0" layoutX="591.0" layoutY="514.0" strokeType="INSIDE" width="237.0">
          <stroke>
             <LinearGradient endX="1.0" startY="1.0">
                <stops>
@@ -44,7 +44,7 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1500ff27" height="221.0" layoutX="4.0" layoutY="400.0" strokeType="INSIDE" width="447.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1500ff27" height="221.0" layoutX="339.0" layoutY="412.0" strokeType="INSIDE" width="447.0">
          <stroke>
             <LinearGradient endY="1.0" startX="1.0">
                <stops>
@@ -62,53 +62,7 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff830026" height="581.0" layoutX="791.0" layoutY="90.0" strokeType="INSIDE" width="312.0">
-         <stroke>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="1.0" green="0.5341812372207642" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.006711409395973154">
-                     <color>
-                        <Color red="1.0" green="0.5341812372207642" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="0.5054848790168762" opacity="0.09000000357627869" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </stroke>
-      </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d610017" height="201.0" layoutX="694.0" layoutY="384.0" strokeType="INSIDE" width="371.0">
-         <stroke>
-            <LinearGradient endY="1.0" startX="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.2508772015571594" green="0.34210526943206787" opacity="0.5" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.006711409395973154">
-                     <color>
-                        <Color red="0.2508772015571594" green="0.34210526943206787" opacity="0.5" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.22697368264198303" green="0.30263158679008484" opacity="0.15000000596046448" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </stroke>
-      </Rectangle>
-      <Button layoutX="37.0" layoutY="527.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="169.0" text="Login">
+      <Button layoutX="372.0" layoutY="539.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="169.0" text="Login">
          <font>
             <Font size="18.0" />
          </font>
@@ -122,16 +76,6 @@
             </Glow>
          </effect>
       </CubicCurve>
-      <Button layoutX="792.0" layoutY="500.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="186.0" text="Multiplayer">
-         <font>
-            <Font name="Ayuthaya" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="792.0" layoutY="428.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="183.0" text="Single Player">
-         <font>
-            <Font name="Ayuthaya" size="18.0" />
-         </font>
-      </Button>
       <CubicCurve controlX1="-50.0" controlX2="-30.383106231689453" controlY1="-100.0" controlY2="42.781681060791016" endX="174.5186767578125" endY="99.67709350585938" fill="#9d94ff1f" layoutX="811.0" layoutY="749.0" startX="-168.83184814453125" startY="-114.79400634765625" stroke="#04035754">
          <effect>
             <Glow level="1.0">
@@ -143,17 +87,17 @@
       </CubicCurve>
       <Label fx:id="labelVerdict" layoutX="10.0" layoutY="10.0" prefHeight="16.0" prefWidth="250.0" />
       <Label fx:id="welcomeText" layoutX="10.0" layoutY="10.0" />
-      <Button layoutX="238.0" layoutY="527.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
+      <Button layoutX="573.0" layoutY="539.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="passwordInputText" layoutX="35.0" layoutY="477.0" prefHeight="45.0" prefWidth="372.0" promptText="Password">
+      <TextField fx:id="passwordInputText" layoutX="370.0" layoutY="489.0" prefHeight="45.0" prefWidth="372.0" promptText="Password">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="userInputText" layoutX="35.0" layoutY="426.0" prefHeight="45.0" prefWidth="372.0" promptText="Username">
+      <TextField fx:id="userInputText" layoutX="370.0" layoutY="438.0" prefHeight="45.0" prefWidth="372.0" promptText="Username">
          <font>
             <Font size="18.0" />
          </font>
