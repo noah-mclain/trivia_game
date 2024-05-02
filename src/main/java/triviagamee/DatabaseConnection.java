@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.lang.Math.*;
 
 public class DatabaseConnection {
-    private static final String url = "jdbc:sqlserver://DESKTOP-8RMLVE4\\SQLEXPRESS:1433;databaseName=trivia;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
+    private static final String url = "jdbc:mysql://trivia-game2.clsy2siwoygw.eu-north-1.rds.amazonaws.com:3306/trivia?user=admin&password=yahood123";
+
+
     private static int counter=1;
     public static Connection connect() throws Exception {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); // needs to be edited
+            Class.forName("com.mysql.cj.jdbc.Driver"); // needs to be edited
             return DriverManager.getConnection(url);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -24,7 +26,7 @@ public class DatabaseConnection {
             ResultSet answer = statement.executeQuery(query);
             while (answer.next()) {
                 String userName= answer.getString("username");
-                String passWord=answer.getString("passwords");
+                String passWord=answer.getString("userPassword");
                 System.out.println(userName.getClass());
                 System.out.println(passWord.getClass());
                 System.out.println("Retrieved username: " + userName);
@@ -43,7 +45,7 @@ public class DatabaseConnection {
     public static boolean registerNewUser(String username, String password){
 
         try(Connection connection = connect()){
-            String query="INSERT INTO logins(username, passwords) VALUES (?, ?)";
+            String query="INSERT INTO logins(username, userPassword) VALUES (?, ?)";
             PreparedStatement statement =connection.prepareStatement(query);
             statement.setString(1,username);
             statement.setString(2,password);
