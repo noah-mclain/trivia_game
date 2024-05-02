@@ -1,53 +1,73 @@
 package triviagamee;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.lang.Math.*;
 
 public class DatabaseConnection {
+    private static final String url = "jdbc:sqlserver://DESKTOP-8RMLVE4\\SQLEXPRESS:1433;databaseName=trivia;integratedSecurity=true;encrypt=true;trustServerCertificate=true;authenticationScheme=JavaKerberos";
+    private static int counter=1;
+    public static Connection connect() throws Exception {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); // needs to be edited
+            return DriverManager.getConnection(url);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static boolean checkCredentials(String username, String password) {
+        System.out.println(username);
+        System.out.println(password);
+        try (Connection connection = connect()) {
+            String query = "SELECT * FROM logins";
+            Statement statement = connection.createStatement();
+            ResultSet answer = statement.executeQuery(query);
+            while (answer.next()) {
+                String userName= answer.getString("username");
+                String passWord=answer.getString("passwords");
+                System.out.println(userName.getClass());
+                System.out.println(passWord.getClass());
+                System.out.println("Retrieved username: " + userName);
+                System.out.println("Retrieved password: " + passWord);
+                if ( userName.equals(username) &&passWord.equals(password)) {
+                    connection.close();
+                    return true;
+                }
+            }
+            connection.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+    public static boolean registerNewUser(String username, String password){
 
-    // private static final String DATABASE_URL = "jdbc:sqlserver://your_server_address"; // Replace with your database server address
-    // private static final String DATABASE_USERNAME = "your_username"; // Replace with your database username
-    // private static final String DATABASE_PASSWORD = "your_password"; // Replace with your database password
+        try(Connection connection = connect()){
+            String query="INSERT INTO logins(username, passwords) VALUES (?, ?)";
+            PreparedStatement statement =connection.prepareStatement(query);
+            statement.setString(1,username);
+            statement.setString(2,password);
+            statement.executeUpdate();
+            counter++;
+            return true;
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+//    public static String retrieveQuestion(){
+//        try(Connection connection = connect()){
+//            String query="SELECT COUNT(*) FROM Questions";
+//            Statement statement = connection.createStatement();
+//            ResultSet result=statement.executeQuery(query);
+//            int range = result.getInt(1);
+//            int pid= (int)Math.random()+1*range;
+//        }
+//        catch(Exception ex){
+//            System.out.println(ex.getMessage());
+//        }
+//    }
 
-    // public String checkCredentials(String username) throws SQLException {
-    //     Connection connection = null;
-    //     PreparedStatement statement = null;
-    //     ResultSet resultSet = null;
-
-    //     try {
-    //         connection = getConnection();
-    //         String sql = "SELECT password FROM users WHERE username = ?";
-    //         statement = connection.prepareStatement(sql);
-    //         statement.setString(1, username); // Set username parameter
-
-    //         resultSet = statement.executeQuery();
-
-    //         if (resultSet.next()) {
-    //             return resultSet.getString("password"); // Return stored password if user exists
-    //         } else {
-    //             return null; // User not found
-    //         }
-    //     } finally {
-    //         closeResources(connection, statement, resultSet);
-    //     }
-    // }
-
-    // private Connection getConnection() throws SQLException {
-    //     return DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
-    // }
-
-    // private void closeResources(Connection connection, PreparedStatement statement, ResultSet resultSet) throws SQLException {
-    //     if (resultSet != null) {
-    //         resultSet.close();
-    //     }
-    //     if (statement != null) {
-    //         statement.close();
-    //     }
-    //     if (connection != null) {
-    //         connection.close();
-    //     }
-    // }
+    
 }

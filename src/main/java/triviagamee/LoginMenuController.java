@@ -1,73 +1,68 @@
 
-// package triviagamee;
+package triviagamee;
 
-// import java.io.IOException;
-// import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.SQLException;
 
-// import javafx.fxml.FXML;
-// import javafx.scene.control.Button;
-// import javafx.scene.control.PasswordField;
-// import javafx.scene.control.TextField;
-// import javafx.scene.paint.Color;
-// import javafx.scene.shape.Circle;
-// import javafx.scene.text.Text;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
-// public class LoginMenuController {
+public class LoginMenuController {
+    String check="amputate";
 
-//     @FXML
-//     private Text triviaText;
+    @FXML TextField userInputText;
+    @FXML TextField passwordInputText;
+    @FXML Label labelVerdict;
+    public void login(ActionEvent e){
+            if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
+            labelVerdict.setText("Login successful ╰(▔∀▔)╯");
+            labelVerdict.setTextFill(Color.GREEN);
+        }
+        else{
+            labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
+            labelVerdict.setTextFill(Color.RED);
+        }
+    }
 
-//     @FXML
-//     private TextField usernameField;
+    public void signup(ActionEvent e){
+       boolean registerExceptionCheck =DatabaseConnection.registerNewUser(userInputText.getText(),passwordInputText.getText());
+        if(registerExceptionCheck){
+            labelVerdict.setText("Sign-in successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
+            labelVerdict.setTextFill(Color.GREEN);
+        }
+        else{
+            labelVerdict.setText("Sign-in unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
+            labelVerdict.setTextFill(Color.RED);
+        }
+    }
 
-//     @FXML
-//     private PasswordField passwordField;
+    public void singlePlayer(ActionEvent e){
 
-//     @FXML
-//     private TextField ipAddressField;
+    }
 
-//     @FXML
-//     private Button loginButton;
+    public void multiPlayer(ActionEvent e){
 
-//     @FXML
-//     private Button signupButton;
+    }
 
-//     @FXML
-//     private Circle connectionStatus;
 
-//     private TriviaGame triviaGame;
 
-//     public void setTriviaGame(TriviaGame triviaGame) {
-//         this.triviaGame = triviaGame;
-//     }
 
-//     public void handleLoginClick() throws IOException {
-//         String username = usernameField.getText();
-//         String password = passwordField.getText();
-//         String ipAddress = ipAddressField.getText();
+//    @FXML
+//    private Label welcomeText;
+//
+//    @FXML
+//    protected void onHelloButtonClick() {
+//        welcomeText.setText("Welcome to JavaFX Application!");
+//    }
 
-//         // Validate user input (optional)
 
-//         try {
-//             if (triviaGame.loginUser(username, password)) {
-//                 // Login successful
-//                 connectionStatus.setFill(Color.GREEN);
-//                 // Handle successful login (e.g., connect to server, start game logic)
-//                 triviaGame.connect(ipAddress);
-//             } else {
-//                 // Login failed
-//                 connectionStatus.setFill(Color.RED);
-//                 // Show error message (optional)
-//             }
-//         } catch (SQLException e) {
-//             // Database error handling
-//             e.printStackTrace();
-//             // Show error message (optional)
-//         }
-//     }
-
-//     public void handleSignupClick() {
-//         // Implement signup functionality (optional)
-//         // This could involve opening a separate signup window
-//     }
-// }
+ }
