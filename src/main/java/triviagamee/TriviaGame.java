@@ -21,7 +21,7 @@ import javafx.scene.media.*;
 
 
 public class TriviaGame extends Application {
-    private DatabaseConnection db; //kill me
+    //kill me
     private ClientEvents clientEvents = new ClientEvents(); //(ignore this idk how to set it up yet lol)
 
     // In the GUI there must be a text box "Server IP" which will be used to connect
@@ -39,7 +39,7 @@ public class TriviaGame extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        //stage.setFullScreen(true);
+        stage.setFullScreen(true);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

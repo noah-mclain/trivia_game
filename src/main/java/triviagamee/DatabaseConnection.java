@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.lang.Math.*;
 
 public class DatabaseConnection {
-    private static final String url = "jdbc:sqlserver://DESKTOP-8RMLVE4\\SQLEXPRESS:1433;databaseName=trivia;integratedSecurity=true;encrypt=true;trustServerCertificate=true;authenticationScheme=JavaKerberos";
+    private static final String url = "jdbc:sqlserver://DESKTOP-8RMLVE4\\SQLEXPRESS:1433;databaseName=trivia;integratedSecurity=true;encrypt=true;trustServerCertificate=true;";
     private static int counter=1;
     public static Connection connect() throws Exception {
         try {
