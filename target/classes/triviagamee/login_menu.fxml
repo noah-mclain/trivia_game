@@ -15,9 +15,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0"
+   xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
-      <ImageView fx:id="bgView" preserveRatio="true" fitWidth="-Infinity" opacity="0.31" pickOnBounds="true">
+      <ImageView fx:id="bgView" preserveRatio="true" fitWidth="-Infinity" fitHeight="-Infinity" opacity="0.31" pickOnBounds="true">
          <image>
             <Image url="@../photos/background.gif" />
          </image>
@@ -25,7 +27,8 @@
       <ImageView fx:id="LogoView" fitHeight="691.0" fitWidth="687.0" layoutX="192.0" layoutY="-138.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5">
          <image>
             <Image url="@../photos/TriviaLogo.png" />
-         </image></ImageView>
+         </image>
+      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="340.0" layoutX="591.0" layoutY="482.0" strokeType="INSIDE" width="237.0">
          <stroke>
             <LinearGradient endX="1.0" startY="1.0">
@@ -88,7 +91,8 @@
       <Label fx:id="labelVerdict" alignment="CENTER" layoutX="422.0" layoutY="465.0" prefHeight="16.0" prefWidth="301.0">
          <font>
             <Font size="18.0" />
-         </font></Label>
+         </font>
+      </Label>
       <Label fx:id="welcomeText" layoutX="10.0" layoutY="10.0" />
       <Button layoutX="572.0" layoutY="598.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
          <font>
