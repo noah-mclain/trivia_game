@@ -17,13 +17,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="812.0" prefWidth="1218.0" spacing="20.0" style="-fx-background-color: E5E7E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: E5E7E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <Pane prefHeight="814.0" prefWidth="1178.0">
       <children>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d610017" height="351.0" layoutX="754.0" layoutY="230.0" rotate="90.0" strokeType="INSIDE" width="237.0">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1d610017" height="351.0" layoutX="775.0" layoutY="287.0" rotate="90.0" strokeType="INSIDE" width="237.0">
             <stroke>
                <LinearGradient endY="1.0" startX="1.0">
                   <stops>
@@ -46,7 +46,7 @@
                </LinearGradient>
             </stroke>
          </Rectangle>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff830026" height="304.0" layoutX="727.0" layoutY="151.0" rotate="90.0" strokeType="INSIDE" width="558.0">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff830026" height="304.0" layoutX="748.0" layoutY="208.0" rotate="90.0" strokeType="INSIDE" width="558.0">
             <stroke>
                <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                   <stops>
@@ -69,7 +69,7 @@
                </LinearGradient>
             </stroke>
          </Rectangle>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="351.0" layoutX="-2.0" layoutY="401.0" strokeType="INSIDE" width="237.0">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="351.0" layoutX="19.0" layoutY="458.0" strokeType="INSIDE" width="237.0">
             <stroke>
                <LinearGradient endX="1.0" startY="1.0">
                   <stops>
@@ -87,7 +87,7 @@
                </LinearGradient>
             </stroke>
          </Rectangle>
-         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1500ff27" height="304.0" layoutX="-29.0" layoutY="322.0" strokeType="INSIDE" width="558.0">
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1500ff27" height="304.0" layoutX="-8.0" layoutY="379.0" strokeType="INSIDE" width="558.0">
             <stroke>
                <LinearGradient endY="1.0" startX="1.0">
                   <stops>
@@ -105,22 +105,22 @@
                </LinearGradient>
             </stroke>
          </Rectangle>
-         <Button layoutX="304.0" layoutY="481.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
+         <Button layoutX="325.0" layoutY="538.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
             <font>
                <Font name="Ayuthaya" size="18.0" />
             </font>
          </Button>
-         <TextField fx:id="userInputText" layoutX="100.0" layoutY="383.0" prefHeight="45.0" prefWidth="372.0" promptText="Username">
+         <TextField fx:id="userInputText" layoutX="121.0" layoutY="440.0" prefHeight="45.0" prefWidth="372.0" promptText="Username">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <Button layoutX="100.0" layoutY="481.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="169.0" text="Login">
+         <Button layoutX="121.0" layoutY="538.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="169.0" text="Login">
             <font>
                <Font size="18.0" />
             </font>
          </Button>
-         <TextField fx:id="passwordInputText" layoutX="100.0" layoutY="430.0" prefHeight="45.0" prefWidth="372.0" promptText="Password">
+         <TextField fx:id="passwordInputText" layoutX="121.0" layoutY="487.0" prefHeight="45.0" prefWidth="372.0" promptText="Password">
             <font>
                <Font size="18.0" />
             </font>
@@ -134,21 +134,16 @@
                </Glow>
             </effect>
          </CubicCurve>
-         <Button layoutX="914.0" layoutY="441.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="186.0" text="Multiplayer">
+         <Button layoutX="935.0" layoutY="498.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="186.0" text="Multiplayer">
             <font>
                <Font name="Ayuthaya" size="18.0" />
             </font>
          </Button>
-         <Button layoutX="917.0" layoutY="372.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="183.0" text="Single Player">
+         <Button layoutX="938.0" layoutY="429.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="183.0" text="Single Player">
             <font>
                <Font name="Ayuthaya" size="18.0" />
             </font>
          </Button>
-         <ImageView fx:id="Logo" fitHeight="522.0" fitWidth="658.0" layoutX="289.0" layoutY="-39.0" rotate="-10.8">
-            <image>
-               <Image url="@../../../../../../../Downloads/TriviaPoster.png" />
-            </image>
-         </ImageView>
          <CubicCurve controlX1="-50.0" controlX2="-30.383106231689453" controlY1="-100.0" controlY2="42.781681060791016" endX="174.5186767578125" endY="99.67709350585938" fill="#9d94ff1f" layoutX="777.0" layoutY="682.0" startX="-168.83184814453125" startY="-114.79400634765625" stroke="#04035754">
             <effect>
                <Glow level="1.0">
@@ -159,6 +154,10 @@
             </effect>
          </CubicCurve>
          <Label fx:id="labelVerdict" layoutX="134.0" layoutY="360.0" prefHeight="16.0" prefWidth="250.0" />
+         <ImageView fx:id="LogoView" fitHeight="675.0" fitWidth="721.0" layoutX="252.0" layoutY="-142.0" pickOnBounds="true" preserveRatio="true" rotate="-19.4">
+            <image>
+               <Image url="@../photos/TriviaPoster.png" />
+            </image></ImageView>
       </children>
    </Pane>
 

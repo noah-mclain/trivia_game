@@ -3,11 +3,14 @@ package triviagamee;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -20,10 +23,7 @@ import javafx.scene.paint.Color;
 public class LoginMenuController {
     String check="amputate";
 
-    @FXML
-    private ImageView Logo;
-
-
+    @FXML ImageView LogoView;
     @FXML TextField userInputText;
     @FXML TextField passwordInputText;
     @FXML Label labelVerdict;
