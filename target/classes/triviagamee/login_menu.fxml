@@ -24,9 +24,8 @@
       </ImageView>
       <ImageView fx:id="LogoView" fitHeight="691.0" fitWidth="687.0" layoutX="192.0" layoutY="-138.0" pickOnBounds="true" preserveRatio="true" rotate="-12.5">
          <image>
-            <Image url="@../photos/TriviaPoster.png" />
-         </image>
-      </ImageView>
+            <Image url="@../photos/Pngtreetrivia_poster_6706386.png" />
+         </image></ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="340.0" layoutX="256.0" layoutY="502.0" strokeType="INSIDE" width="237.0">
          <stroke>
             <LinearGradient endX="1.0" startY="1.0">
