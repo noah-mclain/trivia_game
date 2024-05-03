@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.util.Duration;
 
 public class LoginMenuController {
     String check="amputate";
@@ -50,7 +52,16 @@ public class LoginMenuController {
             if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
                 labelVerdict.setText("Login successful ╰(▔∀▔)╯");
                 labelVerdict.setTextFill(Color.GREEN);
-                nextButton.setVisible(true);
+//                nextButton.setVisible(true);
+                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                delay.setOnFinished(event -> {
+                    try {
+                        switchToPlayerSelect(e);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+                delay.play();
         }
         else{
             labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
@@ -63,7 +74,16 @@ public class LoginMenuController {
         if(registerExceptionCheck){
             labelVerdict.setText("Sign-in successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
             labelVerdict.setTextFill(Color.GREEN);
-            nextButton.setVisible(true);
+//            nextButton.setVisible(true);
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> {
+                try {
+                    switchToPlayerSelect(e);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            delay.play();
         }
         else{
             labelVerdict.setText("Sign-in unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
