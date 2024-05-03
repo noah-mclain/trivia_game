@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 public class LoginMenuController {
     String check="amputate";
@@ -38,12 +39,18 @@ public class LoginMenuController {
     @FXML TextField passwordInputText;
     @FXML Label labelVerdict;
     @FXML ImageView bgView;
+    @FXML Button nextButton;
 
+    public void setVisibilityFalse(){
+        nextButton.setVisible(false);
+    }
 
-    public void login(ActionEvent e){
+    public void login(ActionEvent e) throws IOException {
+
             if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
-            labelVerdict.setText("Login successful ╰(▔∀▔)╯");
-            labelVerdict.setTextFill(Color.GREEN);
+                labelVerdict.setText("Login successful ╰(▔∀▔)╯");
+                labelVerdict.setTextFill(Color.GREEN);
+                nextButton.setVisible(true);
         }
         else{
             labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
@@ -56,7 +63,7 @@ public class LoginMenuController {
         if(registerExceptionCheck){
             labelVerdict.setText("Sign-in successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
             labelVerdict.setTextFill(Color.GREEN);
-            switchToPlayerSelect(e);
+            nextButton.setVisible(true);
         }
         else{
             labelVerdict.setText("Sign-in unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
@@ -64,17 +71,17 @@ public class LoginMenuController {
         }
     }
 
-    public void switchToLogin(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
+//    public void switchToLogin(ActionEvent e) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
+//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//
+//    }
 
     public void switchToPlayerSelect(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("playerSelect_menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("playersSelect_menu.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
