@@ -41,6 +41,7 @@ public class LoginMenuController {
 
 
     public void login(ActionEvent e){
+            DatabaseConnection.retrieveQuestion();
             if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
             labelVerdict.setText("Login successful ╰(▔∀▔)╯");
             labelVerdict.setTextFill(Color.GREEN);

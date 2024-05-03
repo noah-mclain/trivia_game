@@ -52,16 +52,27 @@ public class DatabaseConnection {
             return false;
         }
     }
-    public static void retrieveQuestion(){
+    public static Question retrieveQuestion(){
         try(Connection connection = connect()){
-            String query="SELECT COUNT(*) FROM logins";
+            String query="SELECT COUNT(*) FROM questions";
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet result = statement.executeQuery(query);
             if(result.next()){
                 int range = result.getInt(1);
                 int rand = (int)(Math.random()*range)+1;
-                System.out.println(rand);
-
+                query= "SELECT * FROM questions WHERE ID = ";
+                String id= String.valueOf(rand);
+                query+=id;
+                Statement retrieveStatement = connection.createStatement();
+                ResultSet resultSet = retrieveStatement.executeQuery(query);
+                while(resultSet.next()){
+                    String question = resultSet.getString("question");
+                    String rightAnswer=resultSet.getString("rightAnswer");
+                    String choiceA=resultSet.getString("answer2");
+                    String choiceB=resultSet.getString("answer3");
+                    String choiceC=resultSet.getString("answer4");
+                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC);
+                }
             }
             else{
                 System.out.println("Result not found");
@@ -70,6 +81,7 @@ public class DatabaseConnection {
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+        return null;
     }
 
     

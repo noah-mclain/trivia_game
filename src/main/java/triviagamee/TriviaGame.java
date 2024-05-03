@@ -39,8 +39,8 @@ public class TriviaGame extends Application {
    
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
-//        FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+//      FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
+//      Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         Scene scene = new Scene(root);
         stage.setFullScreen(true);
         stage.setTitle("Hello!");
