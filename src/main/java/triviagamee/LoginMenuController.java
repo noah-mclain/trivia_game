@@ -16,6 +16,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -53,7 +55,7 @@ public class LoginMenuController {
                 labelVerdict.setText("Login successful ╰(▔∀▔)╯");
                 labelVerdict.setTextFill(Color.GREEN);
 //                nextButton.setVisible(true);
-                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
                 delay.setOnFinished(event -> {
                     try {
                         switchToPlayerSelect(e);
@@ -91,6 +93,27 @@ public class LoginMenuController {
         }
     }
 
+    public void initialize() {
+        userInputText.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordInputText.requestFocus();
+            }
+        });
+//tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
+
+//        passwordInputText.setOnKeyPressed(event -> {
+//            if(event.getCode() == KeyCode.ENTER) {
+//                try {
+//                        login(new ActionEvent());
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                }
+//           }
+//       });
+    }
+
+
+    
 //    public void switchToLogin(ActionEvent e) throws IOException {
 //        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
 //        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
