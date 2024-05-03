@@ -18,8 +18,6 @@ public class DatabaseConnection {
         }
     }
     public static boolean checkCredentials(String username, String password) {
-        System.out.println(username);
-        System.out.println(password);
         try (Connection connection = connect()) {
             String query = "SELECT * FROM logins";
             Statement statement = connection.createStatement();
@@ -27,10 +25,6 @@ public class DatabaseConnection {
             while (answer.next()) {
                 String userName= answer.getString("username");
                 String passWord=answer.getString("userPassword");
-                System.out.println(userName.getClass());
-                System.out.println(passWord.getClass());
-                System.out.println("Retrieved username: " + userName);
-                System.out.println("Retrieved password: " + passWord);
                 if ( userName.equals(username) &&passWord.equals(password)) {
                     connection.close();
                     return true;
@@ -58,18 +52,25 @@ public class DatabaseConnection {
             return false;
         }
     }
-//    public static String retrieveQuestion(){
-//        try(Connection connection = connect()){
-//            String query="SELECT COUNT(*) FROM Questions";
-//            Statement statement = connection.createStatement();
-//            ResultSet result=statement.executeQuery(query);
-//            int range = result.getInt(1);
-//            int pid= (int)Math.random()+1*range;
-//        }
-//        catch(Exception ex){
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    public static void retrieveQuestion(){
+        try(Connection connection = connect()){
+            String query="SELECT COUNT(*) FROM logins";
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet result = statement.executeQuery(query);
+            if(result.next()){
+                int range = result.getInt(1);
+                int rand = (int)(Math.random()*range)+1;
+                System.out.println(rand);
+
+            }
+            else{
+                System.out.println("Result not found");
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
     
 }
