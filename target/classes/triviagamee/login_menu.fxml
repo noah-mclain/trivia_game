@@ -15,11 +15,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0"
-   xmlns="http://javafx.com/javafx/21"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
-      <ImageView fx:id="bgView" preserveRatio="true" fitWidth="-Infinity" fitHeight="-Infinity" opacity="0.31" pickOnBounds="true">
+      <ImageView fx:id="bgView" fitHeight="-Infinity" fitWidth="-Infinity" opacity="0.31" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../photos/background.gif" />
          </image>
