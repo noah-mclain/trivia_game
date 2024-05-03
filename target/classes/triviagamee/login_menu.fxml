@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="871.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
       <ImageView fx:id="bgView" fitHeight="-Infinity" fitWidth="-Infinity" opacity="0.31" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -33,12 +33,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.4833333194255829" blue="1.0" opacity="0.5017399787902832" />
+                        <Color blue="1.0" opacity="0.5017399787902832" red="0.4833333194255829" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.6556704044342041" blue="1.0" opacity="0.15000000596046448" />
+                        <Color blue="1.0" opacity="0.15000000596046448" red="0.6556704044342041" />
                      </color>
                   </Stop>
                </stops>
@@ -51,12 +51,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color green="0.01666666753590107" blue="1.0" />
+                        <Color blue="1.0" green="0.01666666753590107" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color blue="1.0" green="1.0" red="1.0" />
                      </color>
                   </Stop>
                </stops>
@@ -107,5 +107,6 @@
             <Font size="18.0" />
          </font>
       </TextField>
+      <Button fx:id="nextButton" layoutX="532.0" layoutY="678.0" mnemonicParsing="false" onAction="#switchToPlayerSelect" text="next" visible="false"/>
    </children>
 </AnchorPane>
