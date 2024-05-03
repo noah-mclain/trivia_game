@@ -107,6 +107,6 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="532.0" layoutY="678.0" mnemonicParsing="false" onAction="#switchToPlayerSelect" text="next" visible="false"/>
+      <Button fx:id="nextButton" layoutX="532.0" layoutY="678.0" mnemonicParsing="false" onAction="#switchToPlayerSelect" text="next" visible="false" />
    </children>
 </AnchorPane>

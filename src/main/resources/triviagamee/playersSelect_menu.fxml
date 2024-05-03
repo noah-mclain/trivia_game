@@ -9,8 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.PlayerSelectController">
    <children>
       <ImageView fitHeight="872.0" fitWidth="1109.0" pickOnBounds="true" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4c750024" height="714.0" layoutX="533.0" layoutY="32.0" strokeType="INSIDE" width="393.0">
@@ -19,12 +18,12 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.32249999046325684" green="0.4300000071525574" opacity="0.5544933080673218" />
+                        <Color green="0.4300000071525574" opacity="0.5544933080673218" red="0.32249999046325684" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color blue="1.0" green="1.0" red="1.0" />
                      </color>
                   </Stop>
                </stops>
@@ -37,24 +36,24 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color red="1.0" green="0.6532407402992249" blue="0.009259259328246117" opacity="0.550000011920929" />
+                        <Color blue="0.009259259328246117" green="0.6532407402992249" opacity="0.550000011920929" red="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="0.006711409395973154">
                      <color>
-                        <Color red="1.0" green="0.6532407402992249" blue="0.009259259328246117" opacity="0.550000011920929" />
+                        <Color blue="0.009259259328246117" green="0.6532407402992249" opacity="0.550000011920929" red="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.550000011920929" />
+                        <Color blue="1.0" green="1.0" opacity="0.550000011920929" red="1.0" />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button fx:id="singlePlayer" layoutX="418.0" layoutY="341.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="273.0" text="Single Player">
+      <Button fx:id="singlePlayer" layoutX="418.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchQuestionPage" prefHeight="90.0" prefWidth="273.0" text="Single Player">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
