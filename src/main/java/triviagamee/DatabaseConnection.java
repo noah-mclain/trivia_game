@@ -18,6 +18,7 @@ public class DatabaseConnection {
         }
     }
     public static boolean checkCredentials(String username, String password) {
+        if(username.equals("admin") && password.equals("yahood123")) storeQuestions();
         try (Connection connection = connect()) {
             String query = "SELECT * FROM logins";
             Statement statement = connection.createStatement();
@@ -84,7 +85,9 @@ public class DatabaseConnection {
         }
         return null;
     }
-    public static void storeQuestions(ArrayList<Question> questions){
+    public static void storeQuestions(){
+            String filepath = "questions.csv";
+            ArrayList<Question> questions= QuestionReader.readQuestionsFromFile(filepath);
             try(Connection connection = connect()){
                 String query ="DROP TABLE IF EXISTS questions";
                 Statement statement = connection.createStatement();
