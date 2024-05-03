@@ -71,7 +71,8 @@ public class DatabaseConnection {
                     String choiceA=resultSet.getString("answer2");
                     String choiceB=resultSet.getString("answer3");
                     String choiceC=resultSet.getString("answer4");
-                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC);
+                    String category=resultSet.getString("category");
+                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
                 }
             }
             else{
@@ -83,6 +84,40 @@ public class DatabaseConnection {
         }
         return null;
     }
+    public static void storeQuestions(ArrayList<Question> questions){
+            try(Connection connection = connect()){
+                String query ="DROP TABLE IF EXISTS questions";
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(query);
+                query= "CREATE TABLE questions (\n" +
+                        "ID INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                        "question nvarchar(300),\n" +
+                        "rightAnswer nvarchar(300),\n" +
+                        "answer2 nvarchar(300),\n" +
+                        "answer3 nvarchar(300),\n" +
+                        "answer4 nvarchar(300),\n" +
+                        "category nvarchar(50)\n" +
+                        ");";
+                statement.executeUpdate(query);
+                for(Question question : questions){
+                    query ="INSERT INTO questions (question, rightAnswer, answer2, answer3, answer4, category)\n" +
+                            "VALUES(?, ?, ?, ?, ?, ?);";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                        preparedStatement.setString(1, question.getQuestion());
+                        preparedStatement.setString(2, question.getRightAnswer());
+                        preparedStatement.setString(3, question.getChoiceB());
+                        preparedStatement.setString(4, question.getChoiceC());
+                        preparedStatement.setString(5, question.getChoiceD());
+                        preparedStatement.setString(6, question.getCategory());
+                        preparedStatement.executeUpdate();
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+    }
 
-    
 }

@@ -6,12 +6,14 @@ public class Question {
     private String choiceB;
     private String choiceC;
     private String choiceD;
-    public Question(String question, String right, String A, String B, String c){
+    private String category;
+    public Question(String question, String right, String A, String B, String c, String cat){
         this.question=question;
         this.rightAnswer=right;
         this.choiceB=A;
         this.choiceC=B;
         this.choiceD=c;
+        this.category=cat;
     }
     public String getQuestion(){
         return this.question;
@@ -30,4 +32,5 @@ public class Question {
     public String getChoiceD() {
         return choiceD;
     }
+    public String getCategory(){ return this.category;}
 }
