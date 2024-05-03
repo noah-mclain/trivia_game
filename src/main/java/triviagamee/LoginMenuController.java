@@ -22,6 +22,7 @@ import javafx.scene.shape.CubicCurve;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -52,6 +53,38 @@ public class LoginMenuController {
     TextField userInputText;
     @FXML
     Label welcomeText;
+
+
+    public void setDynamicSizes() {
+        // For each component, call setDynamicSize with the component and its ratios
+        setDynamicSize(blueStroke, 0.1, 0.1, 0.8, 0.8);
+        setDynamicSize(labelVerdict, 0.2, 0.2, 0.6, 0.6);
+        setDynamicSize(loginButton, 0.3, 0.3, 0.4, 0.4);
+        setDynamicSize(nextButton, 0.4, 0.4, 0.2, 0.2);
+        setDynamicSize(passwordInputText, 0.5, 0.5, 0.5, 0.5);
+        setDynamicSize(pinkBox, 0.6, 0.6, 0.4, 0.4);
+        setDynamicSize(pinkStroke, 0.7, 0.7, 0.3, 0.3);
+        setDynamicSize(purpleBox, 0.8, 0.8, 0.2, 0.2);
+        setDynamicSize(signupButton, 0.9, 0.9, 0.1, 0.1);
+        setDynamicSize(userInputText, 0.5, 0.5, 0.5, 0.5);
+        setDynamicSize(welcomeText, 0.5, 0.5, 0.5, 0.5);
+    }
+
+    private void setDynamicSize(Node node, double layoutXRatio, double layoutYRatio, double widthRatio, double heightRatio) {
+        node.layoutXProperty().bind(ap.widthProperty().multiply(layoutXRatio));
+        node.layoutYProperty().bind(ap.heightProperty().multiply(layoutYRatio));
+        if (node instanceof Region) {
+            ((Region) node).prefWidthProperty().bind(ap.widthProperty().multiply(widthRatio));
+            ((Region) node).prefHeightProperty().bind(ap.heightProperty().multiply(heightRatio));
+        } else if (node instanceof Shape) {
+            node.scaleXProperty().bind(ap.widthProperty().multiply(widthRatio));
+            node.scaleYProperty().bind(ap.heightProperty().multiply(heightRatio));
+        }
+    }
+
+
+
+
 
 //    public void initialize() {
 //        bindNodeSize(blueStroke, ap);

@@ -43,7 +43,7 @@ public class TriviaGame extends Application {
         //FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
         //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         Scene scene = new Scene(root);
-        String css = this.getClass().getResource("/triviagamee/GlobalScene.css").toExternalForm();
+        String css = this.getClass().getResource("GlobalScene.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.setFullScreen(true);
         stage.setTitle("Hello!");
