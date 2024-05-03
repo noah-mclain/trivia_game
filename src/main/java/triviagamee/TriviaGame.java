@@ -1,24 +1,25 @@
 package triviagamee;
 
-import java.io.*;
-import java.net.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.layout.*;
 import javafx.scene.shape.*;
-import javafx.scene.text.Text;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.effect.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.paint.*;
 import java.io.IOException;
-import javafx.animation.*;
-import javafx.util.Duration;
-import javafx.scene.media.*;
+
+// import java.io.*;
+// import java.net.*;
+// import javafx.scene.Group;
+// import javafx.scene.layout.*;
+// import javafx.scene.text.Text;
+// import javafx.scene.effect.*;
+// import javafx.scene.control.*;
+// import javafx.scene.layout.*;
+// import javafx.scene.paint.*;
+// import javafx.animation.*;
+// import javafx.util.Duration;
+// import javafx.scene.media.*;
 
 
 public class TriviaGame extends Application {
@@ -39,9 +40,11 @@ public class TriviaGame extends Application {
    
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
-//      FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
-//      Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        //FXMLLoader fxmlLoader = new FXMLLoader(TriviaGame.class.getResource("login_menu.fxml"));
+        //Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         Scene scene = new Scene(root);
+        String css = this.getClass().getResource("/triviagamee/GlobalScene.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setFullScreen(true);
         stage.setTitle("Hello!");
         stage.setScene(scene);
