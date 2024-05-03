@@ -1,6 +1,7 @@
 .root {
-  -fx-background-image: url("../photos/virtualTrivNight.jpeg");
+  /* -fx-background-image: url("../photos/virtualTrivNight.jpeg");
   -fx-background-position: 97 -147;
   -fx-background-size: 825 825;
-  -fx-background-repeat: no-repeat;
-}
+  -fx-background-repeat: no-repeat;*/
+  -fx-fill: black;
+} 

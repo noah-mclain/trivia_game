@@ -4,9 +4,9 @@ package triviagamee;
 import java.io.IOException;
 
 import javafx.animation.PauseTransition;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.binding.NumberBinding;
+//import javafx.beans.binding.Bindings;
+//import javafx.beans.binding.DoubleBinding;
+//import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,7 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+//import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
@@ -30,63 +30,66 @@ public class LoginMenuController {
     String check = "amputate";
 
     @FXML
-    AnchorPane ap;
+    private AnchorPane ap;
     @FXML
-    CubicCurve blueStroke;
+    private CubicCurve blueStroke;
     @FXML
-    Label labelVerdict;
+    private Label labelVerdict;
     @FXML
-    Button loginButton;
+    private Button loginButton;
     @FXML
-    Button nextButton;
+    private Button nextButton;
     @FXML
-    TextField passwordInputText;
+    private TextField passwordInputText;
     @FXML
-    Rectangle pinkBox;
+    private Rectangle pinkBox;
     @FXML
-    CubicCurve pinkStroke;
+    private CubicCurve pinkStroke;
     @FXML
-    Rectangle purpleBox;
+    private Rectangle purpleBox;
     @FXML
-    Button signupButton;
+    private Button signupButton;
     @FXML
-    TextField userInputText;
+    private TextField userInputText;
     @FXML
-    Label welcomeText;
+    private Label welcomeText;
 
 
-    public void setDynamicSizes() {
-        // For each component, call setDynamicSize with the component and its ratios
-        setDynamicSize(blueStroke, 0.1, 0.1, 0.8, 0.8);
-        setDynamicSize(labelVerdict, 0.2, 0.2, 0.6, 0.6);
-        setDynamicSize(loginButton, 0.3, 0.3, 0.4, 0.4);
-        setDynamicSize(nextButton, 0.4, 0.4, 0.2, 0.2);
-        setDynamicSize(passwordInputText, 0.5, 0.5, 0.5, 0.5);
-        setDynamicSize(pinkBox, 0.6, 0.6, 0.4, 0.4);
-        setDynamicSize(pinkStroke, 0.7, 0.7, 0.3, 0.3);
-        setDynamicSize(purpleBox, 0.8, 0.8, 0.2, 0.2);
-        setDynamicSize(signupButton, 0.9, 0.9, 0.1, 0.1);
-        setDynamicSize(userInputText, 0.5, 0.5, 0.5, 0.5);
-        setDynamicSize(welcomeText, 0.5, 0.5, 0.5, 0.5);
-    }
-
-    private void setDynamicSize(Node node, double layoutXRatio, double layoutYRatio, double widthRatio, double heightRatio) {
-        node.layoutXProperty().bind(ap.widthProperty().multiply(layoutXRatio));
-        node.layoutYProperty().bind(ap.heightProperty().multiply(layoutYRatio));
-        if (node instanceof Region) {
-            ((Region) node).prefWidthProperty().bind(ap.widthProperty().multiply(widthRatio));
-            ((Region) node).prefHeightProperty().bind(ap.heightProperty().multiply(heightRatio));
-        } else if (node instanceof Shape) {
-            node.scaleXProperty().bind(ap.widthProperty().multiply(widthRatio));
-            node.scaleYProperty().bind(ap.heightProperty().multiply(heightRatio));
-        }
-    }
-
-
-
-
+//    public void setDynamicSizes() {
+//        // For each component, call setDynamicSize with the component and its ratios
+//        setDynamicSize(blueStroke, 0.1, 0.1, 0.3, 0.3);
+//        setDynamicSize(labelVerdict, 0.2, 0.2, 0.2, 0.2);
+//        setDynamicSize(loginButton, 0.3, 0.3, 0.1, 0.1);
+//        setDynamicSize(nextButton, 0.4, 0.4, 0.1, 0.1);
+//        setDynamicSize(passwordInputText, 0.5, 0.5, 0.3, 0.1);
+//        setDynamicSize(pinkBox, 0.6, 0.6, 0.2, 0.2);
+//        setDynamicSize(pinkStroke, 0.7, 0.7, 0.2, 0.2);
+//        setDynamicSize(purpleBox, 0.8, 0.8, 0.1, 0.1);
+//        setDynamicSize(signupButton, 0.9, 0.9, 0.1, 0.1);
+//        setDynamicSize(userInputText, 0.5, 0.5, 0.3, 0.1);
+//        setDynamicSize(welcomeText, 0.5, 0.5, 0.3, 0.1);
+//    }
+//
+//    private void setDynamicSize(Node node, double layoutXRatio, double layoutYRatio, double widthRatio, double heightRatio) {
+//        node.layoutXProperty().bind(ap.widthProperty().multiply(layoutXRatio));
+//        node.layoutYProperty().bind(ap.heightProperty().multiply(layoutYRatio));
+//        if (node instanceof Region) {
+//            ((Region) node).prefWidthProperty().bind(ap.widthProperty().multiply(widthRatio));
+//            ((Region) node).prefHeightProperty().bind(ap.heightProperty().multiply(heightRatio));
+//        } else if (node instanceof Shape) {
+//            node.scaleXProperty().bind(ap.widthProperty().multiply(widthRatio));
+//            node.scaleYProperty().bind(ap.heightProperty().multiply(heightRatio));
+//        }
+//    }
 
 //    public void initialize() {
+//        double newValue = ap.widthProperty().get() * 0.1;
+//
+//        // Unbind and set new value if properties are already bound
+//        unbindAndSetNewValue(purpleBox, newValue);
+//        unbindAndSetNewValue(pinkBox, newValue);
+//
+//        // Bind node sizes
 //        bindNodeSize(blueStroke, ap);
 //        bindNodeSize(labelVerdict, ap);
 //        bindNodeSize(loginButton, ap);
@@ -98,17 +101,63 @@ public class LoginMenuController {
 //        bindNodeSize(signupButton, ap);
 //        bindNodeSize(userInputText, ap);
 //        bindNodeSize(welcomeText, ap);
-//       }
+//    }
+//
+//    private void unbindAndSetNewValue(Node node, double newValue) {
+//        if (node.layoutXProperty().isBound()) {
+//            node.layoutXProperty().unbind();
+//            node.setLayoutX(newValue);
+//            System.out.println("The layoutX property of the rectangle was bound and has been set to a new value.");
+//        } else {
+//            System.out.println("The layoutX property of the rectangle is not bound.");
+//        }
+//    }
 //
 //    private void bindNodeSize(Node node, AnchorPane ap) {
-//        node.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-//            double scale = Math.min(
-//                    ap.getWidth() / newValue.getWidth(),
-//                    ap.getHeight() / newValue.getHeight());
-//            node.setScaleX(scale);
-//            node.setScaleY(scale);
-//        });
+//        // Unbind properties if they are already bound
+//        if(node.layoutXProperty().isBound()) {
+//            node.layoutXProperty().unbind();
+//        }
+//        if(node.layoutYProperty().isBound()) {
+//            node.layoutYProperty().unbind();
+//        }
+//
+//        // Bind properties
+//        node.layoutXProperty().bind(ap.widthProperty().multiply(0.1));
+//        node.layoutYProperty().bind(ap.heightProperty().multiply(0.1));
+//
+//        if (node instanceof Region) {
+//            Region region = (Region) node;
+//
+//            // Unbind properties if they are already bound
+//            if(region.prefWidthProperty().isBound()) {
+//                region.prefWidthProperty().unbind();
+//            }
+//            if(region.prefHeightProperty().isBound()) {
+//                region.prefHeightProperty().unbind();
+//            }
+//
+//            // Bind properties
+//            region.prefWidthProperty().bind(ap.widthProperty().multiply(0.8));
+//            region.prefHeightProperty().bind(ap.heightProperty().multiply(0.8));
+//        } else if (node instanceof Shape) {
+//            Shape shape = (Shape) node;
+//
+//            // Unbind properties if they are already bound
+//            if(shape.scaleXProperty().isBound()) {
+//                shape.scaleXProperty().unbind();
+//            }
+//            if(shape.scaleYProperty().isBound()) {
+//                shape.scaleYProperty().unbind();
+//            }
+//
+//            // Bind properties
+//            shape.scaleXProperty().bind(ap.widthProperty().multiply(0.8));
+//            shape.scaleYProperty().bind(ap.heightProperty().multiply(0.8));
+//        }
 //    }
+
+
 
     public void setVisibilityFalse() {
         nextButton.setVisible(false);

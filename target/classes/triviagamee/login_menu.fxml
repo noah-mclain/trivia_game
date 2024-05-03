@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -13,8 +15,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #000000;" stylesheets="@../../java/triviagamee/GlobalScene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane fx:id="ap" style="-fx-background-color: #000000;" stylesheets="@../../java/triviagamee/GlobalScene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
+      <ImageView fitHeight="719.0" fitWidth="753.0" layoutX="165.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../photos/virtualTrivNight.jpeg" />
+         </image>
+      </ImageView>
       <Rectangle fx:id="pinkBox" arcHeight="5.0" arcWidth="5.0" fill="#8c00ff16" height="340.0" layoutX="560.0" layoutY="495.0" strokeType="INSIDE" width="237.0">
          <stroke>
             <LinearGradient endY="1.0" startX="1.0">
@@ -51,9 +58,9 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button fx:id="loginButton" layoutX="340.0" layoutY="611.0" mnemonicParsing="false" onAction="#login" prefHeight="41.0" prefWidth="169.0" text="Login">
+      <Button fx:id="loginButton" layoutX="340.0" layoutY="611.0" minHeight="41.0" minWidth="169.0" mnemonicParsing="false" onAction="#login" text="Login">
          <font>
-            <Font size="18.0" />
+            <Font name="Ayuthaya" size="18.0" />
          </font>
       </Button>
       <CubicCurve fx:id="pinkStroke" controlX1="-50.0" controlX2="-30.383106231689453" controlY1="-100.0" controlY2="42.781681060791016" endX="174.5186767578125" endY="99.67709350585938" fill="#f292ff1f" layoutX="179.0" layoutY="137.0" startX="-168.83184814453125" startY="-114.79400634765625" stroke="#ff03ea53">
@@ -74,23 +81,23 @@
             </Glow>
          </effect>
       </CubicCurve>
-      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="391.0" layoutY="478.0" prefHeight="16.0" prefWidth="301.0">
+      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="375.0" layoutY="480.0" minHeight="5.0" minWidth="300.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="welcomeText" layoutX="10.0" layoutY="10.0" />
-      <Button fx:id="signupButton" layoutX="541.0" layoutY="611.0" mnemonicParsing="false" onAction="#signup" prefHeight="41.0" prefWidth="169.0" text="Signup">
+      <Button fx:id="signupButton" layoutX="541.0" layoutY="611.0" minHeight="41.0" minWidth="169.0" mnemonicParsing="false" onAction="#signup" text="Signup">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" prefHeight="45.0" prefWidth="372.0" promptText="Password">
+      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" minHeight="45.0" minWidth="372.0" promptText="Password">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="userInputText" layoutX="338.0" layoutY="510.0" prefHeight="45.0" prefWidth="372.0" promptText="Username">
+      <TextField fx:id="userInputText" layoutX="338.0" layoutY="510.0" minHeight="45.0" minWidth="372.0" promptText="Username">
          <font>
             <Font size="18.0" />
          </font>
