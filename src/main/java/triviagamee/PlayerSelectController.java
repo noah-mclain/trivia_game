@@ -22,4 +22,12 @@ public class PlayerSelectController {
         stage.setScene(scene);
         stage.show();
     }
+
+//    public void switchGenreSelectPage(ActionEvent e) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("genreSelect_menu.fxml"));
+//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 }

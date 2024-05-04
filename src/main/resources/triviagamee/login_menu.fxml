@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #000000;" stylesheets="@../../java/triviagamee/GlobalScene.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
+<AnchorPane fx:id="ap" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.LoginMenuController">
    <children>
       <ImageView fitHeight="719.0" fitWidth="753.0" layoutX="165.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true">
          <image>

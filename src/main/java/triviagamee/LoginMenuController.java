@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class LoginMenuController {
-    String check = "amputate";
+    //String check = "amputate";
 
     @FXML
     private AnchorPane ap;
@@ -165,14 +165,11 @@ public class LoginMenuController {
 //    }
 
 
-
     public void setVisibilityFalse() {
         nextButton.setVisible(false);
     }
 
     public void login(ActionEvent e) throws IOException {
-
-
         if (DatabaseConnection.checkCredentials(userInputText.getText(), passwordInputText.getText())) {
             labelVerdict.setText("Login successful ╰(▔∀▔)╯");
             labelVerdict.setTextFill(Color.GREEN);
@@ -188,7 +185,7 @@ public class LoginMenuController {
             delay.play();
         } else {
 
-            if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
+            if (DatabaseConnection.checkCredentials(userInputText.getText(), passwordInputText.getText())) {
                 labelVerdict.setText("Login successful ╰(▔∀▔)╯");
                 labelVerdict.setTextFill(Color.GREEN);
 //                nextButton.setVisible(true);
@@ -201,15 +198,15 @@ public class LoginMenuController {
                     }
                 });
                 delay.play();
-        }
-//         else{
+            } else {
 
-//             labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
-//             labelVerdict.setTextFill(Color.RED);
-//         }
+                labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
+                labelVerdict.setTextFill(Color.RED);
+            }
+        }
     }
 
-    public void signup(ActionEvent e) throws IOException {
+    public void signup (ActionEvent e) throws IOException {
         boolean registerExceptionCheck = DatabaseConnection.registerNewUser(userInputText.getText(),
                 passwordInputText.getText());
         if (registerExceptionCheck) {
@@ -231,12 +228,13 @@ public class LoginMenuController {
         }
     }
 
-    public void initialize() {
+    public void initialize () {
         userInputText.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 passwordInputText.requestFocus();
             }
         });
+    }
 //tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
 
 //        passwordInputText.setOnKeyPressed(event -> {
@@ -248,10 +246,8 @@ public class LoginMenuController {
 //                }
 //           }
 //       });
-    }
 
 
-    
 //    public void switchToLogin(ActionEvent e) throws IOException {
 //        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
 //        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -261,7 +257,7 @@ public class LoginMenuController {
 //
 //    }
 
-    public void switchToPlayerSelect(ActionEvent e) throws IOException {
+    public void switchToPlayerSelect (ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("playersSelect_menu.fxml"));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -270,20 +266,20 @@ public class LoginMenuController {
 
     }
 
-    public void singlePlayer(ActionEvent e) {
+    public void singlePlayer (ActionEvent e){
 
     }
 
-    public void multiPlayer(ActionEvent e) {
+    public void multiPlayer (ActionEvent e){
 
     }
 
-    // @FXML
-    // private Label welcomeText;
-    //
-    // @FXML
-    // protected void onHelloButtonClick() {
-    // welcomeText.setText("Welcome to JavaFX Application!");
-    // }
+                // @FXML
+                // private Label welcomeText;
+                //
+                // @FXML
+                // protected void onHelloButtonClick() {
+                // welcomeText.setText("Welcome to JavaFX Application!");
+                // }
 
 }
