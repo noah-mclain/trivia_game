@@ -1,9 +1,7 @@
 
 package triviagamee;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -12,24 +10,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 
 public class LoginMenuController {
@@ -73,12 +60,8 @@ public class LoginMenuController {
 
     public void signup(ActionEvent e) throws IOException{
         labelVerdict.setText("");
-        if(userInputText.getText().length()<4){
-            labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
-            return;
-        }
-        String enteredPassword = passwordInputText.getText();
-        isCorrectFormat(enteredPassword);
+        isCorrectUsernameFormat(userInputText.getText());
+        isCorrectPasswordFormat(passwordInputText.getText());
 
         if(!labelVerdict.getText().isEmpty()) return;
 
@@ -102,7 +85,15 @@ public class LoginMenuController {
             labelVerdict.setTextFill(Color.RED);
         }
     }
-    public  void isCorrectFormat(String enteredPassword){
+
+    public void isCorrectUsernameFormat(String enteredUsername){
+        if(enteredUsername.length()<4){
+            labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
+        }
+
+    }
+
+    public  void isCorrectPasswordFormat(String enteredPassword){
         if(!(enteredPassword.matches(".*\\d+.*") )){
             labelVerdict.setText("password must contain at least one number!\n");
         }
