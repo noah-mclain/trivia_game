@@ -20,6 +20,8 @@ public class PlayerSelectController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+//     public void switchQuestionPage(ActionEvent e) throws IOException {
     public void switchToSinglePlayer(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -27,6 +29,14 @@ public class PlayerSelectController {
         stage.setScene(scene);
         stage.show();
     }
+
+//    public void switchGenreSelectPage(ActionEvent e) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("genreSelect_menu.fxml"));
+//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
     public void switchToMultiPlayer(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MultiPlayerScreen.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
