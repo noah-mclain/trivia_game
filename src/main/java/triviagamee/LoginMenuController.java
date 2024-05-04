@@ -17,6 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 //import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.control.Label;
@@ -165,6 +172,7 @@ public class LoginMenuController {
 
     public void login(ActionEvent e) throws IOException {
 
+
         if (DatabaseConnection.checkCredentials(userInputText.getText(), passwordInputText.getText())) {
             labelVerdict.setText("Login successful ╰(▔∀▔)╯");
             labelVerdict.setTextFill(Color.GREEN);
@@ -179,9 +187,26 @@ public class LoginMenuController {
             });
             delay.play();
         } else {
-            labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
-            labelVerdict.setTextFill(Color.RED);
+
+            if(DatabaseConnection.checkCredentials(userInputText.getText(),passwordInputText.getText())){
+                labelVerdict.setText("Login successful ╰(▔∀▔)╯");
+                labelVerdict.setTextFill(Color.GREEN);
+//                nextButton.setVisible(true);
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(event -> {
+                    try {
+                        switchToPlayerSelect(e);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+                delay.play();
         }
+//         else{
+
+//             labelVerdict.setText("wrong user-name ヾ( ･`⌓´･)ﾉﾞ ");
+//             labelVerdict.setTextFill(Color.RED);
+//         }
     }
 
     public void signup(ActionEvent e) throws IOException {
@@ -206,14 +231,35 @@ public class LoginMenuController {
         }
     }
 
-    // public void switchToLogin(ActionEvent e) throws IOException {
-    // Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
-    // stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-    // scene = new Scene(root);
-    // stage.setScene(scene);
-    // stage.show();
-    //
-    // }
+    public void initialize() {
+        userInputText.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordInputText.requestFocus();
+            }
+        });
+//tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
+
+//        passwordInputText.setOnKeyPressed(event -> {
+//            if(event.getCode() == KeyCode.ENTER) {
+//                try {
+//                        login(new ActionEvent());
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                }
+//           }
+//       });
+    }
+
+
+    
+//    public void switchToLogin(ActionEvent e) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
+//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//
+//    }
 
     public void switchToPlayerSelect(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("playersSelect_menu.fxml"));
