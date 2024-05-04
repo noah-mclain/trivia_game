@@ -35,29 +35,29 @@ public class GenreSelectMenuController {
     @FXML
     public void initialize() {
         loadFont("Beon-Regular.ttf");
-        changeButtonBackground(flagsButtons, Color.BLUE);
+        changeButtonBackground(flagsButtons);
         flagsButtons.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(geoButton, Color.BLUE);
+        changeButtonBackground(geoButton);
         geoButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(historyButton, Color.BLUE);
+        changeButtonBackground(historyButton);
         historyButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(litButton, Color.BLUE);
+        changeButtonBackground(litButton);
         litButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(moviesButton, Color.BLUE);
+        changeButtonBackground(moviesButton);
         moviesButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(musicButton, Color.BLUE);
+        changeButtonBackground(musicButton);
         musicButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(scienceButton, Color.BLUE);
+        changeButtonBackground(scienceButton);
         scienceButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(showsButton, Color.BLUE);
+        changeButtonBackground(showsButton);
         showsButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
-        changeButtonBackground(miscButton, Color.BLUE);
+        changeButtonBackground(miscButton);
         miscButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
 
     }
 
-    private void changeButtonBackground(Button button, Color color) {
-        button.setBackground(new Background(new BackgroundFill(color, null, null)));
+    private void changeButtonBackground(Button button) {
+        button.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
     }
 
     private void loadFont(String fontFileName) {
