@@ -53,20 +53,12 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-<<<<<<< Updated upstream
-      <Button fx:id="singlePlayer" layoutX="418.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchQuestionPage" prefHeight="90.0" prefWidth="273.0" text="Single Player">
-=======
       <Button fx:id="singlePlayer" layoutX="418.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchToSinglePlayer" prefHeight="90.0" prefWidth="273.0" text="Single Player">
->>>>>>> Stashed changes
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
       </Button>
-<<<<<<< Updated upstream
-      <Button fx:id="multiplayer" layoutX="418.0" layoutY="441.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="273.0" text="Multiplayer">
-=======
       <Button fx:id="multiPlayer" layoutX="418.0" layoutY="441.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="273.0" text="Multi player" onAction="#switchToMultiPlayer" >
->>>>>>> Stashed changes
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>

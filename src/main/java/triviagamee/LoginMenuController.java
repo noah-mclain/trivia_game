@@ -232,7 +232,6 @@ public class LoginMenuController {
         }
     }
 
-    public void initialize () {
     public void isCorrectUsernameFormat(String enteredUsername){
         if(enteredUsername.length()<4){
             labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
