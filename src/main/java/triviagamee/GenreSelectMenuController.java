@@ -29,6 +29,8 @@ public class GenreSelectMenuController {
     private Button scienceButton;
     @FXML
     private Button showsButton;
+    @FXML
+    private Button miscButton;
 
     @FXML
     public void initialize() {
@@ -49,6 +51,8 @@ public class GenreSelectMenuController {
         scienceButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(showsButton, Color.BLUE);
         showsButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
+        changeButtonBackground(miscButton, Color.BLUE);
+        miscButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
 
     }
 
