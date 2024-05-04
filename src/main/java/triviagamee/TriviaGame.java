@@ -2,7 +2,6 @@ package triviagamee;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.shape.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,7 +19,7 @@ import java.io.IOException;
 // import javafx.animation.*;
 // import javafx.util.Duration;
 // import javafx.scene.media.*;
-
+// import javafx.scene.shape.*;
 
 public class TriviaGame extends Application {
     //kill me
