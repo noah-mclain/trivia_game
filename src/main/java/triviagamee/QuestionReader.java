@@ -18,8 +18,8 @@ public class QuestionReader {
                     String choiceA=data[2];
                     String choiceB=data[3];
                     String choiceC=data[4];
-                    String choiceD=data[5];
-                    Question newQuestion = new Question(question,rightAnswer,choiceA,choiceB,choiceC,choiceD);
+                    String category=data[5];
+                    Question newQuestion = new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
                     questions.add(newQuestion);
                 }
                 else{

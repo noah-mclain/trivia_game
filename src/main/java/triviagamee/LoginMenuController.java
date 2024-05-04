@@ -74,26 +74,12 @@ public class LoginMenuController {
     public void signup(ActionEvent e) throws IOException{
         labelVerdict.setText("");
         if(userInputText.getText().length()<4){
-            labelVerdict.setText("Username should be at least 4 characters at least! (┛◉Д◉)┛彡┻━┻ ");
+            labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
             return;
         }
         String enteredPassword = passwordInputText.getText();
-        if(!(enteredPassword.matches(".*\\d+.*") )){
-            labelVerdict.setText("password must contain at least one number!\n");
+        isCorrectFormat(enteredPassword);
 
-        }
-
-        if(!(enteredPassword.matches(".*[a-z]+.*"))){
-            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least 1 lowercase letter! ");
-        }
-
-        if(!(enteredPassword.matches(".*[A-Z]+.*"))){
-            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least one uppercase letter!\n");
-        }
-
-        if(enteredPassword.length()<8){
-            labelVerdict.setText(labelVerdict.getText()+" Password should be at least 8 characters long!");
-        }
         if(!labelVerdict.getText().isEmpty()) return;
 
        boolean registerExceptionCheck =DatabaseConnection.registerNewUser(userInputText.getText(),passwordInputText.getText());
@@ -114,6 +100,20 @@ public class LoginMenuController {
         else{
             labelVerdict.setText("Sign-up unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
             labelVerdict.setTextFill(Color.RED);
+        }
+    }
+    public  void isCorrectFormat(String enteredPassword){
+        if(!(enteredPassword.matches(".*\\d+.*") )){
+            labelVerdict.setText("password must contain at least one number!\n");
+        }
+        if(!(enteredPassword.matches(".*[a-z]+.*"))){
+            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least 1 lowercase letter! ");
+        }
+        if(!(enteredPassword.matches(".*[A-Z]+.*"))){
+            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least one uppercase letter!\n");
+        }
+        if(enteredPassword.length()<8){
+            labelVerdict.setText(labelVerdict.getText()+" Password should be at least 8 characters long!");
         }
     }
 
