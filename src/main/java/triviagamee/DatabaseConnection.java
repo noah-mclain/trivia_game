@@ -18,6 +18,7 @@ public class DatabaseConnection {
         }
     }
     public static boolean checkCredentials(String username, String password) {
+        if(username.equals("admin") && password.equals("yahood123")) storeQuestions();
         try (Connection connection = connect()) {
             String query = "SELECT * FROM logins";
             Statement statement = connection.createStatement();
@@ -37,7 +38,7 @@ public class DatabaseConnection {
         return false;
     }
     public static boolean registerNewUser(String username, String password){
-
+        if(checkCredentials(username,password)) return false;
         try(Connection connection = connect()){
             String query="INSERT INTO logins(username, userPassword) VALUES (?, ?)";
             PreparedStatement statement =connection.prepareStatement(query);
@@ -84,7 +85,31 @@ public class DatabaseConnection {
         }
         return null;
     }
-    public static void storeQuestions(ArrayList<Question> questions){
+    public static Question retrieveQuestion(String genre){
+        try(Connection connection= connect()){
+            String query="SELECT * FROM questions WHERE category = ? ORDER BY RAND() LIMIT 1";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, genre);
+                ResultSet resultSet= preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    String question= resultSet.getString("question");
+                    String rightAnswer = resultSet.getString("rightAnswer");
+                    String choiceA= resultSet.getString("answer2");
+                    String choiceB= resultSet.getString("answer3");
+                    String choiceC= resultSet.getString("answer4");
+                    String category= resultSet.getString("category");
+                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
+                }
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+    public static void storeQuestions(){
+            String filepath = "questions.csv";
+            ArrayList<Question> questions= QuestionReader.readQuestionsFromFile(filepath);
             try(Connection connection = connect()){
                 String query ="DROP TABLE IF EXISTS questions";
                 Statement statement = connection.createStatement();

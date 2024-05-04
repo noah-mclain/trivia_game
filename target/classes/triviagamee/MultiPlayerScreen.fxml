@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="triviagamee.HostOrJoinController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Button fx:id="joinButton" layoutX="143.0" layoutY="185.0" onAction="#joinGameClicked" text="Join Game" />
+        <Button fx:id="hostButton" layoutX="143.0" layoutY="235.0" onAction="#hostGameClicked" text="Host Game" />
+        <TextField fx:id="gameNameHostTextField" layoutX="143.0" layoutY="235.0" text="Your Game's Name" visible="false" />
+        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" text="Host's Game Name" visible="false" />
+    </children>
+
+</AnchorPane>

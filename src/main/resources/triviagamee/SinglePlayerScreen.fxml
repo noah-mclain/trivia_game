@@ -7,17 +7,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.QuestionController">
    <children>
-      <Button fx:id="buttonB" layoutX="512.0" layoutY="237.0" mnemonicParsing="false" onAction="#choiceB" prefHeight="93.0" prefWidth="172.0">
+      <Label fx:id="questionLabel" layoutX="84.0" layoutY="52.0" prefHeight="109.0" prefWidth="650.0">
          <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonA" layoutX="156.0" layoutY="237.0" mnemonicParsing="false" onAction="#choiceA" prefHeight="93.0" prefWidth="199.0" />
-      <Button fx:id="buttonC" layoutX="156.0" layoutY="353.0" mnemonicParsing="false" onAction="#choiceC" prefHeight="93.0" prefWidth="199.0" />
-      <Button fx:id="buttonD" layoutX="512.0" layoutY="363.0" mnemonicParsing="false" onAction="#choiceD" prefHeight="86.0" prefWidth="172.0" />
-      <Label fx:id="questionLabel" layoutX="84.0" layoutY="52.0" prefHeight="109.0" prefWidth="622.0">
-         <font>
-            <Font size="20.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="answerVerdict" layoutX="235.0" layoutY="187.0" prefHeight="27.0" prefWidth="319.0">
@@ -25,5 +17,15 @@
             <Font size="19.0" />
          </font>
       </Label>
+      <Label fx:id="scoreLabel" layoutX="522.0" layoutY="33.0" prefHeight="27.0" prefWidth="172.0" text="Score: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="nextButton" layoutX="370.0" layoutY="496.0" mnemonicParsing="false" onAction="#nextClicked" text="Next Question" visible="false" />
+      <Button fx:id="buttonA" layoutX="78.0" layoutY="224.0" mnemonicParsing="false" onAction="#userChoice" prefHeight="96.0" prefWidth="181.0" />
+      <Button fx:id="buttonB" layoutX="468.0" layoutY="224.0" mnemonicParsing="false" onAction="#userChoice" prefHeight="103.0" prefWidth="172.0" />
+      <Button fx:id="buttonC" layoutX="84.0" layoutY="364.0" mnemonicParsing="false" onAction="#userChoice" prefHeight="103.0" prefWidth="172.0" />
+      <Button fx:id="buttonD" layoutX="477.0" layoutY="357.0" mnemonicParsing="false" onAction="#userChoice" prefHeight="103.0" prefWidth="172.0" />
    </children>
 </AnchorPane>

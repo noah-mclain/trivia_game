@@ -20,16 +20,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -205,12 +203,17 @@ public class LoginMenuController {
             }
         }
     }
+  
+    public void signup(ActionEvent e) throws IOException{
+        labelVerdict.setText("");
+        isCorrectUsernameFormat(userInputText.getText());
+        isCorrectPasswordFormat(passwordInputText.getText());
 
-    public void signup (ActionEvent e) throws IOException {
-        boolean registerExceptionCheck = DatabaseConnection.registerNewUser(userInputText.getText(),
-                passwordInputText.getText());
-        if (registerExceptionCheck) {
-            labelVerdict.setText("Sign-in successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
+        if(!labelVerdict.getText().isEmpty()) return;
+
+       boolean registerExceptionCheck =DatabaseConnection.registerNewUser(userInputText.getText(),passwordInputText.getText());
+        if(registerExceptionCheck){
+            labelVerdict.setText("Sign-up successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
             labelVerdict.setTextFill(Color.GREEN);
             // nextButton.setVisible(true);
             PauseTransition delay = new PauseTransition(Duration.seconds(3));
@@ -222,19 +225,43 @@ public class LoginMenuController {
                 }
             });
             delay.play();
-        } else {
-            labelVerdict.setText("Sign-in unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
+        }
+        else{
+            labelVerdict.setText("Sign-up unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
             labelVerdict.setTextFill(Color.RED);
         }
     }
 
     public void initialize () {
-        userInputText.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                passwordInputText.requestFocus();
-            }
-        });
+    public void isCorrectUsernameFormat(String enteredUsername){
+        if(enteredUsername.length()<4){
+            labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
+        }
+
     }
+
+    public  void isCorrectPasswordFormat(String enteredPassword){
+        if(!(enteredPassword.matches(".*\\d+.*") )){
+            labelVerdict.setText("password must contain at least one number!\n");
+        }
+        if(!(enteredPassword.matches(".*[a-z]+.*"))){
+            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least 1 lowercase letter! ");
+        }
+        if(!(enteredPassword.matches(".*[A-Z]+.*"))){
+            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least one uppercase letter!\n");
+        }
+        if(enteredPassword.length()<8){
+            labelVerdict.setText(labelVerdict.getText()+" Password should be at least 8 characters long!");
+        }
+    }
+
+//     public void initialize() {
+//         userInputText.setOnKeyPressed(event -> {
+//             if (event.getCode() == KeyCode.ENTER) {
+//                 passwordInputText.requestFocus();
+//             }
+//         });
+//     }
 //tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
 
 //        passwordInputText.setOnKeyPressed(event -> {
