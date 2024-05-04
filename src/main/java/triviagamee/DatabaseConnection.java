@@ -38,7 +38,7 @@ public class DatabaseConnection {
         return false;
     }
     public static boolean registerNewUser(String username, String password){
-
+        if(checkCredentials(username,password)) return false;
         try(Connection connection = connect()){
             String query="INSERT INTO logins(username, userPassword) VALUES (?, ?)";
             PreparedStatement statement =connection.prepareStatement(query);

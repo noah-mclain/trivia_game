@@ -86,7 +86,7 @@
             </Glow>
          </effect>
       </CubicCurve>
-      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="422.0" layoutY="465.0" prefHeight="16.0" prefWidth="301.0">
+      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="31.0" layoutY="405.0" prefHeight="81.0" prefWidth="1052.0">
          <font>
             <Font size="18.0" />
          </font>
