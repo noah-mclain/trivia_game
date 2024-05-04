@@ -254,13 +254,14 @@ public class LoginMenuController {
         }
     }
 
-//     public void initialize() {
-//         userInputText.setOnKeyPressed(event -> {
-//             if (event.getCode() == KeyCode.ENTER) {
-//                 passwordInputText.requestFocus();
-//             }
-//         });
-//     }
+     public void initialize() {
+         userInputText.setOnKeyPressed(event -> {
+             if (event.getCode() == KeyCode.ENTER) {
+                 passwordInputText.requestFocus();
+             }
+         });
+     }
+
 //tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
 
 //        passwordInputText.setOnKeyPressed(event -> {
