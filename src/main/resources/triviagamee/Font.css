@@ -6,8 +6,25 @@
 .genre {
     -fx-font-family: "Beon";
     -fx-background-color: transparent;
+    -fx-font-size: 36px;
 }
 .genre:hover {
     -fx-effect: dropshadow(three-pass-box, rgb(13,20,134), 5, 0, 0, 1);
-    -fx-font-size: 36px;
+}
+
+.userDetails {
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-color: rgb(255,0,208);
+}
+
+.loginSignUp {
+    -fx-font-family: "Beon";
+    -fx-background-color: transparent;
+    -fx-font-size: 30px;
+    -fx-text-fill: rgb(255,0,208);
+}
+
+.loginSignUp:hover {
+    -fx-text-fill: rgb(55,208,241);
 }

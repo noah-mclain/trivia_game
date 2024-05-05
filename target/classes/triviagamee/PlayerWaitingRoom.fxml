@@ -2,18 +2,23 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="872.0" prefWidth="1109.0" style="-fx-background-color: #000000;" stylesheets="@../../java/triviagamee/genre.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.PlayerWaitingRoom">
+<AnchorPane prefHeight="872.0" prefWidth="1109.0" style="-fx-background-color: #000000;" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.PlayerWaitingRoom">
     <children>
       <ImageView fitHeight="701.0" fitWidth="762.0" layoutX="191.0" pickOnBounds="true">
          <image>
             <Image url="@../photos/WaitingRooms.jpg" />
          </image>
+         <effect>
+            <BoxBlur />
+         </effect>
       </ImageView>
         <Label fx:id="waitingLabel" layoutX="67.0" layoutY="70.0" styleClass="genre" text="Waiting for host to start game..." textFill="#ff00ec" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="217.0" AnchorPane.topAnchor="70.0">
          <font>
@@ -31,5 +36,8 @@
             <Glow level="1.0" />
          </effect></Label>
     </children>
+   <effect>
+      <Blend mode="DARKEN" />
+   </effect>
 
 </AnchorPane>
