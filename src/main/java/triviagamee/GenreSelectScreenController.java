@@ -1,5 +1,7 @@
 package triviagamee;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +13,7 @@ import javafx.scene.text.Font;
 
 import java.io.InputStream;
 
-public class GenreSelectMenuController {
+public class GenreSelectScreenController {
 
     @FXML
     private Button flagsButtons;
@@ -36,24 +38,32 @@ public class GenreSelectMenuController {
     public void initialize() {
         loadFont("Beon-Regular.ttf");
         changeButtonBackground(flagsButtons);
-        flagsButtons.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(geoButton);
-        geoButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(historyButton);
-        historyButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(litButton);
-        litButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(moviesButton);
-        moviesButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(musicButton);
-        musicButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(scienceButton);
-        scienceButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(showsButton);
-        showsButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
         changeButtonBackground(miscButton);
-        miscButton.getScene().getStylesheets().add(getClass().getResource("triviagamee/Fonts.css").toExternalForm());
+        String css = getClass().getResource("Font.css").toExternalForm();
+        if (getClass().getResource("Font.css").toExternalForm() == null) {
+            System.out.println("CSS not found");
+        }
+        else {
+            Platform.runLater(() -> {
 
+                flagsButtons.getScene().getStylesheets().add(css);
+                geoButton.getScene().getStylesheets().add(css);
+                litButton.getScene().getStylesheets().add(css);
+                historyButton.getScene().getStylesheets().add(css);
+                moviesButton.getScene().getStylesheets().add(css);
+                musicButton.getScene().getStylesheets().add(css);
+                scienceButton.getScene().getStylesheets().add(css);
+                showsButton.getScene().getStylesheets().add(css);
+                miscButton.getScene().getStylesheets().add(css);
+            });
+        }
     }
 
     private void changeButtonBackground(Button button) {
@@ -62,7 +72,7 @@ public class GenreSelectMenuController {
 
     private void loadFont(String fontFileName) {
         try {
-            InputStream is = GenreSelectMenuController.class.getResourceAsStream("/fonts/" + fontFileName);
+            InputStream is = GenreSelectScreenController.class.getResourceAsStream("/fonts/" + fontFileName);
             Font font = Font.loadFont(is, 36);
             if (font != null) {
                 System.out.println("Font " + font.getName() + " loaded successfully.");
@@ -72,5 +82,15 @@ public class GenreSelectMenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void miscClicked(){
+        DatabaseConnection.retrieveQuestion();
+    }
+
+    public void genreClciked(ActionEvent e){
+        Button buttonClicked= (Button) e.getSource();
+        DatabaseConnection.retrieveQuestion(buttonClicked.getText());
+
     }
 }
