@@ -67,13 +67,14 @@ public class DatabaseConnection {
                 Statement retrieveStatement = connection.createStatement();
                 ResultSet resultSet = retrieveStatement.executeQuery(query);
                 while(resultSet.next()){
+                    int counter= resultSet.getInt("ID");
                     String question = resultSet.getString("question");
                     String rightAnswer=resultSet.getString("rightAnswer");
                     String choiceA=resultSet.getString("answer2");
                     String choiceB=resultSet.getString("answer3");
                     String choiceC=resultSet.getString("answer4");
                     String category=resultSet.getString("category");
-                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
+                    return new Question(counter, question,rightAnswer,choiceA,choiceB,choiceC,category);
                 }
             }
             else{
@@ -92,13 +93,14 @@ public class DatabaseConnection {
                 preparedStatement.setString(1, genre);
                 ResultSet resultSet= preparedStatement.executeQuery();
                 if(resultSet.next()){
+                    int id= resultSet.getInt("ID");
                     String question= resultSet.getString("question");
                     String rightAnswer = resultSet.getString("rightAnswer");
                     String choiceA= resultSet.getString("answer2");
                     String choiceB= resultSet.getString("answer3");
                     String choiceC= resultSet.getString("answer4");
                     String category= resultSet.getString("category");
-                    return new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
+                    return new Question(id,question,rightAnswer,choiceA,choiceB,choiceC,category);
                 }
             }
         }
@@ -108,84 +110,138 @@ public class DatabaseConnection {
         return null;
     }
     public static void storeQuestions(){
-            String filepath = "questions.csv";
-            ArrayList<Question> questions= QuestionReader.readQuestionsFromFile(filepath);
-            try(Connection connection = connect()){
-                String query ="DROP TABLE IF EXISTS questions";
-                Statement statement = connection.createStatement();
-                statement.executeUpdate(query);
-                query= "CREATE TABLE questions (\n" +
-                        "ID INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                        "question nvarchar(300),\n" +
-                        "rightAnswer nvarchar(300),\n" +
-                        "answer2 nvarchar(300),\n" +
-                        "answer3 nvarchar(300),\n" +
-                        "answer4 nvarchar(300),\n" +
-                        "category nvarchar(50)\n" +
-                        ");";
-                statement.executeUpdate(query);
-                for(Question question : questions){
-                    query ="INSERT INTO questions (question, rightAnswer, answer2, answer3, answer4, category)\n" +
-                            "VALUES(?, ?, ?, ?, ?, ?);";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                        preparedStatement.setString(1, question.getQuestion());
-                        preparedStatement.setString(2, question.getRightAnswer());
-                        preparedStatement.setString(3, question.getChoiceB());
-                        preparedStatement.setString(4, question.getChoiceC());
-                        preparedStatement.setString(5, question.getChoiceD());
-                        preparedStatement.setString(6, question.getCategory());
-                        preparedStatement.executeUpdate();
-                    } catch (Exception ex) {
-                        System.out.println(ex.getMessage());
-                    }
+        String filepath = "questions.csv";
+        ArrayList<Question> questions= QuestionReader.readQuestionsFromFile(filepath);
+        try(Connection connection = connect()){
+            String query ="DROP TABLE IF EXISTS questions";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            query= "CREATE TABLE questions (\n" +
+                    "ID INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                    "question nvarchar(300),\n" +
+                    "rightAnswer nvarchar(300),\n" +
+                    "answer2 nvarchar(300),\n" +
+                    "answer3 nvarchar(300),\n" +
+                    "answer4 nvarchar(300),\n" +
+                    "category nvarchar(50)\n" +
+                    ");";
+            statement.executeUpdate(query);
+            for(Question question : questions){
+                query ="INSERT INTO questions (question, rightAnswer, answer2, answer3, answer4, category)\n" +
+                        "VALUES(?, ?, ?, ?, ?, ?);";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, question.getQuestion());
+                    preparedStatement.setString(2, question.getRightAnswer());
+                    preparedStatement.setString(3, question.getChoiceB());
+                    preparedStatement.setString(4, question.getChoiceC());
+                    preparedStatement.setString(5, question.getChoiceD());
+                    preparedStatement.setString(6, question.getCategory());
+                    preparedStatement.executeUpdate();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
                 }
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void storePlayer(Player player){
+        try(Connection connection = connect()){
+            String query="INSERT INTO players (user, role, room, score) VALUES (?, ?,?,?); ";
+            try(PreparedStatement preparedStatement =connection.prepareStatement(query)){
+                preparedStatement.setString(1,player.getName());
+                preparedStatement.setString(2, player.getRole());
+                preparedStatement.setString(3, player.getRoom());
+                preparedStatement.setInt(4,0);
+                preparedStatement.executeUpdate();
             }
             catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
         }
-
-
-        
-        //we need to create a function for each step for each choice (host vs join)
-        //each function should take the required parameters(string username, etc) to perform and return the data
-        //you can change the table titles bera7etko and this is assuming everything has the same names as the picture i sent
-
-//        public static boolean CreateGame(String gameName, String username){
-//               try(Connection connection = connect()){
-//                   String query = "SELECT * FROM GameController WHERE gameName = '"+ gameName+"'";
-//                   Statement retrieveStatement = connection.createStatement();
-//                   ResultSet resultSet = retrieveStatement.executeQuery(query);
-//                   if(resultSet.next()){
-//                       //to check if there is a game with teh same name inside
-//                       return false;
-//                   }
-//                   else{
-//                       //inserting the new game into the game controller table
-//                       query = "INSERT INTO GameController (gameName, gameStatus) VALUES('" + gameName+"', 'pending')";
-//                       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//                           preparedStatement.executeUpdate();
-//                       } catch (Exception ex) {
-//                           System.out.println(ex.getMessage());
-//                       }
-//                        //updating the user record with the current game
-//                       query = "UPDATE logins SET loggedIn = 1, gameName = '"+gameName+"' WHERE username = '"+ username+"'";
-//                       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//                           preparedStatement.executeUpdate();
-//                           return true;
-//
-//                       } catch (Exception ex) {
-//                           System.out.println(ex.getMessage());
-//                       }
-//                   }
-//               }catch(Exception ex){
-//                   System.out.println(ex.getMessage());
-//               }
-//
-//            return false;
-//        }
-//
-
-
-
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void updatePlayerScore( String name, int score){
+        try(Connection connection = connect()){
+            String query = "UPDATE players\n" +
+                    "SET score = ?\n" +
+                    "WHERE name = ?;";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setInt(1,score);
+                preparedStatement.setString(2,name);
+                preparedStatement.executeUpdate();
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void removePlayer(Player player){
+        try(Connection connection = connect()){
+            String query="DELETE FROM players WHERE name =?";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setString(1,player.getName());
+                preparedStatement.executeUpdate();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void storeRoom(Room room){
+        try(Connection connection = connect()) {
+            String query = "INSERT INTO rooms (name, host, genre, status) VALUES (?,?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1,room.getRoomName());
+                preparedStatement.setString(2, room.getHostName());
+                preparedStatement.setString(3,room.getGenre());
+                preparedStatement.setString(4,room.getRoomStatus());
+                preparedStatement.executeUpdate();
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void changeRoomGenre(Room room){
+        try(Connection connection = connect()){
+            String query="UPDATE rooms SET genre = ? WHERE name = ?";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setString(1,room.getGenre());
+                preparedStatement.setString(2,room.getGenre());
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void storeRoomQuestions(Room room, ArrayList<Question> questions){
+        try(Connection connection = connect()){
+            for(int i=0;i<10;i++){
+                String query="UPDATE rooms SET q"+(i+1)+ "= ? WHERE name = ?";
+                try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                    preparedStatement.setInt(1,questions.get(i).getID());
+                    preparedStatement.setString(2,room.getRoomName());
+                    preparedStatement.executeUpdate();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 }

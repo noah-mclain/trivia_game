@@ -9,6 +9,7 @@ public class QuestionReader {
         ArrayList<Question> questions = new ArrayList<>();
         try(Scanner scanner = new Scanner(Paths.get(filepath))){
             while(scanner.hasNextLine()){
+                int counter=1;
                 String line = scanner.nextLine();
                 String[] data=line.split(",");
                 System.out.println(Arrays.toString(data));
@@ -19,8 +20,9 @@ public class QuestionReader {
                     String choiceB=data[3];
                     String choiceC=data[4];
                     String category=data[5];
-                    Question newQuestion = new Question(question,rightAnswer,choiceA,choiceB,choiceC,category);
+                    Question newQuestion = new Question(counter,question,rightAnswer,choiceA,choiceB,choiceC,category);
                     questions.add(newQuestion);
+                    counter++;
                 }
                 else{
                     System.out.println("Invalid line in csv file");
