@@ -44,4 +44,5 @@ public class PlayerSelectController {
         stage.setScene(scene);
         stage.show();
     }
+
 }
