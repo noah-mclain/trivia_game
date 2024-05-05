@@ -144,5 +144,77 @@ public class DatabaseConnection {
                 System.out.println(ex.getMessage());
             }
     }
+public static boolean storePlayer(Player player){
+    try(Connection connection = connect()){
+        String query="INSERT INTO players (user, role, room, score) VALUES (?, ?,?,?); ";
+        try(PreparedStatement preparedStatement =connection.prepareStatement(query)){
+            preparedStatement.setString(1,player.getName());
+            preparedStatement.setString(2, player.getRole());
+            preparedStatement.setString(3, player.getRoom());
+            preparedStatement.setInt(4,0);
+            preparedStatement.executeUpdate();
+            return true;
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    catch(Exception e){
+        System.out.println(e.getMessage());
+        return false;
+    }
+}
+public static void updatePlayerScore( String name, int score){
+        try(Connection connection = connect()){
+            String query = "UPDATE players\n" +
+                    "SET score = ?\n" +
+                    "WHERE name = ?;";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setInt(1,score);
+                preparedStatement.setString(2,name);
+                preparedStatement.executeUpdate();
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+}
+public static void removePlayer(Player player){
+        try(Connection connection = connect()){
+            String query="DELETE FROM players WHERE name =?";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setString(1,player.getName());
+                preparedStatement.executeUpdate();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+}
+public static void storeRoom(Room room){
+        try(Connection connection = connect()) {
+            String query = "INSERT INTO rooms (name, host, genre, status) VALUES (?,?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1,room.getRoomName());
+                preparedStatement.setString(2, room.getHostName());
+                preparedStatement.setString(3,room.getGenre());
+                preparedStatement.setString(4,room.getGenre());
+                preparedStatement.executeUpdate();
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+}
 
 }

@@ -14,7 +14,7 @@
             <Image url="@../photos/TriviaNight.png" />
          </image>
       </ImageView>
-      <Button layoutX="210.0" layoutY="579.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Literature" textFill="#ff00b2">
+      <Button layoutX="210.0" layoutY="607.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Literature" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -22,7 +22,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="210.0" layoutY="486.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Music" textFill="#ff00b2">
+      <Button layoutX="210.0" layoutY="514.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Music" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -30,7 +30,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="209.0" layoutY="399.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="TV Shows" textFill="#ff00b2">
+      <Button layoutX="209.0" layoutY="427.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="TV Shows" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -38,7 +38,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="209.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Movies" textFill="#ff00b2">
+      <Button layoutX="209.0" layoutY="325.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Movies" textFill="#ff00b2">
          <effect>
             <Glow level="1.0" />
          </effect>
@@ -46,7 +46,7 @@
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="691.0" layoutY="579.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Flags" textFill="#ff00b2">
+      <Button layoutX="691.0" layoutY="607.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Flags" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -54,7 +54,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="691.0" layoutY="486.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Geography" textFill="#ff00b2">
+      <Button layoutX="691.0" layoutY="514.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Geography" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -62,7 +62,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="692.0" layoutY="399.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="History" textFill="#ff00b2">
+      <Button layoutX="692.0" layoutY="427.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="History" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
@@ -70,13 +70,21 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button layoutX="692.0" layoutY="297.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Science" textFill="#ff00b2">
+      <Button layoutX="692.0" layoutY="325.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" text="Science" textFill="#ff00b2">
          <font>
             <Font size="36.0" />
          </font>
          <effect>
             <Glow level="1.0" />
          </effect>
+      </Button>
+      <Button fx:id="miscButton" layoutX="417.0" layoutY="256.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="276.0" styleClass="genre" text="Miscellaneous" textFill="#ff00b2">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+         <font>
+            <Font size="36.0" />
+         </font>
       </Button>
    </children>
 </Pane>
