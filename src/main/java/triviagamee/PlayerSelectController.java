@@ -36,6 +36,7 @@ public class PlayerSelectController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToMultiPlayer(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MultiPlayerScreen.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();

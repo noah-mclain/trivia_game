@@ -3,6 +3,9 @@ package triviagamee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -10,10 +13,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 public class GenreSelectScreenController {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private Button flagsButtons;
@@ -84,13 +92,25 @@ public class GenreSelectScreenController {
         }
     }
 
-    public void miscClicked(){
-        DatabaseConnection.retrieveQuestion();
+
+    public void miscClicked(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void genreClciked(ActionEvent e){
-        Button buttonClicked= (Button) e.getSource();
-        DatabaseConnection.retrieveQuestion(buttonClicked.getText());
-
+    public static boolean notMisc=false;
+    public static String genreName;
+    public void genreClciked(ActionEvent e) throws IOException{
+        notMisc=true;
+        Button button= (Button)e.getSource();
+        genreName=button.getText();
+        Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
