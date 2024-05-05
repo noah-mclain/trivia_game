@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
@@ -9,30 +11,29 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.PlayerSelectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" style="-fx-background-color: #000000;" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.PlayerSelectController">
    <children>
-      <ImageView fitHeight="872.0" fitWidth="1109.0" pickOnBounds="true" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4c750024" height="714.0" layoutX="533.0" layoutY="32.0" strokeType="INSIDE" width="393.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4b730015" height="704.0" layoutX="604.0" layoutY="144.0" strokeType="INSIDE" width="375.0">
          <stroke>
-            <LinearGradient endY="1.0" startX="1.0">
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                <stops>
                   <Stop>
                      <color>
-                        <Color red="0.32249999046325684" green="0.4300000071525574" opacity="0.5544933080673218" />
+                        <Color red="0.32249999046325684" green="0.4300000071525574" opacity="0.6883364915847778" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb20024" height="364.0" layoutX="208.0" layoutY="282.0" strokeType="INSIDE" width="628.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffaa000c" height="172.0" layoutX="120.0" layoutY="586.0" strokeType="INSIDE" width="769.0">
          <stroke>
-            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+            <LinearGradient endX="1.0" startY="1.0">
                <stops>
                   <Stop>
                      <color>
@@ -41,27 +42,37 @@
                   </Stop>
                   <Stop offset="0.006711409395973154">
                      <color>
-                        <Color red="1.0" green="0.6532407402992249" blue="0.009259259328246117" opacity="0.550000011920929" />
+                        <Color red="0.2763157784938812" green="0.17499999701976776" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.550000011920929" />
+                        <Color />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button fx:id="singlePlayer" layoutX="418.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchGenreSelectPage" prefHeight="90.0" prefWidth="273.0" text="Single Player">
+      <ImageView fitHeight="684.0" fitWidth="831.0" layoutX="146.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../photos/PlayerSelect.jpg" />
+         </image></ImageView>
+      <Button fx:id="singlePlayer" layoutX="253.0" layoutY="532.0" mnemonicParsing="false" onAction="#switchGenreSelectPage" prefHeight="90.0" prefWidth="273.0" styleClass="genre" text="Single Player" textFill="#00e3ff">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
       </Button>
-      <Button fx:id="multiPlayer" layoutX="418.0" layoutY="441.0" mnemonicParsing="false" onAction="#switchToMultiPlayer" prefHeight="90.0" prefWidth="273.0" text="Multi player">
+      <Button fx:id="multiPlayer" layoutX="589.0" layoutY="532.0" mnemonicParsing="false" onAction="#switchToMultiPlayer" prefHeight="90.0" prefWidth="273.0" styleClass="genre" text="Multi player" textFill="#00e3ff">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
       </Button>
    </children>
 </AnchorPane>
