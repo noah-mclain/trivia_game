@@ -82,10 +82,21 @@ public class HostChooseCategory {
 
     public void miscClicked(){
         isMisc= true;
+        ActionEvent ae = new ActionEvent();
+        try {
+            switchHostWaitingRoom(ae);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void genreClicked(ActionEvent e) {
         buttonClicked = (Button) e.getSource();
+        try {
+            switchHostWaitingRoom(e);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public void switchHostWaitingRoom(ActionEvent e) throws IOException {

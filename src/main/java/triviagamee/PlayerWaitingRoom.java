@@ -26,11 +26,12 @@ public class PlayerWaitingRoom implements Initializable {
     public Label editableLabel;
     @FXML
     public TextField typing;
-    public Scene scene;
     @FXML
     public AnchorPane parentPane;
+
     public ImageView loadingGIF;
     private String currentUser;
+    public Scene scene;
 
 
 

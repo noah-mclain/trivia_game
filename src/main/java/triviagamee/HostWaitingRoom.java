@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,19 +23,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HostWaitingRoom {
-
-
+public class HostWaitingRoom implements Initializable {
+    @FXML
     public TextArea userUpdate;
+    @FXML
     public TextField typing;
+    @FXML
     public Label editableLabel;
-    private Stage stage;
-    public Scene scene;
+    @FXML
+    public Button startButton;
     @FXML
     public AnchorPane parentPane;
-    public ImageView loadingGIF;
-    public Button startButton;
+    @FXML
+    public Label waitingLabel;
+
     private String currentUser;
+    public Scene scene;
 
 
 
@@ -84,9 +88,9 @@ public class HostWaitingRoom {
 
 
     public void hostStartGame(ActionEvent e) throws IOException{
-        miscOrGenre();
+        //miscOrGenre();
         Parent root = FXMLLoader.load(getClass().getResource("multiplayerGame.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
