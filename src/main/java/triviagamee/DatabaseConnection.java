@@ -143,6 +143,49 @@ public class DatabaseConnection {
             catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-    }
+        }
+
+
+        
+        //we need to create a function for each step for each choice (host vs join)
+        //each function should take the required parameters(string username, etc) to perform and return the data
+        //you can change the table titles bera7etko and this is assuming everything has the same names as the picture i sent
+
+//        public static boolean CreateGame(String gameName, String username){
+//               try(Connection connection = connect()){
+//                   String query = "SELECT * FROM GameController WHERE gameName = '"+ gameName+"'";
+//                   Statement retrieveStatement = connection.createStatement();
+//                   ResultSet resultSet = retrieveStatement.executeQuery(query);
+//                   if(resultSet.next()){
+//                       //to check if there is a game with teh same name inside
+//                       return false;
+//                   }
+//                   else{
+//                       //inserting the new game into the game controller table
+//                       query = "INSERT INTO GameController (gameName, gameStatus) VALUES('" + gameName+"', 'pending')";
+//                       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//                           preparedStatement.executeUpdate();
+//                       } catch (Exception ex) {
+//                           System.out.println(ex.getMessage());
+//                       }
+//                        //updating the user record with the current game
+//                       query = "UPDATE logins SET loggedIn = 1, gameName = '"+gameName+"' WHERE username = '"+ username+"'";
+//                       try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//                           preparedStatement.executeUpdate();
+//                           return true;
+//
+//                       } catch (Exception ex) {
+//                           System.out.println(ex.getMessage());
+//                       }
+//                   }
+//               }catch(Exception ex){
+//                   System.out.println(ex.getMessage());
+//               }
+//
+//            return false;
+//        }
+//
+
+
 
 }

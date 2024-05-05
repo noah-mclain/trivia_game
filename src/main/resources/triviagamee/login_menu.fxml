@@ -98,7 +98,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" minHeight="45.0" minWidth="372.0" promptText="Password" styleClass="userDetails" style="-fx-text-fill: rgba(55,208,241)">
+      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" minHeight="45.0" minWidth="372.0" promptText="Password" styleClass="userDetails" style="-fx-text-fill: rgba(55,208,241)" onKeyPressed="#moveToLogin">
          <font>
             <Font size="18.0" />
          </font>

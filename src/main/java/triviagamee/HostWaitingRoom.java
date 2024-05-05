@@ -1,9 +1,14 @@
 package triviagamee;
 
-
+import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -11,31 +16,32 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.animation.PauseTransition;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlayerWaitingRoom implements Initializable {
-    @FXML
-    public Label waitingLabel;
+public class HostWaitingRoom implements Initializable {
     @FXML
     public TextArea userUpdate;
     @FXML
-    public Label editableLabel;
-    @FXML
     public TextField typing;
     @FXML
+    public Label editableLabel;
+    @FXML
+    public Button startButton;
+    @FXML
     public AnchorPane parentPane;
+    @FXML
+    public Label waitingLabel;
 
-    public ImageView loadingGIF;
     private String currentUser;
     public Scene scene;
 
 
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         parentPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
@@ -69,18 +75,37 @@ public class PlayerWaitingRoom implements Initializable {
     }
 
 
-        public void addToUserUpdate (KeyEvent event){
-                if (event.getCode() == KeyCode.ENTER) {
-                    String message = typing.getText();
-                    if (!message.isEmpty()) {
-                        userUpdate.appendText(currentUser + ": " + message + "\n");
-                        typing.clear();
-                        editableLabel.setText("");
-                    }
-                }
+    public void addToUserUpdate (KeyEvent event){
+        if (event.getCode() == KeyCode.ENTER) {
+            String message = typing.getText();
+            if (!message.isEmpty()) {
+                userUpdate.appendText(currentUser + " ♕: " + message + "\n");
+                typing.clear();
+                editableLabel.setText("");
             }
-
         }
+    }
 
 
+    public void hostStartGame(ActionEvent e) throws IOException{
+        //miscOrGenre();
+        Parent root = FXMLLoader.load(getClass().getResource("multiplayerGame.fxml"));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
+    }
+
+    //idk how to continue from here bc i didnt manage the questions
+    public void miscOrGenre(){
+        if(HostChooseCategory.isMisc){
+            DatabaseConnection.retrieveQuestion();
+        }
+        else{
+            Button genre = HostChooseCategory.buttonClicked;
+            DatabaseConnection.retrieveQuestion(genre.getText());
+        }
+    }
+
+}

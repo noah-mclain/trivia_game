@@ -3,11 +3,9 @@ package triviagamee;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -88,7 +86,7 @@ public class GenreSelectScreenController {
         DatabaseConnection.retrieveQuestion();
     }
 
-    public void genreClciked(ActionEvent e){
+    public void genreClicked(ActionEvent e){
         Button buttonClicked= (Button) e.getSource();
         DatabaseConnection.retrieveQuestion(buttonClicked.getText());
 

@@ -19,7 +19,6 @@ public class PlayerSelectController {
     public Button multiPlayer;
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
 //    public void switchToSinglePlayer(ActionEvent e) throws IOException {
 //        Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));

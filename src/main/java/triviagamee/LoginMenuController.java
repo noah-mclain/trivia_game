@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 //import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -59,6 +60,7 @@ public class LoginMenuController {
     @FXML
     private Label welcomeText;
 
+    private static String CurrentUser;
 
 //    public void setDynamicSizes() {
 //        // For each component, call setDynamicSize with the component and its ratios
@@ -172,7 +174,8 @@ public class LoginMenuController {
             labelVerdict.setText("Login successful ╰(▔∀▔)╯");
             labelVerdict.setTextFill(Color.GREEN);
             // nextButton.setVisible(true);
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            CurrentUser = userInputText.getText();
+            PauseTransition delay = new PauseTransition(Duration.seconds(1.2));
             delay.setOnFinished(event -> {
                 try {
                     switchToPlayerSelect(e);
@@ -203,7 +206,10 @@ public class LoginMenuController {
             }
         }
     }
-  
+
+    public static String getCurrentUser(){
+        return CurrentUser;
+    }
     public void signup(ActionEvent e) throws IOException{
         labelVerdict.setText("");
         isCorrectUsernameFormat(userInputText.getText());
@@ -301,7 +307,19 @@ public class LoginMenuController {
 
     }
 
-                // @FXML
+    public void moveToLogin(KeyEvent event) {
+        if(event.getCode()==KeyCode.ENTER){
+//            ActionEvent ae = new ActionEvent();
+//            try {
+//                login(ae);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+            loginButton.fire();
+        }
+    }
+
+    // @FXML
                 // private Label welcomeText;
                 //
                 // @FXML
