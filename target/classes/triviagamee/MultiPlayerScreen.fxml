@@ -15,8 +15,9 @@
     <children>
         <Button fx:id="joinButton" layoutX="143.0" layoutY="185.0" onAction="#joinGameClicked" text="Join Game" />
         <Button fx:id="hostButton" layoutX="143.0" layoutY="235.0" onAction="#hostGameClicked" text="Host Game" />
-        <TextField fx:id="gameNameHostTextField" layoutX="143.0" layoutY="235.0" text="Your Game's Name" visible="false" />
-        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" text="Host's Game Name" visible="false" />
+        <TextField fx:id="gameNameHostTextField" layoutX="143.0" layoutY="235.0" promptText="Your Game's Name" visible="false" />
+        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" promptText="Host's Game Name"  visible="false" />
+<!--        <Button fx:id="backButton" layoutX="350.0" layoutY="540.0" onAction="#back" text="Back"/>-->
     </children>
 
 </AnchorPane>
