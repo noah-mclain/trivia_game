@@ -31,13 +31,7 @@ public class QuestionController implements Initializable {
     static int score =0;
     String scoreText="Score: ";
     public void displayQuestion(){
-        if(!GenreSelectScreenController.notMisc){
-            question = DatabaseConnection.retrieveQuestion();
-        }
-        else{
-            question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
-
-        }
+        question = DatabaseConnection.retrieveQuestion();
         questionLabel.setText(question.getQuestion());
         ArrayList<String> choices= new ArrayList<>();
         choices.add(question.getRightAnswer());
@@ -88,7 +82,83 @@ public class QuestionController implements Initializable {
         disableButtons();
     }
 
-
+//    public void choiceA() throws InterruptedException {
+//        if(buttonA.getText().equals(question.getRightAnswer())){
+//            score++;
+//            scoreLabel.setText(scoreText+String.valueOf(score));
+//            buttonA.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
+//            answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
+//            answerVerdict.setTextFill(Color.GREEN);
+////            buttonA.setDisable(true);
+//        }
+//        else{
+//            buttonA.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: red;");
+//            answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
+//            answerVerdict.setTextFill(Color.RED);
+//        }
+//        nextButton.setVisible(true);
+//        disableButtons();
+//    }
+//
+//
+//
+//    public void choiceB() throws InterruptedException {
+//
+//        if(buttonB.getText().equals(question.getRightAnswer())){
+//            score++;
+//            scoreLabel.setText(scoreText+String.valueOf(score));
+//            buttonB.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
+//            answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
+//            answerVerdict.setTextFill(Color.GREEN);
+////            buttonB.setDisable(true);
+//        }
+//        else{
+//            buttonB.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: red;");
+//            answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
+//            answerVerdict.setTextFill(Color.RED);
+//        }
+//        nextButton.setVisible(true);
+//        disableButtons();
+//
+//    }
+//    public void choiceC() throws InterruptedException {
+//
+//        if(buttonC.getText().equals(question.getRightAnswer())) {
+//            score++;
+//            scoreLabel.setText(scoreText+String.valueOf(score));
+//            buttonC.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
+//            answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
+//            answerVerdict.setTextFill(Color.GREEN);
+////            buttonC.setDisable(true);
+//
+//        }
+//        else{
+//            buttonC.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: red;");
+//            answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
+//            answerVerdict.setTextFill(Color.RED);
+//        }
+//        nextButton.setVisible(true);
+//        disableButtons();
+//
+//    }
+//
+//    public void choiceD() throws InterruptedException {
+//        if(buttonD.getText().equals(question.getRightAnswer())){
+//            score++;
+//            scoreLabel.setText(scoreText+String.valueOf(score));
+//            buttonD.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
+//            answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
+//            answerVerdict.setTextFill(Color.GREEN);
+//
+//        }
+//        else{
+//            buttonD.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: red;");
+//            answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
+//            answerVerdict.setTextFill(Color.RED);
+//        }
+//        nextButton.setVisible(true);
+//        disableButtons();
+//    }
 
     public void nextClicked(){
         displayQuestion();

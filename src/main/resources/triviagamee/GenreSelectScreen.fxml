@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.GenreSelectScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.GenreSelectScreenController">
     <children>
         <ImageView fitHeight="872.0" fitWidth="1109.0" pickOnBounds="true">
             <image>
                 <Image url="@../photos/TriviaNight.png" />
             </image>
         </ImageView>
-        <Button fx:id="litButton" layoutX="210.0" layoutY="607.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Literature" textFill="#ff00b2">
+        <Button fx:id="litButton" layoutX="210.0" layoutY="607.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Literature" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -22,7 +22,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="musicButton" layoutX="210.0" layoutY="514.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Music" textFill="#ff00b2">
+        <Button fx:id="musicButton" layoutX="210.0" layoutY="514.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Music" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -30,7 +30,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="showsButton" layoutX="209.0" layoutY="427.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="TV Shows" textFill="#ff00b2">
+        <Button fx:id="showsButton" layoutX="209.0" layoutY="427.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="TV Shows" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -38,7 +38,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="moviesButton" layoutX="209.0" layoutY="325.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Movies" textFill="#ff00b2">
+        <Button fx:id="moviesButton" layoutX="209.0" layoutY="325.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Movies" textFill="#ff00b2">
             <effect>
                 <Glow level="1.0" />
             </effect>
@@ -46,7 +46,7 @@
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button fx:id="flagsButtons" layoutX="691.0" layoutY="607.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Flags" textFill="#ff00b2">
+        <Button fx:id="flagsButtons" layoutX="691.0" layoutY="607.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Flags" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -54,7 +54,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="geoButton" layoutX="691.0" layoutY="514.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Geography" textFill="#ff00b2">
+        <Button fx:id="geoButton" layoutX="691.0" layoutY="514.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Geography" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -62,7 +62,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="historyButton" layoutX="692.0" layoutY="427.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="History" textFill="#ff00b2">
+        <Button fx:id="historyButton" layoutX="692.0" layoutY="427.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="History" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -70,7 +70,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="scienceButton" layoutX="692.0" layoutY="325.0" mnemonicParsing="false" onAction="#genreClciked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Science" textFill="#ff00b2">
+        <Button fx:id="scienceButton" layoutX="692.0" layoutY="325.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Science" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>
@@ -78,7 +78,7 @@
                 <Glow level="1.0" />
             </effect>
         </Button>
-        <Button fx:id="miscButton" layoutX="417.0" layoutY="256.0" mnemonicParsing="false" onAction="#miscClicked" prefHeight="68.0" prefWidth="276.0" styleClass="genre" stylesheets="@Font.css" text="Miscellaneous" textFill="#ff00b2">
+        <Button fx:id="miscButton" layoutX="417.0" layoutY="256.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="276.0" styleClass="genre" stylesheets="@Font.css" text="Miscellaneous" textFill="#ff00b2">
             <effect>
                 <Glow level="1.0" />
             </effect>
