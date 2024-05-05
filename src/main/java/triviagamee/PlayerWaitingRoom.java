@@ -26,11 +26,12 @@ public class PlayerWaitingRoom implements Initializable {
     public Label editableLabel;
     @FXML
     public TextField typing;
-    public String username = "toto";
     public Scene scene;
     @FXML
     public AnchorPane parentPane;
     public ImageView loadingGIF;
+    private String currentUser;
+
 
 
     @Override
@@ -41,6 +42,7 @@ public class PlayerWaitingRoom implements Initializable {
                 setupEventHandlers();
             }
         });
+        currentUser= LoginMenuController.getCurrentUser();
     }
 
     private void setupEventHandlers() {
@@ -70,12 +72,13 @@ public class PlayerWaitingRoom implements Initializable {
                 if (event.getCode() == KeyCode.ENTER) {
                     String message = typing.getText();
                     if (!message.isEmpty()) {
-                        userUpdate.appendText(username + ": " + message + "\n");
+                        userUpdate.appendText(currentUser + ": " + message + "\n");
                         typing.clear();
                         editableLabel.setText("");
                     }
                 }
             }
+
         }
 
 
