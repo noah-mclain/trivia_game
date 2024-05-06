@@ -10,10 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 // import javafx.scene.control.TextField;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.effect.Effect;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.effect.Glow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,30 +22,37 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class QuestionController implements Initializable {
-    @FXML Label questionLabel;
-    @FXML Label answerVerdict;
-    @FXML Label scoreLabel;
-    @FXML Button buttonA;
-    @FXML Button buttonB;
-    @FXML Button buttonC;
-    @FXML Button buttonD;
-    @FXML Button nextButton;
+    @FXML
+    Label questionLabel;
+    @FXML
+    Label answerVerdict;
+    @FXML
+    Label scoreLabel;
+    @FXML
+    Button buttonA;
+    @FXML
+    Button buttonB;
+    @FXML
+    Button buttonC;
+    @FXML
+    Button buttonD;
+    @FXML
+    Button nextButton;
 
-    ArrayList<Button> buttonsArray=new ArrayList<Button>();
+    ArrayList<Button> buttonsArray = new ArrayList<Button>();
     Question question;
-    static int score =0;
-    String scoreText="Score: ";
-    int questionCount=10;
+    static int score = 0;
+    String scoreText = "Score: ";
+    int questionCount = 10;
 
-    public void displayQuestion(){
-        if(!GenreSelectScreenController.notMisc){
+    public void displayQuestion() {
+        if (!GenreSelectScreenController.notMisc) {
             question = DatabaseConnection.retrieveQuestion();
-        }
-        else{
+        } else {
             question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
         }
         questionLabel.setText(question.getQuestion());
-        ArrayList<String> choices= new ArrayList<>();
+        ArrayList<String> choices = new ArrayList<>();
         choices.add(question.getRightAnswer());
         choices.add(question.getChoiceB());
         choices.add(question.getChoiceC());
@@ -55,54 +62,96 @@ public class QuestionController implements Initializable {
         buttonB.setText(choices.get(1));
         buttonC.setText(choices.get(2));
         buttonD.setText(choices.get(3));
-        Collections.addAll(buttonsArray,buttonA,buttonB,buttonC,buttonD);
+        Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
 
-        for(Button button: buttonsArray){
-            button.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+        for (Button button : buttonsArray) {
+            button.setOpacity(1.0f);
+            button.setStyle("-fx-text-fill: rgb(234,0,255);");
         }
 
     }
-    public void userChoice(ActionEvent e){
-        Button buttonCheck= (Button) e.getSource();
 
-        if(buttonCheck.getText().equals(question.getRightAnswer())){
+    public void userChoice(ActionEvent e) {
+        Button buttonCheck = (Button) e.getSource();
+
+        Glow glow = new Glow();
+        glow.setLevel(1.0);
+
+        if (buttonCheck.getText().equals(question.getRightAnswer())) {
             score++;
-            scoreLabel.setText(scoreText+String.valueOf(score));
+            scoreLabel.setText(scoreText + String.valueOf(score));
             answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
             answerVerdict.setTextFill(Color.GREEN);
             for (Button button : buttonsArray) {
                 if (button.getText().equals(question.getRightAnswer())) {
-                    button.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
-
+                    button.setStyle("-fx-text-fill: #99FF33"); // Neon green text
+                    button.setEffect(glow); // Apply the glow effect
+                } else {
+                    button.setStyle("-fx-text-fill: #FFB6C1"); // Light pink text for the remaining buttons
+                    button.setEffect(glow); // No glow effect
                 }
             }
         }
 
-        else{
+        else {
             answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
             answerVerdict.setTextFill(Color.RED);
             for (Button button : buttonsArray) {
                 if (button.getText().equals(buttonCheck.getText())) {
-                    button.setStyle("-fx-background-color: pink; -fx-text-fill: red;");
-                }
-                if (button.getText().equals(question.getRightAnswer())) {
-                    button.setStyle("-fx-background-color: lightskyblue; -fx-text-fill: green;");
+                    button.setStyle("-fx-text-fill: rgb(247, 33, 25);"); // Red text
+                    button.setEffect(glow); // Apply the glow effect
+                } else if (button.getText().equals(question.getRightAnswer())) {
+                    button.setStyle("-fx-text-fill: #99FF33"); // Neon green text
+                    button.setEffect(glow); // Apply the glow effect
+                } else {
+                    button.setStyle("-fx-text-fill: #FFB6C1"); // Light pink text for the remaining buttons
+                    button.setEffect(glow);
                 }
             }
         }
         nextButton.setVisible(true);
-        disableButtons();
+        disableButtons(e);
+
     }
 
-    public void nextClicked(ActionEvent e){
+    public void disableButtons(ActionEvent e) {
+        Button buttonCheck = (Button) e.getSource();
+
+        for (Button button : buttonsArray) {
+            button.setDisable(true);
+            button.setOpacity(0.5f);
+
+            if (button.getText().equals(question.getRightAnswer())) {
+                for (Button buttons : buttonsArray) {
+                    if (button.getText().equals(question.getRightAnswer())) {
+                        button.setStyle("-fx-text-fill: #66FF00");
+                    } else {
+                        button.setStyle("-fx-text-fill: FF000D");
+                    }
+                }
+            } else if (button.getText().equals(buttonCheck.getText())) {
+                for (Button buttons : buttonsArray) {
+                    if (button.getText().equals(question.getRightAnswer())) {
+                        button.setStyle("-fx-text-fill: #66FF00");
+                    } else {
+                        button.setStyle("-fx-text-fill: FF000D");
+                    }
+                }
+            } else {
+                button.setStyle("-fx-text-fill: #FADADD");
+            }
+        }
+    }
+
+    public void nextClicked(ActionEvent e) {
         displayQuestion();
-        for(Button button: buttonsArray){
+        for (Button button : buttonsArray) {
             button.setDisable(false);
         }
         answerVerdict.setText("");
         nextButton.setVisible(false);
         questionCount--;
-        if(questionCount==1){
+        if (questionCount == 1) {
             nextButton.setText("Finish");
             try {
                 switchScoreMenu(e);
@@ -117,24 +166,22 @@ public class QuestionController implements Initializable {
         displayQuestion();
     }
 
-    public void disableButtons(){
-        for(Button button: buttonsArray){
-            button.setDisable(true);
-        }
-
-    }
+//    public void disableButtons() {
+//        for (Button button : buttonsArray) {
+//            button.setDisable(true);
+//        }
+//
+//    }
 
     public void switchScoreMenu(ActionEvent e) throws IOException {
         Stage stage;
         Scene scene;
 
         Parent root = FXMLLoader.load(getClass().getResource("ScoreMenu.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-
 }
-
