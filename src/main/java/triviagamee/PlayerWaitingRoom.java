@@ -39,6 +39,7 @@ public class PlayerWaitingRoom implements Initializable {
     public ImageView loadingGIF;
     public Button startButton;
     private String currentUser;
+    public boolean isTyping= false;
 
     public Scene scene;
     List<String> animals = Arrays.asList("Tiger", "Goat", "Cat", "Dog", "Elephant", "Lion", "Bear",
@@ -83,10 +84,19 @@ public class PlayerWaitingRoom implements Initializable {
         });
 
         final PauseTransition pause = new PauseTransition(Duration.seconds(2));
-        pause.setOnFinished(event -> editableLabel.setText(""));
+        pause.setOnFinished(event -> {
+            editableLabel.setText("");
+            isTyping = false;
+        });
+
         typing.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(!isTyping){
+                if(HostOrJoinController.isHost) userUpdate.appendText("Game Host ♕ is typing...\n");
+                else userUpdate.appendText(currentUser + " is typing...\n");
+                isTyping = true;
+            }
             pause.playFromStart();
-            editableLabel.setText("Typing...");
+            editableLabel.setText("You are now typing...");
         });
 
         scene.setOnMouseClicked(event -> {
@@ -125,6 +135,7 @@ public class PlayerWaitingRoom implements Initializable {
 
         //idk how to continue this bc i didnt manage the questions
         public void miscOrGenre(){
+        //for some reason the miscellaneous one is the only one not working
             if(HostChooseCategory.isMisc){
                 DatabaseConnection.retrieveQuestion();
             }
