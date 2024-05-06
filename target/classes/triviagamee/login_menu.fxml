@@ -84,10 +84,13 @@
             </Glow>
          </effect>
       </CubicCurve>
-      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="375.0" layoutY="480.0" minHeight="5.0" minWidth="300.0">
+      <Label fx:id="labelVerdict" alignment="CENTER" layoutX="375.0" layoutY="480.0" minHeight="5.0" minWidth="300.0" styleClass="popupAlerts">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
       </Label>
       <Label fx:id="welcomeText" layoutX="10.0" layoutY="10.0" />
       <Button fx:id="signupButton" layoutX="541.0" layoutY="611.0" minHeight="41.0" minWidth="169.0" mnemonicParsing="false" onAction="#signup" styleClass="loginSignUp" text="Signup" textFill="#ff00d0">
@@ -98,7 +101,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" minHeight="45.0" minWidth="372.0" promptText="Password" styleClass="userDetails" style="-fx-text-fill: rgba(55,208,241)" onKeyPressed="#moveToLogin">
+      <TextField fx:id="passwordInputText" layoutX="338.0" layoutY="561.0" minHeight="45.0" minWidth="372.0" onKeyPressed="#moveToLogin" promptText="Password" style="-fx-text-fill: rgba(55,208,241)" styleClass="userDetails">
          <font>
             <Font size="18.0" />
          </font>
@@ -106,7 +109,7 @@
             <Glow level="1.0" />
          </effect>
       </TextField>
-      <TextField fx:id="userInputText" layoutX="338.0" layoutY="510.0" minHeight="45.0" minWidth="372.0" promptText="Username" styleClass="userDetails" style="-fx-text-fill: rgba(236,9,75,255)">
+      <TextField fx:id="userInputText" layoutX="338.0" layoutY="510.0" minHeight="45.0" minWidth="372.0" promptText="Username" style="-fx-text-fill: rgba(236,9,75,255)" styleClass="userDetails">
          <font>
             <Font size="18.0" />
          </font>
