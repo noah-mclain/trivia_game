@@ -22,6 +22,7 @@ public class HostOrJoinController {
     private Button hostButton;
     @FXML
     private TextField gameNameHostTextField;
+    public static boolean isHost = false;
 
     //enum is a list of constant values we hena ana esta5demtaha to make a set of predefined values that the button variable can take
     //i used them to define all the possible value states a function can handle
@@ -119,6 +120,7 @@ public class HostOrJoinController {
             case initial:
                 // Initial click: Hide join button, show text field
                 hostButtonState = ButtonState.clicked_once;
+                isHost = true;
                 double newHost = joinButton.getLayoutY();
                 joinButton.setVisible(false);
                 hostButton.setLayoutY(newHost);
