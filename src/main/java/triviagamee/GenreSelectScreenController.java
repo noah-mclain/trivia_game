@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -93,6 +94,7 @@ public class GenreSelectScreenController {
     }
 
     public void miscClicked(ActionEvent e) throws IOException {
+        buttonAudio("mouseclick");
         Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -103,6 +105,7 @@ public class GenreSelectScreenController {
     public static boolean notMisc=false;
     public static String genreName;
     public void genreClicked(ActionEvent e) throws IOException {
+        buttonAudio("mouseclick");
         notMisc=true;
         Button button= (Button)e.getSource();
         genreName=button.getText();
@@ -111,6 +114,10 @@ public class GenreSelectScreenController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
     }
 }
 

@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 // import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.effect.Effect;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.effect.Glow;
@@ -44,6 +45,7 @@ public class QuestionController implements Initializable {
     static int score = 0;
     String scoreText = "Score: ";
     int questionCount = 10;
+    static int streak =0;
 
     public void displayQuestion() {
         if (!GenreSelectScreenController.notMisc) {
@@ -78,6 +80,12 @@ public class QuestionController implements Initializable {
         glow.setLevel(1.0);
 
         if (buttonCheck.getText().equals(question.getRightAnswer())) {
+            streak+=1;
+            if(streak > 4){
+                buttonAudio("levelup");
+                streak =1;
+            }
+            else buttonAudio("wee "+streak);
             score++;
             scoreLabel.setText(scoreText + String.valueOf(score));
             answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
@@ -94,6 +102,8 @@ public class QuestionController implements Initializable {
         }
 
         else {
+            buttonAudio("error");
+            streak=0;
             answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
             answerVerdict.setTextFill(Color.RED);
             for (Button button : buttonsArray) {
@@ -112,6 +122,10 @@ public class QuestionController implements Initializable {
         nextButton.setVisible(true);
         disableButtons(e);
 
+    }
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
     }
 
     public void disableButtons(ActionEvent e) {
@@ -144,6 +158,7 @@ public class QuestionController implements Initializable {
     }
 
     public void nextClicked(ActionEvent e) {
+        buttonAudio("mouseclick");
         displayQuestion();
         for (Button button : buttonsArray) {
             button.setDisable(false);

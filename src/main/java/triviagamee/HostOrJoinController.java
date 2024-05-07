@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,8 +41,10 @@ public class HostOrJoinController {
 
         gameNamePlayerTextField.setOnKeyPressed(event-> {
             if (event.getCode() == KeyCode.ENTER) {
+                buttonAudio("mouseclick");
                 if (joinButtonState == ButtonState.clicked_once) {
                     if(gameNamePlayerTextField.getText().isEmpty()){
+                        buttonAudio("BOO!");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("Oopsie!");
                         alert.setContentText("Can't enter without a game without its name can we? ಠಿ_ಠ");
@@ -50,6 +53,7 @@ public class HostOrJoinController {
                     }
                     else{
                         try {
+                            buttonAudio("mouseclick");
                             switchWaitingRoom(event);
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -63,6 +67,7 @@ public class HostOrJoinController {
             if (event.getCode() == KeyCode.ENTER) {
                 if(hostButtonState == ButtonState.clicked_once){
                     if(gameNameHostTextField.getText().isEmpty()) {
+                        buttonAudio("hehehe");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("Nope sorry.");
                         alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
@@ -71,6 +76,7 @@ public class HostOrJoinController {
                     }
                     else{
                         try {
+                            buttonAudio("mouseclick");
                             ChooseCategory(event);
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
@@ -105,6 +111,7 @@ public class HostOrJoinController {
     public void joinGameClicked() {
         switch (joinButtonState) {
             case initial:
+                buttonAudio("mouseclick");
                 // Initial click: Hide host button, show text field
                 joinButtonState = ButtonState.clicked_once;
                 double removedHost = hostButton.getLayoutY();
@@ -114,6 +121,7 @@ public class HostOrJoinController {
                 break;
             case clicked_once:
                 if (gameNamePlayerTextField.getText().isEmpty()) {
+                    buttonAudio("BOO!");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Oopsie!");
                     alert.setContentText("Can't enter without a game without its name can we? ಠಿ_ಠ");
@@ -121,6 +129,7 @@ public class HostOrJoinController {
                     gameNamePlayerTextField.setText("");
                 }
                 else{
+                    buttonAudio("mouseclick");
                     joinButtonState = ButtonState.clicked_twice;
                     try {
                         switchWaitingRoom();  // No KeyEvent needed here
@@ -143,10 +152,15 @@ public class HostOrJoinController {
         stage.show();
     }
 
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
+    }
 
     public void hostGameClicked() {
         switch (hostButtonState) {
             case initial:
+                buttonAudio("mouseclick");
                 // Initial click: Hide join button, show text field
                 hostButtonState = ButtonState.clicked_once;
                 isHost = true;
@@ -158,6 +172,7 @@ public class HostOrJoinController {
             case clicked_once:
                 // Second click: Choose category (assuming text is entered)
                 if(gameNameHostTextField.getText().isEmpty()){
+                    buttonAudio("hehehe");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Nope sorry.");
                     alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
@@ -165,6 +180,7 @@ public class HostOrJoinController {
                     gameNameHostTextField.setText("");
                 }
                else{
+                    buttonAudio("mouseclick");
                     hostButtonState = ButtonState.clicked_twice;
                     try {
                         ChooseCategory();  // No KeyEvent needed here

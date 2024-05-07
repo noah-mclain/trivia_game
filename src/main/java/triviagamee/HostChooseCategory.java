@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -81,6 +82,7 @@ public class HostChooseCategory {
     }
 
     public void miscClicked(){
+        buttonAudio("mouseclick");
         isMisc= true;
         ActionEvent ae = new ActionEvent();
         try {
@@ -91,6 +93,7 @@ public class HostChooseCategory {
     }
 
     public void genreClicked(ActionEvent e) {
+        buttonAudio("mouseclick");
         buttonClicked = (Button) e.getSource();
         try {
             switchHostWaitingRoom(e);
@@ -107,5 +110,8 @@ public class HostChooseCategory {
         stage.show();
     }
 
-
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
+    }
 }

@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -42,14 +43,21 @@ public class ScoreMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
            scoreLabelScoreMenu.setText("You got "+QuestionController.score+" /10\n");
            if(QuestionController.score<5){
+               buttonAudio("hehehe");
                scoreLabelScoreMenu.setText(scoreLabelScoreMenu.getText()+"you are as pathetic as ever =͟͟͞͞( •̀д•́))) ");
                scoreLabelScoreMenu.setTextFill(Color.RED);
            }
            else{
+               buttonAudio("WOOO");
                scoreLabelScoreMenu.setText(scoreLabelScoreMenu.getText()+"you are amazingly amazing ★~(◠‿◕✿) ");
                scoreLabelScoreMenu.setTextFill(Color.GREEN);
            }
 
+    }
+
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
     }
 
 }

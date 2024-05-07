@@ -1,6 +1,7 @@
 
 package triviagamee;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.animation.PauseTransition;
@@ -21,6 +22,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.control.Label;
@@ -170,6 +174,7 @@ public class LoginMenuController {
     }
 
     public void login(ActionEvent e) throws IOException {
+        buttonAudio("loginclick");
         if (DatabaseConnection.checkCredentials(userInputText.getText(), passwordInputText.getText())) {
             labelVerdict.setText("Login successful ╰(▔∀▔)╯");
             labelVerdict.setTextFill(Color.GREEN);
@@ -211,6 +216,7 @@ public class LoginMenuController {
         return CurrentUser;
     }
     public void signup(ActionEvent e) throws IOException{
+        buttonAudio("loginclick");
         labelVerdict.setText("");
         isCorrectUsernameFormat(userInputText.getText());
         isCorrectPasswordFormat(passwordInputText.getText());
@@ -266,29 +272,10 @@ public class LoginMenuController {
                  passwordInputText.requestFocus();
              }
          });
+
      }
 
-//tried here to make an event handler for when the use presses the enter button, that the login is automatically performed, tis glitching bs hazabatha
 
-//        passwordInputText.setOnKeyPressed(event -> {
-//            if(event.getCode() == KeyCode.ENTER) {
-//                try {
-//                        login(new ActionEvent());
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                }
-//           }
-//       });
-
-
-//    public void switchToLogin(ActionEvent e) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("login_menu.fxml"));
-//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//
-//    }
 
     public void switchToPlayerSelect (ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("playersSelect_menu.fxml"));
@@ -309,22 +296,12 @@ public class LoginMenuController {
 
     public void moveToLogin(KeyEvent event) {
         if(event.getCode()==KeyCode.ENTER){
-//            ActionEvent ae = new ActionEvent();
-//            try {
-//                login(ae);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
             loginButton.fire();
         }
     }
-
-    // @FXML
-                // private Label welcomeText;
-                //
-                // @FXML
-                // protected void onHelloButtonClick() {
-                // welcomeText.setText("Welcome to JavaFX Application!");
-                // }
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
+    }
 
 }

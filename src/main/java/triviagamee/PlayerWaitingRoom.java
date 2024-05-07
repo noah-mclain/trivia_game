@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.animation.PauseTransition;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -51,6 +52,7 @@ public class PlayerWaitingRoom implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        buttonAudio("cutemoosic");
         parentPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
                 scene = parentPane.getScene();
@@ -77,6 +79,7 @@ public class PlayerWaitingRoom implements Initializable {
     private void setupEventHandlers() {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
+                buttonAudio("taptap");
                 typing.setVisible(true);
                 typing.requestFocus();
                 editableLabel.setText("");
@@ -100,17 +103,22 @@ public class PlayerWaitingRoom implements Initializable {
         });
 
         scene.setOnMouseClicked(event -> {
+            buttonAudio("mouseclick");
             typing.setText("");
             typing.setVisible(false);
             editableLabel.setText("Press Enter to Chat");
         });
     }
 
-
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+        click.play();
+    }
         public void addToUserUpdate (KeyEvent event){
                 if (event.getCode() == KeyCode.ENTER) {
                     String message = typing.getText();
                     if (!message.isEmpty()) {
+                        buttonAudio("textsend");
                         if(HostOrJoinController.isHost){
                             userUpdate.appendText(currentUser + " ♕: " + message + "\n");
                         }
@@ -122,6 +130,7 @@ public class PlayerWaitingRoom implements Initializable {
             }
 
         public void hostStartGame(ActionEvent e) throws IOException {
+            buttonAudio("mouseclick");
             //mezabataha teshta8al only when the startbutton is clicked
             miscOrGenre();
             //didnt do this fxml yet
