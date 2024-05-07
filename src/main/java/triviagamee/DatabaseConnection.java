@@ -244,4 +244,41 @@ public class DatabaseConnection {
             System.out.println(ex.getMessage());
         }
     }
+
+
+    //i tried to implement these for the chatrooms idk how the table looks for this one
+    public static void updateChatrooms(int chatId, String message, String senderUsername) throws SQLException {
+        try (Connection connection = connect()) {
+            // Retrieve user IDs in the chat room
+            String query = "SELECT user_id FROM chatroom_users WHERE chatroom_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, chatId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ArrayList<Integer> userIds = new ArrayList<>();
+            while (resultSet.next()) {
+                userIds.add(resultSet.getInt("user_id"));
+            }
+
+            // update user text fields for each user in the chat room awaw
+            for (int userId : userIds) {
+                updateTextfieldForUser(connection, userId, chatId, message, senderUsername);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void updateTextfieldForUser(Connection connection, int userId, int chatId, String message, String senderUsername) throws SQLException {
+        // u can modify this
+        String query = "UPDATE users SET text_field = CONCAT(text_field, ?, ?, ?) WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, "\n[" + senderUsername + " (" + chatId + ")] " + message); // Append message with sender and chat info
+        preparedStatement.setString(2, "\n"); // Optional newline separator
+        preparedStatement.setInt(3, userId);
+        preparedStatement.executeUpdate();
+    }
+
+
+
 }
