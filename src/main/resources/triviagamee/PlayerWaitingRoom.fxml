@@ -30,11 +30,11 @@
                     <Image url="@../photos/clock-timer.gif" />
                 </image>
         </ImageView>
-        <TextArea fx:id="userUpdate" editable="false" layoutX="137.0" layoutY="196.0" prefHeight="501.0" prefWidth="828.0" styleClass="chatRoom" wrapText="true" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="144.0" />
 
         <TextField fx:id="typing" layoutX="10.0" layoutY="250.0" onKeyPressed="#addToUserUpdate" prefHeight="30.0" prefWidth="500.0" promptText="You are able to chat" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+        <TextArea fx:id="userUpdate" editable="false" layoutX="137.0" layoutY="196.0" prefHeight="501.0" prefWidth="604.0" styleClass="chatRoom" wrapText="true" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="368.0" />
 
-        <Label fx:id="editableLabel" layoutX="146.0" layoutY="668.0" prefHeight="17.0" prefWidth="815.0" styleClass="chatRoom" textFill="RED" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="148.0">
+        <Label fx:id="editableLabel" layoutX="159.0" layoutY="668.0" prefHeight="22.0" prefWidth="780.0" styleClass="chatRoom" text="Press Enter to type" textFill="RED" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="170.0">
          <effect>
             <Glow level="1.0" />
          </effect>
