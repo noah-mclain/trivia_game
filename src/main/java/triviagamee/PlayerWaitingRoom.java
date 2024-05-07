@@ -29,7 +29,7 @@ public class PlayerWaitingRoom implements Initializable {
     @FXML
     public Label waitingLabel;
     @FXML
-    public static TextArea userUpdate;
+    public TextArea userUpdate;
     @FXML
     public Label editableLabel;
     @FXML
