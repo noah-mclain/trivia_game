@@ -43,7 +43,7 @@ public class ScoreMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
            scoreLabelScoreMenu.setText("You got "+QuestionController.score+" /10\n");
            if(QuestionController.score<5){
-               buttonAudio("hehehe");
+               buttonAudio("chipmunkhehe");
                scoreLabelScoreMenu.setText(scoreLabelScoreMenu.getText()+"you are as pathetic as ever =͟͟͞͞( •̀д•́))) ");
                scoreLabelScoreMenu.setTextFill(Color.RED);
            }
