@@ -45,8 +45,24 @@
   -fx-font-size: 24px;
 }
 
-
-
 .popupAlerts {
   -fx-font-family: "Beon";
+}
+
+.chatRoom {
+    -fx-font-family: "Beon";
+    -fx-font-size: 18px;
+    -fx-background-color: transparent;
+}
+
+.chatRoom .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.chatRoom .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.chatRoom .scroll-pane .content {
+    -fx-background-color:transparent;
 }

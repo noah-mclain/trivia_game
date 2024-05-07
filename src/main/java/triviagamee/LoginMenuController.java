@@ -267,6 +267,7 @@ public class LoginMenuController {
     }
 
      public void initialize() {
+         buttonAudio("cutemoosic");
          userInputText.setOnKeyPressed(event -> {
              if (event.getCode() == KeyCode.ENTER) {
                  passwordInputText.requestFocus();
