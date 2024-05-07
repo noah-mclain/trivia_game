@@ -67,7 +67,7 @@ public class HostOrJoinController {
             if (event.getCode() == KeyCode.ENTER) {
                 if(hostButtonState == ButtonState.clicked_once){
                     if(gameNameHostTextField.getText().isEmpty()) {
-                        buttonAudio("hehehe");
+                        buttonAudio("chipmunkhehe");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("Nope sorry.");
                         alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
