@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 // import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -40,6 +42,8 @@ public class QuestionController implements Initializable {
     Button buttonD;
     @FXML
     Button nextButton;
+    @FXML
+    ImageView flagImageView;
 
     ArrayList<Button> buttonsArray = new ArrayList<Button>();
     Question question;
@@ -53,8 +57,15 @@ public class QuestionController implements Initializable {
     public void displayQuestion() {
         if (!GenreSelectScreenController.notMisc) {
             question = DatabaseConnection.retrieveQuestion();
-        } else {
+        }
+        else {
+            if(GenreSelectScreenController.genreName.equals("Flags")){
+                displayFlags();
+                return;
+            }
+            else{
             question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
+            }
         }
         questionLabel.setText(question.getQuestion());
         ArrayList<String> choices = new ArrayList<>();
