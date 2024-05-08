@@ -12,24 +12,24 @@
     <children>
       <ImageView fitHeight="872.0" fitWidth="1113.0" layoutX="-3.0" pickOnBounds="true">
          <image>
-            <Image url="@../photos/ScoreBoard.jpg" />
+            <Image url="@../photos/LeaderBoard.jpeg" />
          </image>
       </ImageView>
-        <Label fx:id="scoreLabelScoreMenu" alignment="CENTER" layoutX="181.0" layoutY="183.0" prefHeight="527.0" prefWidth="742.0" styleClass="popupAlerts" text="koko" textFill="#c100ff">
+        <Label fx:id="scoreLabelScoreMenu" alignment="CENTER" layoutX="181.0" layoutY="183.0" prefHeight="527.0" prefWidth="742.0" styleClass="popupAlerts" text="koko" textAlignment="CENTER" textFill="#c100ff">
          <font>
             <Font size="36.0" />
          </font>
          <effect>
             <Glow level="1.0" />
          </effect></Label>
-        <Button layoutX="287.0" layoutY="759.0" mnemonicParsing="false" onAction="#switchToGenresAgain" styleClass="answers" text="Next Round!" textFill="#459ea1">
+        <Button layoutX="286.0" layoutY="768.0" mnemonicParsing="false" onAction="#switchToGenresAgain" styleClass="answers" text="Next Round!" textFill="#57dfe1">
          <font>
             <Font size="36.0" />
          </font>
          <effect>
             <Glow level="1.0" />
          </effect></Button>
-      <Button layoutX="639.0" layoutY="758.0" mnemonicParsing="false" onAction="#switchToHomepageAgain" prefHeight="68.0" prefWidth="180.0" styleClass="answers" text="Bayiee!" textFill="#a737cd">
+      <Button layoutX="639.0" layoutY="758.0" mnemonicParsing="false" onAction="#switchToHomepageAgain" prefHeight="68.0" prefWidth="180.0" styleClass="answers" text="Bayiee!" textFill="#d153ff">
          <font>
             <Font size="36.0" />
          </font>
