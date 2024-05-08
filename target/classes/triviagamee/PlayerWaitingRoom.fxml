@@ -31,8 +31,8 @@
                 </image>
         </ImageView>
 
-        <TextField fx:id="typing" layoutX="10.0" layoutY="250.0" onKeyPressed="#addToUserUpdate" prefHeight="30.0" prefWidth="500.0" promptText="You are able to chat" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-        <TextArea fx:id="userUpdate" editable="false" layoutX="137.0" layoutY="196.0" prefHeight="501.0" prefWidth="604.0" styleClass="chatRoom" wrapText="true" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="368.0" />
+        <TextField fx:id="typing" layoutX="148.0" layoutY="172.0" onKeyPressed="#addToUserUpdate" prefHeight="528.0" prefWidth="603.0" promptText="You are able to chat" style="-fx-text-fill: #ff0000;" styleClass="chatRoom" visible="false" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="358.0" />
+        <TextArea fx:id="userUpdate" editable="false" layoutX="145.0" layoutY="182.0" prefHeight="501.0" prefWidth="604.0" style="-fx-text-fill: #ff0000;" styleClass="chatRoom" wrapText="true" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="360.0" />
 
         <Label fx:id="editableLabel" layoutX="159.0" layoutY="668.0" prefHeight="22.0" prefWidth="780.0" styleClass="chatRoom" text="Press Enter to type" textFill="RED" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="170.0">
          <effect>
