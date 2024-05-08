@@ -46,7 +46,7 @@
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button fx:id="flagsButtons" layoutX="691.0" layoutY="607.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Flags" textFill="#ff00b2">
+        <Button fx:id="flagsButtons" layoutX="691.0" layoutY="607.0" mnemonicParsing="false" onAction="#genreClicked" prefHeight="50.0" prefWidth="230.0" styleClass="genre" stylesheets="@Font.css" text="Flags" textFill="#ff00b2">
             <font>
                 <Font size="36.0" />
             </font>

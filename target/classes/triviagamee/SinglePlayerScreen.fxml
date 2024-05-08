@@ -75,5 +75,6 @@
          <font>
             <Font size="24.0" />
          </font></Button>
+      <ImageView fx:id="flagImageView" visible="false" fitHeight="336.0" fitWidth="628.0" layoutX="233.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

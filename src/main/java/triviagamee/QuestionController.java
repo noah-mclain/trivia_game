@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 public class QuestionController implements Initializable {
     @FXML
@@ -46,6 +47,8 @@ public class QuestionController implements Initializable {
     String scoreText = "Score: ";
     int questionCount = 10;
     static int streak =0;
+    int randomFlagIndex;
+    ArrayList<String> flags;
 
     public void displayQuestion() {
         if (!GenreSelectScreenController.notMisc) {
@@ -78,8 +81,15 @@ public class QuestionController implements Initializable {
 
         Glow glow = new Glow();
         glow.setLevel(1.0);
+        String rightAnswer;
+        if(GenreSelectScreenController.genreName.equals("Flags")){
+            rightAnswer=flags.get(randomFlagIndex-1);
+        }
+        else{
+            rightAnswer= question.getRightAnswer();
+        }
 
-        if (buttonCheck.getText().equals(question.getRightAnswer())) {
+        if (buttonCheck.getText().equals(rightAnswer)) {
             streak+=1;
             if(streak > 4){
                 buttonAudio("levelup");
@@ -91,7 +101,7 @@ public class QuestionController implements Initializable {
             answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
             answerVerdict.setTextFill(Color.GREEN);
             for (Button button : buttonsArray) {
-                if (button.getText().equals(question.getRightAnswer())) {
+                if (button.getText().equals(rightAnswer)) {
                     button.setStyle("-fx-text-fill: #99FF33"); // Neon green text
                     button.setEffect(glow); // Apply the glow effect
                 } else {
@@ -110,7 +120,7 @@ public class QuestionController implements Initializable {
                 if (button.getText().equals(buttonCheck.getText())) {
                     button.setStyle("-fx-text-fill: rgb(247, 33, 25);"); // Red text
                     button.setEffect(glow); // Apply the glow effect
-                } else if (button.getText().equals(question.getRightAnswer())) {
+                } else if (button.getText().equals(rightAnswer)) {
                     button.setStyle("-fx-text-fill: #99FF33"); // Neon green text
                     button.setEffect(glow); // Apply the glow effect
                 } else {
@@ -198,5 +208,52 @@ public class QuestionController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void displayFlags(){
+        questionLabel.setDisable(true);
+        flagImageView.setVisible(true);
+        Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
+
+        randomFlagIndex = (int) (Math.random()*4)+1;
+         flags= fillFlags();
+        String answer = flags.get(randomFlagIndex-1);
+        Image image= new Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
+        flagImageView.setImage(image);
+        ArrayList<String> countryNames=new ArrayList<>();
+        countryNames.add(flags.get(randomFlagIndex-1));
+        int [] occArray=new int[flags.size()];
+        occArray[randomFlagIndex-1]=1;
+        for(int i=1;i<4;i++){
+            int randomizer = (int)(Math.random()*4)+1;
+            if(occArray[randomizer-1]==1){
+                i--;
+                continue;
+            }
+            occArray[randomizer-1]=1;
+            countryNames.add(flags.get(randomizer-1));
+        }
+        Collections.shuffle(countryNames);
+        for(int i=0; i<4; i++){
+            buttonsArray.get(i).setText(countryNames.get(i));
+        }
+
+        for (Button button : buttonsArray) {
+            button.setOpacity(1.0f);
+            button.setStyle("-fx-text-fill: rgb(234,0,255);");
+        }
+
+
+
+    }
+    public static ArrayList<String> fillFlags(){
+        ArrayList<String> flags = new ArrayList<>();
+        flags.add("Belgium");
+        flags.add("Lebanon");
+        flags.add("Albania");
+        flags.add("Italy");
+        return flags;
+
+    }
+
 
 }
