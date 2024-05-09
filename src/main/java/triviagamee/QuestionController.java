@@ -225,7 +225,7 @@ public class QuestionController implements Initializable {
         flagImageView.setVisible(true);
         Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
 
-        randomFlagIndex = (int) (Math.random()*9)+1;
+        randomFlagIndex = (int) (Math.random()*13)+1;
          flags= fillFlags();
         String answer = flags.get(randomFlagIndex-1);
         String flagImagePath = String.format("/Flags/%d.png", randomFlagIndex);
@@ -239,7 +239,7 @@ public class QuestionController implements Initializable {
         int [] occArray=new int[flags.size()];
         occArray[randomFlagIndex-1]=1;
         for(int i=1;i<4;i++){
-            int randomizer = (int)(Math.random()*4)+1;
+            int randomizer = (int)(Math.random()*13)+1;
             if(occArray[randomizer-1]==1){
                 i--;
                 continue;
@@ -271,6 +271,10 @@ public class QuestionController implements Initializable {
         flags.add("Norway");
         flags.add("Mozambique");
         flags.add("Palestine");
+        flags.add("Tunisia");
+        flags.add("Peru");
+        flags.add("Brazil");
+        flags.add("Mexico");
         return flags;
 
     }
