@@ -53,6 +53,7 @@ public class QuestionController implements Initializable {
     static int streak =0;
     int randomFlagIndex;
     ArrayList<String> flags;
+    String rightAnswer;
 
     public void displayQuestion() {
         if (!GenreSelectScreenController.notMisc) {
@@ -92,7 +93,6 @@ public class QuestionController implements Initializable {
 
         Glow glow = new Glow();
         glow.setLevel(1.0);
-        String rightAnswer;
         if(GenreSelectScreenController.genreName.equals("Flags")){
             rightAnswer=flags.get(randomFlagIndex-1);
         }
@@ -156,9 +156,9 @@ public class QuestionController implements Initializable {
             button.setDisable(true);
             button.setOpacity(0.5f);
 
-            if (button.getText().equals(question.getRightAnswer())) {
+            if (button.getText().equals(rightAnswer)) {
                 for (Button buttons : buttonsArray) {
-                    if (button.getText().equals(question.getRightAnswer())) {
+                    if (button.getText().equals(rightAnswer)) {
                         button.setStyle("-fx-text-fill: #66FF00");
                     } else {
                         button.setStyle("-fx-text-fill: FF000D");
@@ -166,7 +166,7 @@ public class QuestionController implements Initializable {
                 }
             } else if (button.getText().equals(buttonCheck.getText())) {
                 for (Button buttons : buttonsArray) {
-                    if (button.getText().equals(question.getRightAnswer())) {
+                    if (button.getText().equals(rightAnswer)) {
                         button.setStyle("-fx-text-fill: #66FF00");
                     } else {
                         button.setStyle("-fx-text-fill: FF000D");
@@ -225,10 +225,14 @@ public class QuestionController implements Initializable {
         flagImageView.setVisible(true);
         Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
 
-        randomFlagIndex = (int) (Math.random()*4)+1;
+        randomFlagIndex = (int) (Math.random()*9)+1;
          flags= fillFlags();
         String answer = flags.get(randomFlagIndex-1);
-        Image image= new Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
+        String flagImagePath = String.format("/Flags/%d.png", randomFlagIndex);
+
+// Load flag image using ClassLoader.getResource()
+        Image image = new Image(getClass().getResource(flagImagePath).toExternalForm());
+        //Image image= new Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
         flagImageView.setImage(image);
         ArrayList<String> countryNames=new ArrayList<>();
         countryNames.add(flags.get(randomFlagIndex-1));
@@ -262,6 +266,11 @@ public class QuestionController implements Initializable {
         flags.add("Lebanon");
         flags.add("Albania");
         flags.add("Italy");
+        flags.add("Azerbaijan");
+        flags.add("Iceland");
+        flags.add("Norway");
+        flags.add("Mozambique");
+        flags.add("Palestine");
         return flags;
 
     }
