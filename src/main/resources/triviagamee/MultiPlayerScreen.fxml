@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="triviagamee.HostOrJoinController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.HostOrJoinController">
     <children>
-        <Button fx:id="joinButton" layoutX="143.0" layoutY="185.0" onAction="#joinGameClicked" text="Join Game" />
-        <Button fx:id="hostButton" layoutX="143.0" layoutY="235.0" onAction="#hostGameClicked" text="Host Game" />
+      <ImageView fitHeight="615.0" fitWidth="833.0" layoutX="158.0" layoutY="6.0" pickOnBounds="true">
+         <image>
+            <Image url="@../photos/PlayerSelect.png" />
+         </image>
+      </ImageView>
+        <Button fx:id="joinButton" layoutX="405.0" layoutY="426.0" onAction="#joinGameClicked" styleClass="loginSignUp" text="Join Game" />
+        <Button fx:id="hostButton" layoutX="405.0" layoutY="476.0" onAction="#hostGameClicked" styleClass="loginSignUp" text="Host Game" />
         <TextField fx:id="gameNameHostTextField" layoutX="143.0" layoutY="235.0" promptText="Your Game's Name" visible="false" />
-        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" promptText="Host's Game Name"  visible="false" />
+        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" promptText="Host's Game Name" visible="false" />
 <!--        <Button fx:id="backButton" layoutX="350.0" layoutY="540.0" onAction="#back" text="Back"/>-->
     </children>
 
