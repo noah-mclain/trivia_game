@@ -41,6 +41,6 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-        <Button fx:id="startButton" layoutX="300.0" layoutY="300.0" onAction="#hostStartGame" text="Start Game" visible="false" />
+        <Button fx:id="startButton" layoutX="797.0" layoutY="778.0" onAction="#hostStartGame" prefHeight="67.0" prefWidth="286.0" styleClass="loginSignUp" text="Start Game" textAlignment="CENTER" visible="false" />
     </children>
 </AnchorPane>
