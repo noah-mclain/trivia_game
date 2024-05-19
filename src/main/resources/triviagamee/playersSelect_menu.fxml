@@ -13,7 +13,7 @@
          <image>
             <Image url="@../photos/PlayerSelect.png" />
          </image></ImageView>
-      <Button fx:id="singlePlayer" layoutX="275.0" layoutY="639.0" mnemonicParsing="false" onAction="#switchGenreSelectPage" prefHeight="90.0" prefWidth="273.0" styleClass="genre" text="Single Player" textFill="#00e3ff">
+      <Button fx:id="singlePlayer" layoutX="275.0" layoutY="639.0" mnemonicParsing="false" onAction="#switchGenreSelectPage" prefHeight="90.0" prefWidth="275.0" styleClass="genre" text="Single Player" textFill="#00e3ff">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>
@@ -21,7 +21,7 @@
             <Glow level="1.0" />
          </effect>
       </Button>
-      <Button fx:id="multiPlayer" layoutX="611.0" layoutY="639.0" mnemonicParsing="false" onAction="#switchToMultiPlayer" prefHeight="90.0" prefWidth="273.0" styleClass="genre" text="Multi player" textFill="#00e3ff">
+      <Button fx:id="multiPlayer" layoutX="611.0" layoutY="639.0" mnemonicParsing="false" onAction="#switchToMultiPlayer" prefHeight="90.0" prefWidth="275.0" styleClass="genre" text="Multi player" textFill="#00e3ff">
          <font>
             <Font name="Ayuthaya" size="18.0" />
          </font>

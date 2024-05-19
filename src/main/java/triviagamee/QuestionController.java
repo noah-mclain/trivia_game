@@ -93,7 +93,7 @@ public class QuestionController implements Initializable {
 
         Glow glow = new Glow();
         glow.setLevel(1.0);
-        if(GenreSelectScreenController.genreName.equals("Flags")){
+        if(GenreSelectScreenController.genreName != null && GenreSelectScreenController.genreName.equals("Flags")){
             rightAnswer=flags.get(randomFlagIndex-1);
         }
         else{
