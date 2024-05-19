@@ -246,6 +246,26 @@ public class DatabaseConnection {
     }
 
 
+    // update table to hold an arraylist
+    // update function to skip p2->p10
+    public static void initializeRoom(String room, String player, String genre ){
+        try(Connection connection = connect()){
+            String query = "INSERT INTO rooms (room, playerHost, genre) VALUES (?,?,?)";
+            try(PreparedStatement statement=connection.prepareStatement(query)){
+                statement.setString(1, room);
+                statement.setString(2,player);
+                statement.setString(3,genre);
+                statement.executeUpdate();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
     //i tried to implement these for the chatrooms idk how the table looks for this one
     public static void updateChatrooms(int chatId, String message, String senderUsername) throws SQLException {
         try (Connection connection = connect()) {

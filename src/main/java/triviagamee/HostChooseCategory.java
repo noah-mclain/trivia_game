@@ -31,6 +31,7 @@ public class HostChooseCategory {
     public static Button buttonClicked;
     private Stage stage;
     private Scene scene;
+    public static String genre;
 
     public void initialize() {
         loadFont("Beon-Regular.ttf");
@@ -95,6 +96,7 @@ public class HostChooseCategory {
     public void genreClicked(ActionEvent e) {
         buttonAudio("mouseclick");
         buttonClicked = (Button) e.getSource();
+        genre=buttonClicked.getText();
         try {
             switchHostWaitingRoom(e);
         } catch (IOException ex) {

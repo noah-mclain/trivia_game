@@ -24,6 +24,8 @@ public class HostOrJoinController {
     private Button hostButton;
     @FXML
     private TextField gameNameHostTextField;
+    public static String roomName;
+    public static String host="koko!";
     public static boolean isHost = false;
 
     //enum is a list of constant values we hena ana esta5demtaha to make a set of predefined values that the button variable can take
@@ -178,6 +180,7 @@ public class HostOrJoinController {
                     alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
                     alert.showAndWait();
                     gameNameHostTextField.setText("");
+                    roomName=gameNameHostTextField.getText();
                 }
                else{
                     buttonAudio("mouseclick");

@@ -42,6 +42,10 @@ public class PlayerWaitingRoom implements Initializable {
     public Button startButton;
     private String currentUser;
     public boolean isTyping= false;
+    private Player hoster = new Player(HostOrJoinController.host,"host",HostOrJoinController.roomName );
+    private Room roomer= new Room(HostOrJoinController.roomName, HostOrJoinController.host,HostChooseCategory.genre);
+    private GameManager ahmed=new GameManager(hoster,roomer, HostChooseCategory.genre);
+
 
 
     public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a"); // Adjust format as needed
@@ -60,6 +64,7 @@ public class PlayerWaitingRoom implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ahmed.storeRoom();
         buttonAudio("cutemoosic");
         parentPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
