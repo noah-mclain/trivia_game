@@ -21,6 +21,7 @@ import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +43,10 @@ public class PlayerWaitingRoom implements Initializable {
     private String currentUser;
     public boolean isTyping= false;
 
+
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a"); // Adjust format as needed
+    private String timestamp;
+
     public Scene scene;
     List<String> animals = Arrays.asList("Tiger", "Goat", "Cat", "Dog", "Elephant", "Lion", "Bear",
             "Giraffe", "Zebra", "Kangaroo", "Penguin", "Dolphin", "Whale", "Rabbit", "Fox", "Wolf",
@@ -49,6 +54,9 @@ public class PlayerWaitingRoom implements Initializable {
             "Squirrel", "Owl", "Eagle", "Parrot", "Peacock", "Pigeon", "Jellyfish", "Armadillo",
             "Goblin shark","Cow");
 
+    public String getTimestamp(){
+        return timestamp;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,8 +102,12 @@ public class PlayerWaitingRoom implements Initializable {
 
         typing.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if(!isTyping){
-                if(HostOrJoinController.isHost) userUpdate.appendText("Game Host ♕ is typing...\n");
+                if(HostOrJoinController.isHost) {
+                    userUpdate.appendText("Game Host ♕ is typing...\n");
+                    timestamp = dateFormat.format(new Date());
+                }
                 else userUpdate.appendText(currentUser + " is typing...\n");
+                timestamp = dateFormat.format(new Date());
                 isTyping = true;
             }
             pause.playFromStart();
@@ -120,9 +132,13 @@ public class PlayerWaitingRoom implements Initializable {
                     if (!message.isEmpty()) {
                         buttonAudio("textsend");
                         if(HostOrJoinController.isHost){
-                            userUpdate.appendText(currentUser + " ♕: " + message + "\n");
+                            timestamp = dateFormat.format(new Date());
+                            userUpdate.appendText(currentUser + " ♕: " + message +"    "+timestamp +"\n");
                         }
-                        else userUpdate.appendText(currentUser + ": " + message + "\n");
+                        else {
+                            timestamp = dateFormat.format(new Date());
+                            userUpdate.appendText(currentUser + ": " + message+"    "+timestamp + "\n");
+                        }
                         typing.clear();
                         editableLabel.setText("");
                     }
