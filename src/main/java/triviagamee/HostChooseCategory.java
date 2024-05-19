@@ -85,7 +85,8 @@ public class HostChooseCategory {
     public void miscClicked(){
         buttonAudio("mouseclick");
         isMisc= true;
-        ActionEvent ae = new ActionEvent();
+        Node source = miscButton; // The node that you want to use as the source
+        ActionEvent ae = new ActionEvent(source, null);
         try {
             switchHostWaitingRoom(ae);
         } catch (IOException e) {
