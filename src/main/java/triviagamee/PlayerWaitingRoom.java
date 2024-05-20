@@ -44,7 +44,7 @@ public class PlayerWaitingRoom implements Initializable {
     public boolean isTyping= false;
     private Player hoster = new Player(HostOrJoinController.host,"host",HostOrJoinController.roomName );
     private Room roomer= new Room(HostOrJoinController.roomName, HostOrJoinController.host,HostChooseCategory.genre);
-    private GameManager ahmed=new GameManager(hoster,roomer, HostChooseCategory.genre);
+
 
 
 
@@ -64,7 +64,14 @@ public class PlayerWaitingRoom implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ahmed.storeRoom();
+        GameManager gameManager;
+        if(HostChooseCategory.genre==null){
+            gameManager= new GameManager(hoster, roomer);
+        }
+        else{
+             gameManager = new GameManager(hoster, roomer, HostChooseCategory.genre);
+        }
+        gameManager.storeRoom();
         buttonAudio("cutemoosic");
         parentPane.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {

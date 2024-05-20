@@ -228,7 +228,7 @@ public class DatabaseConnection {
             System.out.println(ex.getMessage());
         }
     }
-    public static void storeRoomQuestions(Room room, ArrayList<Question> questions){
+    /*public static void storeRoomQuestions(Room room, ArrayList<Question> questions){
         try(Connection connection = connect()){
             for(int i=0;i<10;i++){
                 String query="UPDATE rooms SET q"+(i+1)+ "= ? WHERE name = ?";
@@ -243,18 +243,19 @@ public class DatabaseConnection {
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
-    }
+    }*/
 
 
     // update table to hold an arraylist
     // update function to skip p2->p10
-    public static void initializeRoom(String room, String player, String genre ){
+    public static void initializeRoom(String room, String player, String questions, String genre ){
         try(Connection connection = connect()){
-            String query = "INSERT INTO rooms (room, playerHost, genre) VALUES (?,?,?)";
+            String query = "INSERT INTO rooms (room, playerHost,questions, genre) VALUES (?,?,?,?)";
             try(PreparedStatement statement=connection.prepareStatement(query)){
                 statement.setString(1, room);
                 statement.setString(2,player);
-                statement.setString(3,genre);
+                statement.setString(3,questions);
+                statement.setString(4,genre);
                 statement.executeUpdate();
             }catch(Exception e){
                 System.out.println(e.getMessage());

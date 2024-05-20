@@ -97,7 +97,9 @@ public class HostChooseCategory {
     public void genreClicked(ActionEvent e) {
         buttonAudio("mouseclick");
         buttonClicked = (Button) e.getSource();
-        genre=buttonClicked.getText();
+        if(!(buttonClicked.getText().equals("Miscellaneous"))){
+            genre=buttonClicked.getText();
+        }
         try {
             switchHostWaitingRoom(e);
         } catch (IOException ex) {

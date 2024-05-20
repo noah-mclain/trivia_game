@@ -7,13 +7,19 @@ public class GameManager {
     private Room room;
     private ArrayList<Question> questions;
     private String genre;
+    private StringBuilder questionString;
     public GameManager( Player host, Room room){
         this.players=new ArrayList<>();
+        this.questions=new ArrayList<>();
         players.add(host);
         this.room = room;
+        this.genre="misc";
+        questionString=new StringBuilder();
         for(int i=0;i<10;i++){
             Question question = DatabaseConnection.retrieveQuestion();
             questions.add(question);
+            questionString.append(question.getID());
+            if(i!=9) questionString.append(',');
         }
     }
     public GameManager(Player host, Room room, String genre){
@@ -22,9 +28,12 @@ public class GameManager {
         players.add(host);
         this.room=room;
         this.genre=genre;
+        questionString=new StringBuilder();
         for(int i=0;i<10;i++){
             Question question = DatabaseConnection.retrieveQuestion(genre);
             questions.add(question);
+            questionString.append(question.getID());
+            if(i!=9) questionString.append(',');
         }
     }
 
@@ -45,7 +54,8 @@ public class GameManager {
     public String getGenre(){
         return this.genre;
     }
+    public String getQuestionString(){return this.questionString.toString();}
     public void storeRoom(){
-        DatabaseConnection.initializeRoom(this.getRoom().getRoomName(),this.getHost(),this.getGenre());
+        DatabaseConnection.initializeRoom(this.getRoom().getRoomName(),this.getHost(),this.getQuestionString(),this.getGenre());
     }
 }

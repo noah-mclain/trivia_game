@@ -78,6 +78,8 @@ public class HostOrJoinController {
                     }
                     else{
                         try {
+                            roomName=gameNameHostTextField.getText();
+                            System.out.println(roomName);
                             buttonAudio("mouseclick");
                             ChooseCategory(event);
                         } catch (IOException ex) {
@@ -180,9 +182,10 @@ public class HostOrJoinController {
                     alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
                     alert.showAndWait();
                     gameNameHostTextField.setText("");
-                    roomName=gameNameHostTextField.getText();
                 }
                else{
+                    roomName=gameNameHostTextField.getText();
+                    System.out.println(roomName);
                     buttonAudio("mouseclick");
                     hostButtonState = ButtonState.clicked_twice;
                     try {
