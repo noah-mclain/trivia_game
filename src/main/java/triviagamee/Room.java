@@ -28,7 +28,7 @@ public class Room {
     }
     public void setGenre(String genre){
         this.genre=genre;
-        DatabaseConnection.changeRoomGenre(this);
+        //DatabaseConnection.changeRoomGenre(this);
     }
     public String getGenre(){
         return this.genre;

@@ -5,18 +5,25 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.HostOrJoinController">
+<AnchorPane prefHeight="872.0" prefWidth="1109.0" style="-fx-background-color: rgba(9,9,21,255);" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.HostOrJoinController">
     <children>
-      <ImageView fitHeight="615.0" fitWidth="833.0" layoutX="158.0" layoutY="6.0" pickOnBounds="true">
+      <ImageView fitHeight="798.0" fitWidth="972.0" layoutX="69.0" pickOnBounds="true">
          <image>
             <Image url="@../photos/PlayerSelect.png" />
          </image>
       </ImageView>
-        <Button fx:id="joinButton" layoutX="405.0" layoutY="426.0" onAction="#joinGameClicked" styleClass="loginSignUp" text="Join Game" />
-        <Button fx:id="hostButton" layoutX="405.0" layoutY="476.0" onAction="#hostGameClicked" styleClass="loginSignUp" text="Host Game" />
-        <TextField fx:id="gameNameHostTextField" layoutX="143.0" layoutY="235.0" promptText="Your Game's Name" visible="false" />
-        <TextField fx:id="gameNamePlayerTextField" layoutX="143.0" layoutY="235.0" promptText="Host's Game Name" visible="false" />
+        <Button fx:id="joinButton" layoutX="654.0" layoutY="661.0" onAction="#joinGameClicked" prefHeight="25.0" prefWidth="200.0" styleClass="loginSignUp" text="Join Game" />
+        <Button fx:id="hostButton" layoutX="259.0" layoutY="661.0" onAction="#hostGameClicked" prefHeight="25.0" prefWidth="200.0" styleClass="loginSignUp" text="Host Game" />
+        <TextField fx:id="gameNameHostTextField" layoutX="585.0" layoutY="661.0" prefHeight="46.0" prefWidth="299.0" promptText="Your Game's Name" style="-fx-text-fill: #ff0000;" styleClass="gameSelect" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="gameNamePlayerTextField" layoutX="235.0" layoutY="659.0" prefHeight="46.0" prefWidth="334.0" promptText="Host's Game Name" style="-fx-text-fill: #ff0000;" styleClass="gameSelect" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
 <!--        <Button fx:id="backButton" layoutX="350.0" layoutY="540.0" onAction="#back" text="Back"/>-->
     </children>
 

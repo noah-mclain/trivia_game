@@ -31,6 +31,7 @@ public class HostChooseCategory {
     public static Button buttonClicked;
     private Stage stage;
     private Scene scene;
+    public static String genre;
 
     public void initialize() {
         loadFont("Beon-Regular.ttf");
@@ -84,7 +85,8 @@ public class HostChooseCategory {
     public void miscClicked(){
         buttonAudio("mouseclick");
         isMisc= true;
-        ActionEvent ae = new ActionEvent();
+        Node source = miscButton; // The node that you want to use as the source
+        ActionEvent ae = new ActionEvent(source, null);
         try {
             switchHostWaitingRoom(ae);
         } catch (IOException e) {
@@ -95,6 +97,7 @@ public class HostChooseCategory {
     public void genreClicked(ActionEvent e) {
         buttonAudio("mouseclick");
         buttonClicked = (Button) e.getSource();
+        genre=buttonClicked.getText();
         try {
             switchHostWaitingRoom(e);
         } catch (IOException ex) {

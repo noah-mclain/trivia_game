@@ -12,7 +12,7 @@ public class Player {
        this.role=role;
        this.room = room;
        this.score=0;
-       DatabaseConnection.storePlayer(this);
+       //DatabaseConnection.storePlayer(this);
     }
     public String getName(){
         return this.name;
@@ -30,6 +30,6 @@ public class Player {
     }
     public void addScore(){
         this.score++;
-        DatabaseConnection.updatePlayerScore(name, score);
+        //DatabaseConnection.updatePlayerScore(name, score);
     }
 }
