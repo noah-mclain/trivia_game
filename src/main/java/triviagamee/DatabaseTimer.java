@@ -1,4 +1,5 @@
 package triviagamee;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.*;
@@ -20,8 +21,8 @@ public class DatabaseTimer {
 
     private static void queryDatabase() {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM your_table")) {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM your_table")) {
 
             while (rs.next()) {
                 // Process the result set

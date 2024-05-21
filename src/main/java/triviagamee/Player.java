@@ -7,14 +7,16 @@ public class Player {
     private String role;
     private String room;
     private int score;
-    public Player(String name, String role, String room){
-       this.name=name;
-       this.role=role;
-       this.room = room;
-       this.score=0;
-       //DatabaseConnection.storePlayer(this);
+
+    public Player(String name, String role, String room) {
+        this.name = name;
+        this.role = role;
+        this.room = room;
+        this.score = 0;
+        // DatabaseConnection.storePlayer(this);
     }
-    public String getName(){
+
+    public String getName() {
         return this.name;
     }
 
@@ -25,11 +27,19 @@ public class Player {
     public int getScore() {
         return score;
     }
-    public String getRoom(){
+
+    public String getRoom() {
         return room;
     }
-    public void addScore(){
+
+    public void addScore() {
         this.score++;
-        //DatabaseConnection.updatePlayerScore(name, score);
+        // DatabaseConnection.updatePlayerScore(name, score);
+    }
+    public void resetPlayerScore(){
+        this.score=0;
+    }
+    public void updatePlayerScore(){
+        this.score++;
     }
 }

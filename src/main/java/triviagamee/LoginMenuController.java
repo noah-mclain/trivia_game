@@ -37,7 +37,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class LoginMenuController {
-    //String check = "amputate";
+    // String check = "amputate";
 
     @FXML
     private AnchorPane ap;
@@ -66,108 +66,111 @@ public class LoginMenuController {
 
     private static String CurrentUser;
 
-//    public void setDynamicSizes() {
-//        // For each component, call setDynamicSize with the component and its ratios
-//        setDynamicSize(blueStroke, 0.1, 0.1, 0.3, 0.3);
-//        setDynamicSize(labelVerdict, 0.2, 0.2, 0.2, 0.2);
-//        setDynamicSize(loginButton, 0.3, 0.3, 0.1, 0.1);
-//        setDynamicSize(nextButton, 0.4, 0.4, 0.1, 0.1);
-//        setDynamicSize(passwordInputText, 0.5, 0.5, 0.3, 0.1);
-//        setDynamicSize(pinkBox, 0.6, 0.6, 0.2, 0.2);
-//        setDynamicSize(pinkStroke, 0.7, 0.7, 0.2, 0.2);
-//        setDynamicSize(purpleBox, 0.8, 0.8, 0.1, 0.1);
-//        setDynamicSize(signupButton, 0.9, 0.9, 0.1, 0.1);
-//        setDynamicSize(userInputText, 0.5, 0.5, 0.3, 0.1);
-//        setDynamicSize(welcomeText, 0.5, 0.5, 0.3, 0.1);
-//    }
-//
-//    private void setDynamicSize(Node node, double layoutXRatio, double layoutYRatio, double widthRatio, double heightRatio) {
-//        node.layoutXProperty().bind(ap.widthProperty().multiply(layoutXRatio));
-//        node.layoutYProperty().bind(ap.heightProperty().multiply(layoutYRatio));
-//        if (node instanceof Region) {
-//            ((Region) node).prefWidthProperty().bind(ap.widthProperty().multiply(widthRatio));
-//            ((Region) node).prefHeightProperty().bind(ap.heightProperty().multiply(heightRatio));
-//        } else if (node instanceof Shape) {
-//            node.scaleXProperty().bind(ap.widthProperty().multiply(widthRatio));
-//            node.scaleYProperty().bind(ap.heightProperty().multiply(heightRatio));
-//        }
-//    }
+    // public void setDynamicSizes() {
+    // // For each component, call setDynamicSize with the component and its ratios
+    // setDynamicSize(blueStroke, 0.1, 0.1, 0.3, 0.3);
+    // setDynamicSize(labelVerdict, 0.2, 0.2, 0.2, 0.2);
+    // setDynamicSize(loginButton, 0.3, 0.3, 0.1, 0.1);
+    // setDynamicSize(nextButton, 0.4, 0.4, 0.1, 0.1);
+    // setDynamicSize(passwordInputText, 0.5, 0.5, 0.3, 0.1);
+    // setDynamicSize(pinkBox, 0.6, 0.6, 0.2, 0.2);
+    // setDynamicSize(pinkStroke, 0.7, 0.7, 0.2, 0.2);
+    // setDynamicSize(purpleBox, 0.8, 0.8, 0.1, 0.1);
+    // setDynamicSize(signupButton, 0.9, 0.9, 0.1, 0.1);
+    // setDynamicSize(userInputText, 0.5, 0.5, 0.3, 0.1);
+    // setDynamicSize(welcomeText, 0.5, 0.5, 0.3, 0.1);
+    // }
+    //
+    // private void setDynamicSize(Node node, double layoutXRatio, double
+    // layoutYRatio, double widthRatio, double heightRatio) {
+    // node.layoutXProperty().bind(ap.widthProperty().multiply(layoutXRatio));
+    // node.layoutYProperty().bind(ap.heightProperty().multiply(layoutYRatio));
+    // if (node instanceof Region) {
+    // ((Region)
+    // node).prefWidthProperty().bind(ap.widthProperty().multiply(widthRatio));
+    // ((Region)
+    // node).prefHeightProperty().bind(ap.heightProperty().multiply(heightRatio));
+    // } else if (node instanceof Shape) {
+    // node.scaleXProperty().bind(ap.widthProperty().multiply(widthRatio));
+    // node.scaleYProperty().bind(ap.heightProperty().multiply(heightRatio));
+    // }
+    // }
 
-//    public void initialize() {
-//        double newValue = ap.widthProperty().get() * 0.1;
-//
-//        // Unbind and set new value if properties are already bound
-//        unbindAndSetNewValue(purpleBox, newValue);
-//        unbindAndSetNewValue(pinkBox, newValue);
-//
-//        // Bind node sizes
-//        bindNodeSize(blueStroke, ap);
-//        bindNodeSize(labelVerdict, ap);
-//        bindNodeSize(loginButton, ap);
-//        bindNodeSize(nextButton, ap);
-//        bindNodeSize(passwordInputText, ap);
-//        bindNodeSize(pinkBox, ap);
-//        bindNodeSize(pinkStroke, ap);
-//        bindNodeSize(purpleBox, ap);
-//        bindNodeSize(signupButton, ap);
-//        bindNodeSize(userInputText, ap);
-//        bindNodeSize(welcomeText, ap);
-//    }
-//
-//    private void unbindAndSetNewValue(Node node, double newValue) {
-//        if (node.layoutXProperty().isBound()) {
-//            node.layoutXProperty().unbind();
-//            node.setLayoutX(newValue);
-//            System.out.println("The layoutX property of the rectangle was bound and has been set to a new value.");
-//        } else {
-//            System.out.println("The layoutX property of the rectangle is not bound.");
-//        }
-//    }
-//
-//    private void bindNodeSize(Node node, AnchorPane ap) {
-//        // Unbind properties if they are already bound
-//        if(node.layoutXProperty().isBound()) {
-//            node.layoutXProperty().unbind();
-//        }
-//        if(node.layoutYProperty().isBound()) {
-//            node.layoutYProperty().unbind();
-//        }
-//
-//        // Bind properties
-//        node.layoutXProperty().bind(ap.widthProperty().multiply(0.1));
-//        node.layoutYProperty().bind(ap.heightProperty().multiply(0.1));
-//
-//        if (node instanceof Region) {
-//            Region region = (Region) node;
-//
-//            // Unbind properties if they are already bound
-//            if(region.prefWidthProperty().isBound()) {
-//                region.prefWidthProperty().unbind();
-//            }
-//            if(region.prefHeightProperty().isBound()) {
-//                region.prefHeightProperty().unbind();
-//            }
-//
-//            // Bind properties
-//            region.prefWidthProperty().bind(ap.widthProperty().multiply(0.8));
-//            region.prefHeightProperty().bind(ap.heightProperty().multiply(0.8));
-//        } else if (node instanceof Shape) {
-//            Shape shape = (Shape) node;
-//
-//            // Unbind properties if they are already bound
-//            if(shape.scaleXProperty().isBound()) {
-//                shape.scaleXProperty().unbind();
-//            }
-//            if(shape.scaleYProperty().isBound()) {
-//                shape.scaleYProperty().unbind();
-//            }
-//
-//            // Bind properties
-//            shape.scaleXProperty().bind(ap.widthProperty().multiply(0.8));
-//            shape.scaleYProperty().bind(ap.heightProperty().multiply(0.8));
-//        }
-//    }
-
+    // public void initialize() {
+    // double newValue = ap.widthProperty().get() * 0.1;
+    //
+    // // Unbind and set new value if properties are already bound
+    // unbindAndSetNewValue(purpleBox, newValue);
+    // unbindAndSetNewValue(pinkBox, newValue);
+    //
+    // // Bind node sizes
+    // bindNodeSize(blueStroke, ap);
+    // bindNodeSize(labelVerdict, ap);
+    // bindNodeSize(loginButton, ap);
+    // bindNodeSize(nextButton, ap);
+    // bindNodeSize(passwordInputText, ap);
+    // bindNodeSize(pinkBox, ap);
+    // bindNodeSize(pinkStroke, ap);
+    // bindNodeSize(purpleBox, ap);
+    // bindNodeSize(signupButton, ap);
+    // bindNodeSize(userInputText, ap);
+    // bindNodeSize(welcomeText, ap);
+    // }
+    //
+    // private void unbindAndSetNewValue(Node node, double newValue) {
+    // if (node.layoutXProperty().isBound()) {
+    // node.layoutXProperty().unbind();
+    // node.setLayoutX(newValue);
+    // System.out.println("The layoutX property of the rectangle was bound and has
+    // been set to a new value.");
+    // } else {
+    // System.out.println("The layoutX property of the rectangle is not bound.");
+    // }
+    // }
+    //
+    // private void bindNodeSize(Node node, AnchorPane ap) {
+    // // Unbind properties if they are already bound
+    // if(node.layoutXProperty().isBound()) {
+    // node.layoutXProperty().unbind();
+    // }
+    // if(node.layoutYProperty().isBound()) {
+    // node.layoutYProperty().unbind();
+    // }
+    //
+    // // Bind properties
+    // node.layoutXProperty().bind(ap.widthProperty().multiply(0.1));
+    // node.layoutYProperty().bind(ap.heightProperty().multiply(0.1));
+    //
+    // if (node instanceof Region) {
+    // Region region = (Region) node;
+    //
+    // // Unbind properties if they are already bound
+    // if(region.prefWidthProperty().isBound()) {
+    // region.prefWidthProperty().unbind();
+    // }
+    // if(region.prefHeightProperty().isBound()) {
+    // region.prefHeightProperty().unbind();
+    // }
+    //
+    // // Bind properties
+    // region.prefWidthProperty().bind(ap.widthProperty().multiply(0.8));
+    // region.prefHeightProperty().bind(ap.heightProperty().multiply(0.8));
+    // } else if (node instanceof Shape) {
+    // Shape shape = (Shape) node;
+    //
+    // // Unbind properties if they are already bound
+    // if(shape.scaleXProperty().isBound()) {
+    // shape.scaleXProperty().unbind();
+    // }
+    // if(shape.scaleYProperty().isBound()) {
+    // shape.scaleYProperty().unbind();
+    // }
+    //
+    // // Bind properties
+    // shape.scaleXProperty().bind(ap.widthProperty().multiply(0.8));
+    // shape.scaleYProperty().bind(ap.heightProperty().multiply(0.8));
+    // }
+    // }
 
     public void setVisibilityFalse() {
         nextButton.setVisible(false);
@@ -194,7 +197,7 @@ public class LoginMenuController {
             if (DatabaseConnection.checkCredentials(userInputText.getText(), passwordInputText.getText())) {
                 labelVerdict.setText("Login successful ╰(▔∀▔)╯");
                 labelVerdict.setTextFill(Color.GREEN);
-//                nextButton.setVisible(true);
+                // nextButton.setVisible(true);
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
                 delay.setOnFinished(event -> {
                     try {
@@ -212,19 +215,22 @@ public class LoginMenuController {
         }
     }
 
-    public static String getCurrentUser(){
+    public static String getCurrentUser() {
         return CurrentUser;
     }
-    public void signup(ActionEvent e) throws IOException{
+
+    public void signup(ActionEvent e) throws IOException {
         buttonAudio("loginclick");
         labelVerdict.setText("");
         isCorrectUsernameFormat(userInputText.getText());
         isCorrectPasswordFormat(passwordInputText.getText());
 
-        if(!labelVerdict.getText().isEmpty()) return;
+        if (!labelVerdict.getText().isEmpty())
+            return;
 
-       boolean registerExceptionCheck =DatabaseConnection.registerNewUser(userInputText.getText(),passwordInputText.getText());
-        if(registerExceptionCheck){
+        boolean registerExceptionCheck = DatabaseConnection.registerNewUser(userInputText.getText(),
+                passwordInputText.getText());
+        if (registerExceptionCheck) {
             labelVerdict.setText("Sign-up successful HAAIII °˖✧◝(⁰▿⁰)◜✧˖°");
             labelVerdict.setTextFill(Color.GREEN);
             // nextButton.setVisible(true);
@@ -237,48 +243,45 @@ public class LoginMenuController {
                 }
             });
             delay.play();
-        }
-        else{
+        } else {
             labelVerdict.setText("Sign-up unsuccessfulヾ( ･`⌓´･)ﾉﾞ ");
             labelVerdict.setTextFill(Color.RED);
         }
     }
 
-    public void isCorrectUsernameFormat(String enteredUsername){
-        if(enteredUsername.length()<4){
+    public void isCorrectUsernameFormat(String enteredUsername) {
+        if (enteredUsername.length() < 4) {
             labelVerdict.setText("Username should be at least 4 characters long! (┛◉Д◉)┛彡┻━┻ ");
         }
 
     }
 
-    public  void isCorrectPasswordFormat(String enteredPassword){
-        if(!(enteredPassword.matches(".*\\d+.*") )){
+    public void isCorrectPasswordFormat(String enteredPassword) {
+        if (!(enteredPassword.matches(".*\\d+.*"))) {
             labelVerdict.setText("password must contain at least one number!\n");
         }
-        if(!(enteredPassword.matches(".*[a-z]+.*"))){
-            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least 1 lowercase letter! ");
+        if (!(enteredPassword.matches(".*[a-z]+.*"))) {
+            labelVerdict.setText(labelVerdict.getText() + " Password should contain at least 1 lowercase letter! ");
         }
-        if(!(enteredPassword.matches(".*[A-Z]+.*"))){
-            labelVerdict.setText(labelVerdict.getText()+" Password should contain at least one uppercase letter!\n");
+        if (!(enteredPassword.matches(".*[A-Z]+.*"))) {
+            labelVerdict.setText(labelVerdict.getText() + " Password should contain at least one uppercase letter!\n");
         }
-        if(enteredPassword.length()<8){
-            labelVerdict.setText(labelVerdict.getText()+" Password should be at least 8 characters long!");
+        if (enteredPassword.length() < 8) {
+            labelVerdict.setText(labelVerdict.getText() + " Password should be at least 8 characters long!");
         }
     }
 
-     public void initialize() {
-         buttonAudio("cutemoosic");
-         userInputText.setOnKeyPressed(event -> {
-             if (event.getCode() == KeyCode.ENTER) {
-                 passwordInputText.requestFocus();
-             }
-         });
+    public void initialize() {
+        buttonAudio("cutemoosic");
+        userInputText.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                passwordInputText.requestFocus();
+            }
+        });
 
-     }
+    }
 
-
-
-    public void switchToPlayerSelect (ActionEvent e) throws IOException {
+    public void switchToPlayerSelect(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("playersSelect_menu.fxml"));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -287,21 +290,22 @@ public class LoginMenuController {
 
     }
 
-    public void singlePlayer (ActionEvent e){
+    public void singlePlayer(ActionEvent e) {
 
     }
 
-    public void multiPlayer (ActionEvent e){
+    public void multiPlayer(ActionEvent e) {
 
     }
 
     public void moveToLogin(KeyEvent event) {
-        if(event.getCode()==KeyCode.ENTER){
+        if (event.getCode() == KeyCode.ENTER) {
             loginButton.fire();
         }
     }
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
 

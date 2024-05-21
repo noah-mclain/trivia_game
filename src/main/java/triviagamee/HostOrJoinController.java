@@ -1,4 +1,5 @@
 package triviagamee;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,35 +26,37 @@ public class HostOrJoinController {
     @FXML
     private TextField gameNameHostTextField;
     public static String roomName;
-    public static String host="koko!";
+    public static String host = "koko!";
     public static boolean isHost = false;
 
-    //enum is a list of constant values we hena ana esta5demtaha to make a set of predefined values that the button variable can take
-    //i used them to define all the possible value states a function can handle
+    // enum is a list of constant values we hena ana esta5demtaha to make a set of
+    // predefined values that the button variable can take
+    // i used them to define all the possible value states a function can handle
 
-    private enum ButtonState {initial, clicked_once, clicked_twice}
+    private enum ButtonState {
+        initial, clicked_once, clicked_twice
+    }
+
     private ButtonState joinButtonState = ButtonState.initial;
     private ButtonState hostButtonState = ButtonState.initial;
-
 
     public void initialize() {
         joinButton.setVisible(true);
         hostButton.setVisible(true);
         gameNameHostTextField.setVisible(false);
 
-        gameNamePlayerTextField.setOnKeyPressed(event-> {
+        gameNamePlayerTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 buttonAudio("mouseclick");
                 if (joinButtonState == ButtonState.clicked_once) {
-                    if(gameNamePlayerTextField.getText().isEmpty()){
+                    if (gameNamePlayerTextField.getText().isEmpty()) {
                         buttonAudio("BOO!");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("Oopsie!");
                         alert.setContentText("Can't enter without a game without its name can we? ಠಿ_ಠ");
                         alert.showAndWait();
                         gameNamePlayerTextField.setText("");
-                    }
-                    else{
+                    } else {
                         try {
                             buttonAudio("mouseclick");
                             switchWaitingRoom(event);
@@ -65,20 +68,20 @@ public class HostOrJoinController {
             }
         });
 
-        gameNameHostTextField.setOnKeyPressed(event->{
+        gameNameHostTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                if(hostButtonState == ButtonState.clicked_once){
-                    if(gameNameHostTextField.getText().isEmpty()) {
+                if (hostButtonState == ButtonState.clicked_once) {
+                    if (gameNameHostTextField.getText().isEmpty()) {
                         buttonAudio("chipmunkhehe");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText("Nope sorry.");
-                        alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
+                        alert.setContentText(
+                                "Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
                         alert.showAndWait();
                         gameNameHostTextField.setText("");
-                    }
-                    else{
+                    } else {
                         try {
-                            roomName=gameNameHostTextField.getText();
+                            roomName = gameNameHostTextField.getText();
                             System.out.println(roomName);
                             buttonAudio("mouseclick");
                             ChooseCategory(event);
@@ -92,21 +95,21 @@ public class HostOrJoinController {
         });
     }
 
-//    public void back(){
-//        //lssa mazabattahash
-//    }
+    // public void back(){
+    // //lssa mazabattahash
+    // }
 
-
-    public void ChooseCategory(KeyEvent event)throws IOException{
+    public void ChooseCategory(KeyEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HostChooseCategory.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    public void switchWaitingRoom(KeyEvent event)throws IOException{
+
+    public void switchWaitingRoom(KeyEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PlayerWaitingRoom.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -131,12 +134,12 @@ public class HostOrJoinController {
                     alert.setContentText("Can't enter without a game without its name can we? ಠಿ_ಠ");
                     alert.showAndWait();
                     gameNamePlayerTextField.setText("");
-                }
-                else{
+                } else {
+                    roomName= gameNamePlayerTextField.getText();
                     buttonAudio("mouseclick");
                     joinButtonState = ButtonState.clicked_twice;
                     try {
-                        switchWaitingRoom();  // No KeyEvent needed here
+                        switchWaitingRoom(); // No KeyEvent needed here
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -144,11 +147,9 @@ public class HostOrJoinController {
                 break;
         }
 
-
-
     }
 
-    private void switchWaitingRoom() throws IOException{
+    private void switchWaitingRoom() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PlayerWaitingRoom.fxml"));
         Stage stage = (Stage) joinButton.getScene().getWindow(); // Assuming joinButton is always visible
         Scene scene = new Scene(root);
@@ -156,8 +157,8 @@ public class HostOrJoinController {
         stage.show();
     }
 
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
 
@@ -175,21 +176,21 @@ public class HostOrJoinController {
                 break;
             case clicked_once:
                 // Second click: Choose category (assuming text is entered)
-                if(gameNameHostTextField.getText().isEmpty()){
+                if (gameNameHostTextField.getText().isEmpty()) {
                     buttonAudio("chipmunkhehe");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Nope sorry.");
-                    alert.setContentText("Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
+                    alert.setContentText(
+                            "Sorry mate you can't enter without a writing game name (ˉ▽￣～)\n That's a bit lazy...");
                     alert.showAndWait();
                     gameNameHostTextField.setText("");
-                }
-               else{
-                    roomName=gameNameHostTextField.getText();
+                } else {
+                    roomName = gameNameHostTextField.getText();
                     System.out.println(roomName);
                     buttonAudio("mouseclick");
                     hostButtonState = ButtonState.clicked_twice;
                     try {
-                        ChooseCategory();  // No KeyEvent needed here
+                        ChooseCategory(); // No KeyEvent needed here
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -197,7 +198,6 @@ public class HostOrJoinController {
                 break;
         }
     }
-
 
     private void ChooseCategory() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HostChooseCategory.fxml"));

@@ -31,7 +31,6 @@ public class DatabaseConnection {
                     return true;
                 }
             }
-            connection.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -80,6 +79,7 @@ public class DatabaseConnection {
             else{
                 System.out.println("Result not found");
             }
+            connection.close();
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -102,6 +102,7 @@ public class DatabaseConnection {
                     String category= resultSet.getString("category");
                     return new Question(id,question,rightAnswer,choiceA,choiceB,choiceC,category);
                 }
+                connection.close();
             }
         }
         catch(Exception ex){
@@ -155,6 +156,8 @@ public class DatabaseConnection {
                 preparedStatement.setString(3, player.getRoom());
                 preparedStatement.setInt(4,0);
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
             }
             catch(Exception ex){
                 System.out.println(ex.getMessage());
@@ -173,6 +176,8 @@ public class DatabaseConnection {
                 preparedStatement.setInt(1,score);
                 preparedStatement.setString(2,name);
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
@@ -188,6 +193,8 @@ public class DatabaseConnection {
             try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
                 preparedStatement.setString(1,player.getName());
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
             }
             catch(Exception ex){
                 System.out.println(ex.getMessage());
@@ -206,6 +213,8 @@ public class DatabaseConnection {
                 preparedStatement.setString(3,room.getGenre());
                 preparedStatement.setString(4,room.getRoomStatus());
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
             }
             catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -221,6 +230,8 @@ public class DatabaseConnection {
             try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
                 preparedStatement.setString(1,room.getGenre());
                 preparedStatement.setString(2,room.getGenre());
+                preparedStatement.close();
+                connection.close();
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
@@ -248,15 +259,18 @@ public class DatabaseConnection {
 
     // update table to hold an arraylist
     // update function to skip p2->p10
-    public static void initializeRoom(String room, String player, String questions, String genre ){
+    public static void initializeRoom(String room, String player, String questions, String genre, String status){
         try(Connection connection = connect()){
-            String query = "INSERT INTO rooms (room, playerHost,questions, genre) VALUES (?,?,?,?)";
+            String query = "INSERT INTO rooms (room, playerHost,questions, genre, roomStatus) VALUES (?,?,?,?,?)";
             try(PreparedStatement statement=connection.prepareStatement(query)){
                 statement.setString(1, room);
                 statement.setString(2,player);
                 statement.setString(3,questions);
                 statement.setString(4,genre);
+                statement.setString(5, status);
                 statement.executeUpdate();
+                statement.close();
+                connection.close();
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
@@ -285,6 +299,7 @@ public class DatabaseConnection {
             for (int userId : userIds) {
                 updateTextfieldForUser(connection, userId, chatId, message, senderUsername);
             }
+            connection.close();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -298,8 +313,58 @@ public class DatabaseConnection {
         preparedStatement.setString(2, "\n"); // Optional newline separator
         preparedStatement.setInt(3, userId);
         preparedStatement.executeUpdate();
+        preparedStatement.close();
+        connection.close();
     }
+    public static Question retrieveQuestion(int ID){
+        try(Connection connection = connect()){
+            String query = "SELECT * FROM questions WHERE ID= ?";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setInt(1,ID);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()) {
+                    int id = resultSet.getInt("ID");
+                    String question = resultSet.getString("question");
+                    String rightAnswer = resultSet.getString("rightAnswer");
+                    String choiceA = resultSet.getString("answer2");
+                    String choiceB = resultSet.getString("answer3");
+                    String choiceC = resultSet.getString("answer4");
+                    String category = resultSet.getString("category");
+                    return new Question(id,question,rightAnswer,choiceA,choiceB,choiceC,category);
+                }
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+    public static String retrieveQuestionString(String name){
+        try(Connection connection = connect()){
+            String query= "SELECT * FROM rooms WHERE room = ?";
+            try(PreparedStatement preparedStatement= connection.prepareStatement(query)){
+                preparedStatement.setString(1, name);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    String questionString = resultSet.getString("questions");
+                    return questionString;
+                }
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    /*public static void updatePlayerScore(String name, int score){
+        try(Connection connection = connect()){
 
+        }
+    }*/
 
 
 }

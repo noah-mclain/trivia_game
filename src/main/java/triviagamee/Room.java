@@ -7,30 +7,37 @@ public class Room {
     private String hostName;
     private String genre;
     private String roomStatus;
-    public Room(String name,String host,String genre){
-        this.roomName=name;
-        this.hostName=host;
+
+    public Room(String name, String host, String genre) {
+        this.roomName = name;
+        this.hostName = host;
         this.genre = genre;
-        this.roomStatus="pending";
-        DatabaseConnection.storeRoom(this);
+        this.roomStatus = "pending";
+        // DatabaseConnection.storeRoom(this);
     }
+
     public String getRoomName() {
         return roomName;
     }
+
     public String getHostName() {
         return hostName;
     }
-    public String getRoomStatus(){
+
+    public String getRoomStatus() {
         return this.roomStatus;
     }
-    public void setActive(){
-        this.roomStatus="Active";
+
+    public void setActive() {
+        this.roomStatus = "Active";
     }
-    public void setGenre(String genre){
-        this.genre=genre;
-        //DatabaseConnection.changeRoomGenre(this);
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+        // DatabaseConnection.changeRoomGenre(this);
     }
-    public String getGenre(){
+
+    public String getGenre() {
         return this.genre;
     }
 }

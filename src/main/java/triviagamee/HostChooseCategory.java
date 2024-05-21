@@ -47,8 +47,7 @@ public class HostChooseCategory {
         String css = getClass().getResource("Font.css").toExternalForm();
         if (getClass().getResource("Font.css").toExternalForm() == null) {
             System.out.println("CSS not found");
-        }
-        else {
+        } else {
             Platform.runLater(() -> {
 
                 flagsButtons.getScene().getStylesheets().add(css);
@@ -82,9 +81,9 @@ public class HostChooseCategory {
         }
     }
 
-    public void miscClicked(){
+    public void miscClicked() {
         buttonAudio("mouseclick");
-        isMisc= true;
+        isMisc = true;
         Node source = miscButton; // The node that you want to use as the source
         ActionEvent ae = new ActionEvent(source, null);
         try {
@@ -97,8 +96,8 @@ public class HostChooseCategory {
     public void genreClicked(ActionEvent e) {
         buttonAudio("mouseclick");
         buttonClicked = (Button) e.getSource();
-        if(!(buttonClicked.getText().equals("Miscellaneous"))){
-            genre=buttonClicked.getText();
+        if (!(buttonClicked.getText().equals("Miscellaneous"))) {
+            genre = buttonClicked.getText();
         }
         try {
             switchHostWaitingRoom(e);
@@ -109,14 +108,14 @@ public class HostChooseCategory {
 
     public void switchHostWaitingRoom(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PlayerWaitingRoom.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
 }

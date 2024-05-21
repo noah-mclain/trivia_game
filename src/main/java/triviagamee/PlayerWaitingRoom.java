@@ -1,6 +1,5 @@
 package triviagamee;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,13 +40,10 @@ public class PlayerWaitingRoom implements Initializable {
     public ImageView loadingGIF;
     public Button startButton;
     private String currentUser;
-    public boolean isTyping= false;
-    private Player hoster = new Player(HostOrJoinController.host,"host",HostOrJoinController.roomName );
-    private Room roomer= new Room(HostOrJoinController.roomName, HostOrJoinController.host,HostChooseCategory.genre);
-
-
-
-
+    public boolean isTyping = false;
+    private Player hoster = new Player(HostOrJoinController.host, "host", HostOrJoinController.roomName);
+    private Room roomer = new Room(HostOrJoinController.roomName, HostOrJoinController.host, HostChooseCategory.genre);
+    public GameManager gameManager;
     public SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a"); // Adjust format as needed
     private String timestamp;
 
@@ -56,20 +52,18 @@ public class PlayerWaitingRoom implements Initializable {
             "Giraffe", "Zebra", "Kangaroo", "Penguin", "Dolphin", "Whale", "Rabbit", "Fox", "Wolf",
             "Deer", "Horse", "Monkey", "Panda", "Leopard", "Cheetah", "Hippopotamus", "Crocodile",
             "Squirrel", "Owl", "Eagle", "Parrot", "Peacock", "Pigeon", "Jellyfish", "Armadillo",
-            "Goblin shark","Cow");
+            "Goblin shark", "Cow");
 
-    public String getTimestamp(){
+    public String getTimestamp() {
         return timestamp;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        GameManager gameManager;
-        if(HostChooseCategory.genre==null){
-            gameManager= new GameManager(hoster, roomer);
-        }
-        else{
-             gameManager = new GameManager(hoster, roomer, HostChooseCategory.genre);
+        if (HostChooseCategory.genre == null) {
+            gameManager = new GameManager(hoster, roomer);
+        } else {
+            gameManager = new GameManager(hoster, roomer, HostChooseCategory.genre);
         }
         gameManager.storeRoom();
         buttonAudio("cutemoosic");
@@ -79,17 +73,16 @@ public class PlayerWaitingRoom implements Initializable {
                 setupEventHandlers();
             }
         });
-        currentUser= LoginMenuController.getCurrentUser();
+        currentUser = LoginMenuController.getCurrentUser();
 
-        if(currentUser.isEmpty()){
-            currentUser= "Anonymous ";
+        if (currentUser.isEmpty()) {
+            currentUser = "Anonymous ";
             Random random = new Random();
-            int randomIndex= random.nextInt(animals.size()+1);
-            currentUser+= animals.get(randomIndex);
+            int randomIndex = random.nextInt(animals.size() + 1);
+            currentUser += animals.get(randomIndex);
         }
 
-
-        if(HostOrJoinController.isHost){
+        if (HostOrJoinController.isHost) {
             startButton.setVisible(true);
             loadingGIF.setVisible(false);
             waitingLabel.setText("Players are waiting for you to start the game!");
@@ -113,17 +106,17 @@ public class PlayerWaitingRoom implements Initializable {
         });
 
         typing.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if(!isTyping){
-                if(HostOrJoinController.isHost) {
+            if (!isTyping) {
+                if (HostOrJoinController.isHost) {
                     userUpdate.appendText("Game Host ♕ is typing...\n");
                     timestamp = dateFormat.format(new Date());
-                }
-                else userUpdate.appendText(currentUser + " is typing...\n");
+                } else
+                    userUpdate.appendText(currentUser + " is typing...\n");
                 timestamp = dateFormat.format(new Date());
                 isTyping = true;
             }
             pause.playFromStart();
-            editableLabel.setText("You are now typing...");
+//            editableLabel.setText("You are now typing...");
         });
 
         scene.setOnMouseClicked(event -> {
@@ -134,59 +127,68 @@ public class PlayerWaitingRoom implements Initializable {
         });
     }
 
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
-        public void addToUserUpdate (KeyEvent event){
-                if (event.getCode() == KeyCode.ENTER) {
-                    String message = typing.getText();
-                    if (!message.isEmpty()) {
-                        buttonAudio("textsend");
-                        if(HostOrJoinController.isHost){
-                            timestamp = dateFormat.format(new Date());
-                            userUpdate.appendText(currentUser + " ♕: " + message +"    "+timestamp +"\n");
-                        }
-                        else {
-                            timestamp = dateFormat.format(new Date());
-                            userUpdate.appendText(currentUser + ": " + message+"    "+timestamp + "\n");
-                        }
-                        typing.clear();
-                        editableLabel.setText("");
-                    }
+
+    public void addToUserUpdate(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            String message = typing.getText();
+            if (!message.isEmpty()) {
+                buttonAudio("textsend");
+                if (HostOrJoinController.isHost) {
+                    timestamp = dateFormat.format(new Date());
+                    userUpdate.appendText(currentUser + " ♕: " + message + "    " + timestamp + "\n");
+                } else {
+                    timestamp = dateFormat.format(new Date());
+                    userUpdate.appendText(currentUser + ": " + message + "    " + timestamp + "\n");
                 }
-            }
-
-        public void hostStartGame(ActionEvent e) throws IOException {
-            buttonAudio("mouseclick");
-            //mezabataha teshta8al only when the startbutton is clicked
-            miscOrGenre();
-            //didnt do this fxml yet
-            Parent root = FXMLLoader.load(getClass().getResource("multiplayerGame.fxml"));
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
-        }
-
-        //idk how to continue this bc i didnt manage the questions
-        public void miscOrGenre(){
-        //for some reason the miscellaneous one is the only one not working
-            if(HostChooseCategory.isMisc){
-                DatabaseConnection.retrieveQuestion();
-            }
-            else{
-                Button genre = HostChooseCategory.buttonClicked;
-                DatabaseConnection.retrieveQuestion(genre.getText());
+                typing.clear();
+                editableLabel.setText("");
             }
         }
+    }
+
+    /*public void hostStartGame(ActionEvent e) throws IOException {
+        MultiPlayerQuesScreenController gm = new MultiPlayerQuesScreenController();
+        gm.setGameManager(gameManager);
+        buttonAudio("mouseclick");
+        // mezabataha teshta8al only when the startbutton is clicked
+        miscOrGenre();
+        // didnt do this fxml yet
+        Parent root = FXMLLoader.load(getClass().getResource("MultiPlayerQuesScreen.fxml"));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }*/
+
+    public void hostStartGame(ActionEvent e) throws IOException {
+        buttonAudio("mouseclick");
+        miscOrGenre();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiPlayerQuesScreen.fxml"));
+        loader.setController(new MultiPlayerQuesScreenController(gameManager));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
-
-
-
-
+    // idk how to continue this bc i didnt manage the questions
+    public void miscOrGenre() {
+        // for some reason the miscellaneous one is the only one not working
+        if (HostChooseCategory.isMisc) {
+            DatabaseConnection.retrieveQuestion();
+        } else {
+            Button genre = HostChooseCategory.buttonClicked;
+            DatabaseConnection.retrieveQuestion(genre.getText());
+        }
+    }
 
 }
-

@@ -50,7 +50,7 @@ public class QuestionController implements Initializable {
     static int score = 0;
     String scoreText = "Score: ";
     int questionCount = 10;
-    static int streak =0;
+    static int streak = 0;
     int randomFlagIndex;
     ArrayList<String> flags;
     String rightAnswer;
@@ -58,14 +58,12 @@ public class QuestionController implements Initializable {
     public void displayQuestion() {
         if (!GenreSelectScreenController.notMisc) {
             question = DatabaseConnection.retrieveQuestion();
-        }
-        else {
-            if(GenreSelectScreenController.genreName.equals("Flags")){
+        } else {
+            if (GenreSelectScreenController.genreName.equals("Flags")) {
                 displayFlags();
                 return;
-            }
-            else{
-            question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
+            } else {
+                question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
             }
         }
         questionLabel.setText(question.getQuestion());
@@ -93,20 +91,19 @@ public class QuestionController implements Initializable {
 
         Glow glow = new Glow();
         glow.setLevel(1.0);
-        if(GenreSelectScreenController.genreName != null && GenreSelectScreenController.genreName.equals("Flags")){
-            rightAnswer=flags.get(randomFlagIndex-1);
-        }
-        else{
-            rightAnswer= question.getRightAnswer();
+        if (GenreSelectScreenController.genreName != null && GenreSelectScreenController.genreName.equals("Flags")) {
+            rightAnswer = flags.get(randomFlagIndex - 1);
+        } else {
+            rightAnswer = question.getRightAnswer();
         }
 
         if (buttonCheck.getText().equals(rightAnswer)) {
-            streak+=1;
-            if(streak > 4){
+            streak += 1;
+            if (streak > 4) {
                 buttonAudio("levelup");
-                streak =1;
-            }
-            else buttonAudio("wee "+streak);
+                streak = 1;
+            } else
+                buttonAudio("wee " + streak);
             score++;
             scoreLabel.setText(scoreText + String.valueOf(score));
             answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
@@ -124,7 +121,7 @@ public class QuestionController implements Initializable {
 
         else {
             buttonAudio("error");
-            streak=0;
+            streak = 0;
             answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
             answerVerdict.setTextFill(Color.RED);
             for (Button button : buttonsArray) {
@@ -144,8 +141,9 @@ public class QuestionController implements Initializable {
         disableButtons(e);
 
     }
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
 
@@ -202,12 +200,12 @@ public class QuestionController implements Initializable {
         displayQuestion();
     }
 
-//    public void disableButtons() {
-//        for (Button button : buttonsArray) {
-//            button.setDisable(true);
-//        }
-//
-//    }
+    // public void disableButtons() {
+    // for (Button button : buttonsArray) {
+    // button.setDisable(true);
+    // }
+    //
+    // }
 
     public void switchScoreMenu(ActionEvent e) throws IOException {
         Stage stage;
@@ -220,35 +218,36 @@ public class QuestionController implements Initializable {
         stage.show();
     }
 
-    public void displayFlags(){
+    public void displayFlags() {
         questionLabel.setDisable(true);
         flagImageView.setVisible(true);
         Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
 
-        randomFlagIndex = (int) (Math.random()*13)+1;
-         flags= fillFlags();
-        String answer = flags.get(randomFlagIndex-1);
+        randomFlagIndex = (int) (Math.random() * 13) + 1;
+        flags = fillFlags();
+        String answer = flags.get(randomFlagIndex - 1);
         String flagImagePath = String.format("/Flags/%d.png", randomFlagIndex);
 
-// Load flag image using ClassLoader.getResource()
+        // Load flag image using ClassLoader.getResource()
         Image image = new Image(getClass().getResource(flagImagePath).toExternalForm());
-        //Image image= new Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
+        // Image image= new
+        // Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
         flagImageView.setImage(image);
-        ArrayList<String> countryNames=new ArrayList<>();
-        countryNames.add(flags.get(randomFlagIndex-1));
-        int [] occArray=new int[flags.size()];
-        occArray[randomFlagIndex-1]=1;
-        for(int i=1;i<4;i++){
-            int randomizer = (int)(Math.random()*13)+1;
-            if(occArray[randomizer-1]==1){
+        ArrayList<String> countryNames = new ArrayList<>();
+        countryNames.add(flags.get(randomFlagIndex - 1));
+        int[] occArray = new int[flags.size()];
+        occArray[randomFlagIndex - 1] = 1;
+        for (int i = 1; i < 4; i++) {
+            int randomizer = (int) (Math.random() * 13) + 1;
+            if (occArray[randomizer - 1] == 1) {
                 i--;
                 continue;
             }
-            occArray[randomizer-1]=1;
-            countryNames.add(flags.get(randomizer-1));
+            occArray[randomizer - 1] = 1;
+            countryNames.add(flags.get(randomizer - 1));
         }
         Collections.shuffle(countryNames);
-        for(int i=0; i<4; i++){
+        for (int i = 0; i < 4; i++) {
             buttonsArray.get(i).setText(countryNames.get(i));
         }
 
@@ -257,10 +256,9 @@ public class QuestionController implements Initializable {
             button.setStyle("-fx-text-fill: rgb(234,0,255);");
         }
 
-
-
     }
-    public static ArrayList<String> fillFlags(){
+
+    public static ArrayList<String> fillFlags() {
         ArrayList<String> flags = new ArrayList<>();
         flags.add("Belgium");
         flags.add("Lebanon");
@@ -278,6 +276,5 @@ public class QuestionController implements Initializable {
         return flags;
 
     }
-
 
 }

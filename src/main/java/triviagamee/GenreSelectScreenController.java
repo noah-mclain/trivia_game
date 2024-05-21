@@ -23,7 +23,6 @@ public class GenreSelectScreenController {
     private Stage stage;
     private Scene scene;
 
-
     @FXML
     private Button flagsButtons;
     @FXML
@@ -58,8 +57,7 @@ public class GenreSelectScreenController {
         String css = getClass().getResource("Font.css").toExternalForm();
         if (getClass().getResource("Font.css").toExternalForm() == null) {
             System.out.println("CSS not found");
-        }
-        else {
+        } else {
             Platform.runLater(() -> {
 
                 flagsButtons.getScene().getStylesheets().add(css);
@@ -96,28 +94,29 @@ public class GenreSelectScreenController {
     public void miscClicked(ActionEvent e) throws IOException {
         buttonAudio("mouseclick");
         Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public static boolean notMisc=false;
+    public static boolean notMisc = false;
     public static String genreName;
+
     public void genreClicked(ActionEvent e) throws IOException {
         buttonAudio("mouseclick");
-        notMisc=true;
-        Button button= (Button)e.getSource();
-        genreName=button.getText();
+        notMisc = true;
+        Button button = (Button) e.getSource();
+        genreName = button.getText();
         Parent root = FXMLLoader.load(getClass().getResource("SinglePlayerScreen.fxml"));
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    public void buttonAudio(String audioName){
-        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
+
+    public void buttonAudio(String audioName) {
+        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
         click.play();
     }
 }
-
