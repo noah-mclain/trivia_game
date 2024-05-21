@@ -23,6 +23,14 @@
             <Glow level="1.0" />
          </effect>
       </Label>
+      <Label fx:id="countdownLabel" text="10" alignment="TOP_RIGHT" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+         <font>
+            <Font name="Verdana" size="20" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
       <Label fx:id="answerVerdict" layoutX="430.0" layoutY="16.0" prefHeight="47.0" prefWidth="249.0" styleClass="popupAlerts">
          <font>
             <Font size="24.0" />

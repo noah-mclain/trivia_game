@@ -1,5 +1,8 @@
 package triviagamee;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +20,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.effect.Glow;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,26 +48,33 @@ public class QuestionController implements Initializable {
     Button nextButton;
     @FXML
     ImageView flagImageView;
+    @FXML Label countdownLabel;
+    private Timeline countdownTimer;
+    private int countdownSeconds = 10;
+    private boolean timeup = false;
 
     ArrayList<Button> buttonsArray = new ArrayList<Button>();
     Question question;
     static int score = 0;
     String scoreText = "Score: ";
     int questionCount = 10;
-    static int streak = 0;
+    static int streak =0;
     int randomFlagIndex;
     ArrayList<String> flags;
     String rightAnswer;
 
     public void displayQuestion() {
+        timeup = false;
         if (!GenreSelectScreenController.notMisc) {
             question = DatabaseConnection.retrieveQuestion();
-        } else {
-            if (GenreSelectScreenController.genreName.equals("Flags")) {
+        }
+        else {
+            if(GenreSelectScreenController.genreName.equals("Flags")){
                 displayFlags();
                 return;
-            } else {
-                question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
+            }
+            else{
+            question = DatabaseConnection.retrieveQuestion(GenreSelectScreenController.genreName);
             }
         }
         questionLabel.setText(question.getQuestion());
@@ -88,22 +99,24 @@ public class QuestionController implements Initializable {
 
     public void userChoice(ActionEvent e) {
         Button buttonCheck = (Button) e.getSource();
-
+        timeup = true;
         Glow glow = new Glow();
         glow.setLevel(1.0);
-        if (GenreSelectScreenController.genreName != null && GenreSelectScreenController.genreName.equals("Flags")) {
-            rightAnswer = flags.get(randomFlagIndex - 1);
-        } else {
-            rightAnswer = question.getRightAnswer();
+        if(GenreSelectScreenController.genreName != null && GenreSelectScreenController.genreName.equals("Flags")){
+            rightAnswer=flags.get(randomFlagIndex-1);
+        }
+        else{
+            rightAnswer= question.getRightAnswer();
         }
 
         if (buttonCheck.getText().equals(rightAnswer)) {
-            streak += 1;
-            if (streak > 4) {
+            streak+=1;
+            countdownSeconds=2;
+            if(streak > 4){
                 buttonAudio("levelup");
-                streak = 1;
-            } else
-                buttonAudio("wee " + streak);
+                streak =1;
+            }
+            else buttonAudio("wee "+streak);
             score++;
             scoreLabel.setText(scoreText + String.valueOf(score));
             answerVerdict.setText("Amazing! (⁀ᗢ⁀)");
@@ -121,7 +134,8 @@ public class QuestionController implements Initializable {
 
         else {
             buttonAudio("error");
-            streak = 0;
+            countdownSeconds=2;
+            streak=0;
             answerVerdict.setText("Pathetic! ༽◺_◿༼ ");
             answerVerdict.setTextFill(Color.RED);
             for (Button button : buttonsArray) {
@@ -141,9 +155,8 @@ public class QuestionController implements Initializable {
         disableButtons(e);
 
     }
-
-    public void buttonAudio(String audioName) {
-        AudioClip click = new AudioClip(getClass().getResource("/audios/" + audioName + ".mp3").toExternalForm());
+    public void buttonAudio(String audioName){
+        AudioClip click= new AudioClip(getClass().getResource("/audios/"+audioName+".mp3").toExternalForm());
         click.play();
     }
 
@@ -179,6 +192,8 @@ public class QuestionController implements Initializable {
     public void nextClicked(ActionEvent e) {
         buttonAudio("mouseclick");
         displayQuestion();
+        timeup = false;
+        startCountdown();
         for (Button button : buttonsArray) {
             button.setDisable(false);
         }
@@ -194,60 +209,114 @@ public class QuestionController implements Initializable {
             }
         }
 
+
     }
 
     public void initialize(URL location, ResourceBundle resources) {
         displayQuestion();
+        startCountdown();
     }
 
-    // public void disableButtons() {
-    // for (Button button : buttonsArray) {
-    // button.setDisable(true);
-    // }
-    //
-    // }
+    private void startCountdown(){
+        countdownTimer = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> {
+                   if(timeup){
+                       countdownTimer.pause();
+                       countdownLabel.setText("Time's up!");
+                       PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                       pause.setOnFinished(event ->{
+                           countdownSeconds = 10;
+                           countdownTimer.play();
+                           nextClicked(null);
 
+                       });
+                       //pause.play();
+                   }
+                   else{
+                       countdownSeconds--;
+                       if (countdownSeconds >= 0) {
+                           countdownLabel.setText(countdownSeconds + "s");
+                       } else if (countdownSeconds < 0){
+                           timeup = true;
+                       }
+                   }
+                })
+        );
+        countdownTimer.setCycleCount(countdownSeconds + 1); // Set the cycle count to match the initial countdown time
+        countdownTimer.play();
+    }
+
+//    private void startCountdown() {
+//        countdownTimer = new Timeline(
+//                new KeyFrame(Duration.seconds(1), e -> {
+//                    countdownSeconds--;
+//                    if (countdownSeconds >= 0) {
+//                        countdownLabel.setText(countdownSeconds + "s");
+//                    } else {
+//                        countdownLabel.setText("Time's Up!");
+//
+//                        // Introduce a delay before resetting timer and clicking "Next"
+//                        new Thread(() -> {
+//                            try {
+//                                Thread.sleep(2000); // 2 seconds delay
+//                            } catch (InterruptedException ex) {
+//                                ex.printStackTrace();
+//                            }
+//                            resetTimerAndClickNext();
+//                        }).start();
+//                    }
+//                })
+//        );
+//        countdownTimer.setCycleCount(countdownSeconds + 1); // Set the cycle count to match the initial countdown time
+//        countdownTimer.play();
+//    }
+//
+//    private void resetTimerAndClickNext() {
+//        countdownSeconds = 10; // Reset countdown for the next question
+//        countdownLabel.setText(countdownSeconds + "s");
+//        countdownTimer.stop(); // Stop the timer after the delay
+//
+//        // Simulate clicking the "Next" button programmatically
+//        nextClicked(null); // Pass null as the event source (optional)
+//    }
     public void switchScoreMenu(ActionEvent e) throws IOException {
         Stage stage;
         Scene scene;
-
         Parent root = FXMLLoader.load(getClass().getResource("ScoreMenu.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        countdownLabel.setVisible(false);
     }
 
-    public void displayFlags() {
+    public void displayFlags(){
         questionLabel.setDisable(true);
         flagImageView.setVisible(true);
         Collections.addAll(buttonsArray, buttonA, buttonB, buttonC, buttonD);
 
-        randomFlagIndex = (int) (Math.random() * 13) + 1;
-        flags = fillFlags();
-        String answer = flags.get(randomFlagIndex - 1);
+        randomFlagIndex = (int) (Math.random()*13)+1;
+         flags= fillFlags();
+        String answer = flags.get(randomFlagIndex-1);
         String flagImagePath = String.format("/Flags/%d.png", randomFlagIndex);
 
-        // Load flag image using ClassLoader.getResource()
         Image image = new Image(getClass().getResource(flagImagePath).toExternalForm());
-        // Image image= new
-        // Image("file:\\java2\\src\\main\\resources\\Flags\\"+randomFlagIndex+".png");
         flagImageView.setImage(image);
-        ArrayList<String> countryNames = new ArrayList<>();
-        countryNames.add(flags.get(randomFlagIndex - 1));
-        int[] occArray = new int[flags.size()];
-        occArray[randomFlagIndex - 1] = 1;
-        for (int i = 1; i < 4; i++) {
-            int randomizer = (int) (Math.random() * 13) + 1;
-            if (occArray[randomizer - 1] == 1) {
+        ArrayList<String> countryNames=new ArrayList<>();
+        countryNames.add(flags.get(randomFlagIndex-1));
+        int [] occArray=new int[flags.size()];
+        occArray[randomFlagIndex-1]=1;
+        for(int i=1;i<4;i++){
+            int randomizer = (int)(Math.random()*13)+1;
+            if(occArray[randomizer-1]==1){
                 i--;
                 continue;
             }
-            occArray[randomizer - 1] = 1;
-            countryNames.add(flags.get(randomizer - 1));
+            occArray[randomizer-1]=1;
+            countryNames.add(flags.get(randomizer-1));
         }
         Collections.shuffle(countryNames);
-        for (int i = 0; i < 4; i++) {
+        for(int i=0; i<4; i++){
             buttonsArray.get(i).setText(countryNames.get(i));
         }
 
@@ -255,10 +324,8 @@ public class QuestionController implements Initializable {
             button.setOpacity(1.0f);
             button.setStyle("-fx-text-fill: rgb(234,0,255);");
         }
-
     }
-
-    public static ArrayList<String> fillFlags() {
+    public static ArrayList<String> fillFlags(){
         ArrayList<String> flags = new ArrayList<>();
         flags.add("Belgium");
         flags.add("Lebanon");
@@ -276,5 +343,4 @@ public class QuestionController implements Initializable {
         return flags;
 
     }
-
 }
