@@ -369,4 +369,25 @@ public class DatabaseConnection {
     }*/
 
 
+    public static void retrieveScores (String roomName) {
+        try (Connection connection = connect()) {
+            String query = "SELECT name, score FROM players WHERE roomName = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, roomName);
+
+            ResultSet resSet = preparedStatement.executeQuery();
+
+            while (resSet.next()) {
+                String playerName = resSet.getString("name");
+                int score = resSet.getInt("score");
+                System.out.println("Player name: " + playerName + " - Score: " + score);
+            }
+
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

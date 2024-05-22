@@ -5,7 +5,7 @@ public class JoinerGameManager extends GameManager {
         super(joiner, room);
         String questionString = DatabaseConnection.retrieveQuestionString(this.getRoom().getRoomName());
         String[] questionIds = questionString.split(",");
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             Question question = DatabaseConnection.retrieveQuestion(Integer.valueOf(questionIds[i]));
             questions.add(question);
         }
