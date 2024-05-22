@@ -1,5 +1,6 @@
 package triviagamee;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -391,7 +392,7 @@ public class DatabaseConnection {
         }
         return 0;
     }
-// players
+    // players
     //            String query = "INSERT INTO rooms (room, playerHost,questions, genre, roomStatus) VALUES (?,?,?,?,?)";
     public static void insertPlayer(String name, String roomName){
         try(Connection connection=connect()){
@@ -446,17 +447,38 @@ public class DatabaseConnection {
     }
     public static void changeRoomStatus(String roomName){
         try(Connection connection = connect()){
-            String query="UPDATE rooms SET status = started WHERE name = ?";
+            String query="UPDATE rooms SET roomStatus = ? WHERE room = ?";
             try(PreparedStatement statement= connection.prepareStatement(query)){
-                statement.executeQuery();
+                statement.setString(1,"Started");
+                statement.setString(2,roomName);
+                statement.executeUpdate();
             } catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    public static boolean checkRoomStatus(String roomName){
+        System.out.println("hello");
+        try(Connection connection = connect()){
+            String query = "SELECT * FROM rooms where room=?";
+            try(PreparedStatement statement= connection.prepareStatement(query)){
+                statement.setString(1,roomName);
+                ResultSet resultSet= statement.executeQuery();
+                if(resultSet.next()){
+                    String status = resultSet.getString("roomStatus");
+                    if(status.equals("Started")) return true;
+                    else return false;
+                }
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
 }

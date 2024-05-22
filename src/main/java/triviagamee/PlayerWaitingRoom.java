@@ -1,5 +1,7 @@
 package triviagamee;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +38,7 @@ public class PlayerWaitingRoom implements Initializable {
     public TextField typing;
     @FXML
     public AnchorPane parentPane;
-
+    private Timeline infiniteTimer;
     public ImageView loadingGIF;
     public Button startButton;
     private String currentUser;
@@ -48,6 +50,7 @@ public class PlayerWaitingRoom implements Initializable {
     private String timestamp;
 
     public Scene scene;
+    public boolean foundGame = false;
     List<String> animals = Arrays.asList("Tiger", "Goat", "Cat", "Dog", "Elephant", "Lion", "Bear",
             "Giraffe", "Zebra", "Kangaroo", "Penguin", "Dolphin", "Whale", "Rabbit", "Fox", "Wolf",
             "Deer", "Horse", "Monkey", "Panda", "Leopard", "Cheetah", "Hippopotamus", "Crocodile",
@@ -68,7 +71,7 @@ public class PlayerWaitingRoom implements Initializable {
             }
         }
         else{
-           gameManager = new JoinerGameManager(hoster, roomer);
+            gameManager = new JoinerGameManager(hoster, roomer);
         }
         gameManager.storeRoom();
         buttonAudio("cutemoosic");
@@ -92,6 +95,14 @@ public class PlayerWaitingRoom implements Initializable {
             loadingGIF.setVisible(false);
             waitingLabel.setText("Players are waiting for you to start the game!");
         }
+        if(!(HostOrJoinController.isHost)) {
+            try {
+                //waitingForHost();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private void setupEventHandlers() {
@@ -173,6 +184,7 @@ public class PlayerWaitingRoom implements Initializable {
     public void hostStartGame(ActionEvent e) throws IOException {
         buttonAudio("mouseclick");
         miscOrGenre();
+        gameManager.startGame();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiPlayerQuesScreen.fxml"));
         loader.setController(new MultiPlayerQuesScreenController(gameManager));
@@ -195,5 +207,24 @@ public class PlayerWaitingRoom implements Initializable {
             DatabaseConnection.retrieveQuestion(genre.getText());
         }
     }
+    /*public void waitingForHost() throws Exception{
+        infiniteTimer = new Timeline(new KeyFrame(Duration.seconds(2), e->{
+            if(DatabaseConnection.checkRoomStatus(gameManager.getRoom().getRoomName()))
+                    foundGame=true;
+                    infiniteTimer.stop();
+            }
+        infiniteTimer.setCycleCount(Timeline.INDEFINITE);
+        infiniteTimer.play();
+    }
+    public void loadGame() throws Exception{
+        Stage stage;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiPlayerQuesScreen.fxml"));
+        loader.setController(new MultiPlayerQuesScreenController(gameManager));
+        Parent root = loader.load();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }*/
 
 }

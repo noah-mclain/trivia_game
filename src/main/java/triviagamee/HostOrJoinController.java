@@ -264,7 +264,7 @@ public class HostOrJoinController {
         stage.show();
     }
     // zero room msh mwgooda
-     public boolean isExistent( String roomName){
+    public boolean isExistent( String roomName){
         if(DatabaseConnection.findRoom(roomName)!=0){
             return true; // keda el room mwgooda
         }
