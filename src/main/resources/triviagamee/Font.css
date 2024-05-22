@@ -90,3 +90,10 @@
   -fx-font-size: 24px;
   -fx-font-family: "Beon";
 }
+
+.leaderBoard {
+  -fx-background-color: transparent;
+  -fx-font: "Beon";
+}
+
+.leaderBoard .

@@ -83,6 +83,10 @@ public class GameManager {
         return question;
     }
 
+    public void startGame(){
+        DatabaseConnection.changeRoomStatus(this.room.getRoomName());
+    }
+
     /*public static boolean isExistent( String roomName){
         if(DatabaseConnection.findRoom(roomName)==1){
             return false;

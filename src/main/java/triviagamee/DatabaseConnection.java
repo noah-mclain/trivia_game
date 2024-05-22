@@ -2,6 +2,8 @@ package triviagamee;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.lang.Math.*;
 
 public class DatabaseConnection {
@@ -40,7 +42,7 @@ public class DatabaseConnection {
         if(checkCredentials(username,password)) return false;
         try(Connection connection = connect()){
             String query="INSERT INTO logins(username, userPassword) VALUES (?, ?)";
-            PreparedStatement statement =connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,username);
             statement.setString(2,password);
             statement.executeUpdate();
@@ -53,7 +55,7 @@ public class DatabaseConnection {
         }
     }
     public static Question retrieveQuestion(){
-        try(Connection connection = connect()){
+        try(Connection connection = connect()) {
             String query="SELECT COUNT(*) FROM questions";
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet result = statement.executeQuery(query);
@@ -418,7 +420,8 @@ public class DatabaseConnection {
 ); */
 
 
-    public static void retrieveScores (String roomName) {
+    public static ArrayList<Map<String, Object>> retrieveScores(String roomName) {
+        ArrayList<Map<String, Object>> playerList = new ArrayList<>();
         try (Connection connection = connect()) {
             String query = "SELECT name, score FROM players WHERE roomName = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -427,14 +430,31 @@ public class DatabaseConnection {
             ResultSet resSet = preparedStatement.executeQuery();
 
             while (resSet.next()) {
-                String playerName = resSet.getString("name");
-                int score = resSet.getInt("score");
-                System.out.println("Player name: " + playerName + " - Score: " + score);
+                Map<String, Object> playerData = new HashMap<>();
+                playerData.put("name", resSet.getString("name"));
+                playerData.put("score", resSet.getInt("score"));
+                playerList.add(playerData);
+                System.out.println(playerData);
             }
 
             preparedStatement.close();
             connection.close();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return playerList;
+    }
+    public static void changeRoomStatus(String roomName){
+        try(Connection connection = connect()){
+            String query="UPDATE rooms SET status = started WHERE name = ?";
+            try(PreparedStatement statement= connection.prepareStatement(query)){
+                statement.executeQuery();
+            } catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+
+        }
+        catch(Exception e){
             System.out.println(e.getMessage());
         }
     }

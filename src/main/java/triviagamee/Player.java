@@ -36,6 +36,9 @@ public class Player {
         this.score++;
         // DatabaseConnection.updatePlayerScore(name, score);
     }
+    public void setScore(int score){
+        this.score=score;
+    }
     public void resetPlayerScore(){
         this.score=0;
     }
