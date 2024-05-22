@@ -93,7 +93,26 @@
 
 .leaderBoard {
   -fx-background-color: transparent;
-  -fx-font: "Beon";
+  -fx-font-family: "Beon";
 }
 
-.leaderBoard .
+.leaderBoard .column-header *,
+.leaderBoard .table-column-header * {
+  -fx-background-color: transparent;
+  -fx-mouse-transparent: true;
+  -fx-font-family: "Beon";
+  -fx-font-size: 30px;
+  -fx-text-fill: rgb(255, 200, 61);
+}
+
+.root {
+  -fx-background-color: transparent;
+}
+
+/* .leaderBoard .column-header *,
+.leaderBoard .table-column-header * {
+  -fx-background-color: rgba(0, 0, 0, 0);
+  -fx-font-family: "Beon";
+  -fx-font-size: 30px;
+  -fx-text-fill: rgb(255, 200, 61);
+} */
