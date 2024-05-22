@@ -97,11 +97,20 @@ public class PlayerWaitingRoom implements Initializable {
         }
         if(!(HostOrJoinController.isHost)) {
             try {
-                //waitingForHost();
+                waitingForHost();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiPlayerQuesScreen.fxml"));
+                    loader.setController(new MultiPlayerQuesScreenController(gameManager));
+                    Parent root = loader.load();
+                    scene = root.getScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+
 
     }
 
@@ -207,24 +216,33 @@ public class PlayerWaitingRoom implements Initializable {
             DatabaseConnection.retrieveQuestion(genre.getText());
         }
     }
-    /*public void waitingForHost() throws Exception{
-        infiniteTimer = new Timeline(new KeyFrame(Duration.seconds(2), e->{
-            if(DatabaseConnection.checkRoomStatus(gameManager.getRoom().getRoomName()))
-                    foundGame=true;
-                    infiniteTimer.stop();
+
+    public void waitingForHost() throws Exception {
+        infiniteTimer = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+            if (DatabaseConnection.checkRoomStatus(gameManager.getRoom().getRoomName())) {
+                foundGame = true;
+                infiniteTimer.stop();
+                try {
+                    loadGame();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        }));
         infiniteTimer.setCycleCount(Timeline.INDEFINITE);
         infiniteTimer.play();
     }
+
     public void loadGame() throws Exception{
-        Stage stage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiPlayerQuesScreen.fxml"));
         loader.setController(new MultiPlayerQuesScreenController(gameManager));
         Parent root = loader.load();
-        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) this.scene.getWindow();
         stage.setScene(scene);
         stage.show();
-    }*/
+    }
+
+
 
 }
