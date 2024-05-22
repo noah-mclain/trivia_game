@@ -391,7 +391,7 @@ public class DatabaseConnection {
     }
 // players
     //            String query = "INSERT INTO rooms (room, playerHost,questions, genre, roomStatus) VALUES (?,?,?,?,?)";
-    public static void insertPlayer(String roomName, String name){
+    public static void insertPlayer(String name, String roomName){
         try(Connection connection=connect()){
             String query="INSERT INTO players (name,roomName,score) VALUES(?,?,0)";
             try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
