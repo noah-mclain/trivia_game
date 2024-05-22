@@ -1,5 +1,8 @@
 package triviagamee;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +18,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.robot.Robot;
 import javafx.stage.Stage;
 import javafx.scene.effect.Glow;
+import javafx.util.Duration;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +32,8 @@ import java.util.ResourceBundle;
 import java.util.ArrayList;
 
 public class QuestionController implements Initializable {
+    @FXML
+    Label countdownLabel;
     @FXML
     Label questionLabel;
     @FXML
@@ -44,8 +52,11 @@ public class QuestionController implements Initializable {
     Button nextButton;
     @FXML
     ImageView flagImageView;
-
+    private Timeline countdownTimer;
+    private int countdownSeconds = 11;
+    private boolean timeup = false;
     ArrayList<Button> buttonsArray = new ArrayList<Button>();
+    private Button chosen;
     Question question;
     static int score = 0;
     String scoreText = "Score: ";
@@ -56,6 +67,7 @@ public class QuestionController implements Initializable {
     String rightAnswer;
 
     public void displayQuestion() {
+        countdownSeconds = 11;
         if (!GenreSelectScreenController.notMisc) {
             question = DatabaseConnection.retrieveQuestion();
         } else {
@@ -68,10 +80,14 @@ public class QuestionController implements Initializable {
         }
         questionLabel.setText(question.getQuestion());
         ArrayList<String> choices = new ArrayList<>();
+        //ArrayList<String> notRightAnswer = new ArrayList<>();
         choices.add(question.getRightAnswer());
         choices.add(question.getChoiceB());
         choices.add(question.getChoiceC());
         choices.add(question.getChoiceD());
+//        notRightAnswer.add(question.getChoiceB());
+//        notRightAnswer.add(question.getChoiceC());
+//        notRightAnswer.add(question.getChoiceD());
         Collections.shuffle(choices);
         buttonA.setText(choices.get(0));
         buttonB.setText(choices.get(1));
@@ -82,8 +98,10 @@ public class QuestionController implements Initializable {
         for (Button button : buttonsArray) {
             button.setOpacity(1.0f);
             button.setStyle("-fx-text-fill: rgb(234,0,255);");
+            if(!button.getText().equals(rightAnswer)){
+                chosen = button;
+            }
         }
-
     }
 
     public void userChoice(ActionEvent e) {
@@ -118,6 +136,24 @@ public class QuestionController implements Initializable {
                 }
             }
         }
+        else if(timeup){
+            buttonAudio("error");
+            streak = 0;
+            answerVerdict.setText("Too slow! ༽◺_◿༼ ");
+            answerVerdict.setTextFill(Color.RED);
+            for (Button button : buttonsArray) {
+                if (button.getText().equals(buttonCheck.getText())) {
+                    button.setStyle("-fx-text-fill: rgb(247, 33, 25);"); // Red text
+                    button.setEffect(glow); // Apply the glow effect
+                } else if (button.getText().equals(rightAnswer)) {
+                    button.setStyle("-fx-text-fill: #99FF33"); // Neon green text
+                    button.setEffect(glow); // Apply the glow effect
+                } else {
+                    button.setStyle("-fx-text-fill: #FFB6C1"); // Light pink text for the remaining buttons
+                    button.setEffect(glow);
+                }
+            }
+        }
 
         else {
             buttonAudio("error");
@@ -139,6 +175,7 @@ public class QuestionController implements Initializable {
         }
         nextButton.setVisible(true);
         disableButtons(e);
+
 
     }
 
@@ -183,7 +220,9 @@ public class QuestionController implements Initializable {
             button.setDisable(false);
         }
         answerVerdict.setText("");
+        timeup = false;
         nextButton.setVisible(false);
+        //countdownSeconds = 11;
         questionCount--;
         if (questionCount == 1) {
             nextButton.setText("Finish");
@@ -198,14 +237,36 @@ public class QuestionController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         displayQuestion();
+        initializeCountdownTimer();
     }
 
-    // public void disableButtons() {
-    // for (Button button : buttonsArray) {
-    // button.setDisable(true);
-    // }
-    //
-    // }
+    private void initializeCountdownTimer(){
+        countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            countdownSeconds--;
+            countdownLabel.setText("Time left: " + countdownSeconds + " seconds");
+            if (countdownSeconds == 0) {
+                handleTimeUp();
+            }
+            else if(countdownSeconds <0){
+                countdownLabel.setText("");
+            }
+        }));
+        countdownTimer.setCycleCount(Timeline.INDEFINITE);
+        countdownTimer.play();
+    }
+
+    private void handleTimeUp() {
+        timeup = true;
+        chosen.fire();
+        userChoice(new ActionEvent());
+        countdownLabel.setText("");
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(event -> {
+           nextButton.fire();
+        });
+    }
+
 
     public void switchScoreMenu(ActionEvent e) throws IOException {
         Stage stage;
