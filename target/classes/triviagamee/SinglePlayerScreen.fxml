@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.QuestionController">
+<AnchorPane id="parentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1109.0" stylesheets="@Font.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triviagamee.QuestionController">
    <children>
       <ImageView fitHeight="872.0" fitWidth="1109.0" pickOnBounds="true">
          <image>
@@ -18,6 +18,14 @@
       <Label fx:id="questionLabel" alignment="CENTER" layoutX="284.0" layoutY="135.0" prefHeight="321.0" prefWidth="541.0" styleClass="questions" textAlignment="CENTER" textFill="#e6b5ff" textOverrun="LEADING_ELLIPSIS" wrapText="true">
          <font>
             <Font size="36.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Label fx:id="countdownLabel"  alignment="TOP_RIGHT" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+         <font>
+            <Font name="Verdana" size="20" />
          </font>
          <effect>
             <Glow level="1.0" />
