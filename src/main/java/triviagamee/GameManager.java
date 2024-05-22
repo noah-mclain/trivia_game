@@ -83,4 +83,12 @@ public class GameManager {
         return question;
     }
 
+    /*public static boolean isExistent( String roomName){
+        if(DatabaseConnection.findRoom(roomName)==1){
+            return false;
+        }
+        else return true;
+
+    }*/
+
 }

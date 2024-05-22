@@ -96,9 +96,25 @@ public class HostOrJoinController {
                     } else {
                         try {
                             roomName = gameNameHostTextField.getText();
-                            System.out.println(roomName);
-                            buttonAudio("mouseclick");
-                            ChooseCategory(event);
+                            if(!isExistent(roomName)){
+                                System.out.println(roomName);
+                                buttonAudio("mouseclick");
+                                isHost=true;
+                                host= LoginMenuController.getCurrentUser();
+                                ChooseCategory(event);
+
+                            }
+                            else{
+                                buttonAudio("chipmunkhehe");
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText("Nope sorry.");
+                                alert.setContentText(
+                                        "Room name already exists, please enter another name or I will eat your arm(ˉ▽￣～)");
+                                alert.showAndWait();
+                                gameNameHostTextField.setText("");
+
+                            }
+
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
@@ -213,13 +229,27 @@ public class HostOrJoinController {
                     gameNameHostTextField.setText("");
                 } else {
                     roomName = gameNameHostTextField.getText();
-                    System.out.println(roomName);
-                    buttonAudio("mouseclick");
-                    hostButtonState = ButtonState.clicked_twice;
-                    try {
-                        ChooseCategory(); // No KeyEvent needed here
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    if(isExistent(roomName)){ // keda el room mwgooda rgjnrthgrt
+                        // kill yourself
+                        buttonAudio("chipmunkhehe");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText("Nope sorry.");
+                        alert.setContentText(
+                                "Room name already exists, enter another name or I will eat your arm (ˉ▽￣～)");
+                        alert.showAndWait();
+                        gameNameHostTextField.setText("");
+                    }
+                    else{
+                        System.out.println(roomName);
+                        buttonAudio("mouseclick");
+                        isHost = true;
+                        host = LoginMenuController.getCurrentUser();
+                        hostButtonState = ButtonState.clicked_twice;
+                        try {
+                            ChooseCategory(); // No KeyEvent needed here
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
                 break;
@@ -232,6 +262,14 @@ public class HostOrJoinController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    // zero room msh mwgooda
+     public boolean isExistent( String roomName){
+        if(DatabaseConnection.findRoom(roomName)!=0){
+            return true; // keda el room mwgooda
+        }
+        else return false; // keda el room msh mwgooda
+
     }
 
 }

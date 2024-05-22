@@ -368,6 +368,55 @@ public class DatabaseConnection {
         }
     }*/
 
+    public static int findRoom(String roomName){
+        try(Connection connection=connect()){
+            String query = "SELECT * FROM rooms WHERE room=?";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setString(1,roomName);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    int roomID = resultSet.getInt("ID");
+                    return roomID;
+                }
+                else return 0;
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+// players
+    //            String query = "INSERT INTO rooms (room, playerHost,questions, genre, roomStatus) VALUES (?,?,?,?,?)";
+    public static void insertPlayer(String roomName, String name){
+        try(Connection connection=connect()){
+            String query="INSERT INTO players (name,roomName,score) VALUES(?,?,0)";
+            try(PreparedStatement preparedStatement=connection.prepareStatement(query)){
+                preparedStatement.setString(1,name);
+                preparedStatement.setString(2,roomName);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+                connection.close();
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+    /* CREATE TABLE players(
+        ID INT auto_increment PRIMARY KEY,
+        name nvarchar(30),
+        roomName nvarchar(50),
+        score INT
+); */
+
 
     public static void retrieveScores (String roomName) {
         try (Connection connection = connect()) {
