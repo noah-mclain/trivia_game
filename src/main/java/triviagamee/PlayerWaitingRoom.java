@@ -60,10 +60,15 @@ public class PlayerWaitingRoom implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (HostChooseCategory.genre == null) {
-            gameManager = new GameManager(hoster, roomer);
-        } else {
-            gameManager = new GameManager(hoster, roomer, HostChooseCategory.genre);
+        if( HostOrJoinController.isHost) {
+            if (HostChooseCategory.genre == null) {
+                gameManager = new GameManager(hoster, roomer);
+            } else {
+                gameManager = new GameManager(hoster, roomer, HostChooseCategory.genre);
+            }
+        }
+        else{
+           gameManager = new JoinerGameManager(hoster, roomer);
         }
         gameManager.storeRoom();
         buttonAudio("cutemoosic");

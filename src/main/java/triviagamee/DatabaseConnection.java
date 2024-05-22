@@ -360,6 +360,8 @@ public class DatabaseConnection {
         }
         return null;
     }
+
+
     /*public static void updatePlayerScore(String name, int score){
         try(Connection connection = connect()){
 

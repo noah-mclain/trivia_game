@@ -4,7 +4,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 
 public class GameManager {
-    protected ArrayList<Player> players;
+    protected Player player;
     protected Room room;
     protected ArrayList<Question> questions;
     protected String genre;
@@ -17,9 +17,8 @@ public class GameManager {
     }
 
     public GameManager(Player host, Room room) {
-        this.players = new ArrayList<>();
         this.questions = new ArrayList<>();
-        players.add(host);
+        this.player = host;
         this.room = room;
         this.genre = "misc";
         this.counter = 0;
@@ -34,9 +33,8 @@ public class GameManager {
     }
 
     public GameManager(Player host, Room room, String genre) {
-        this.players = new ArrayList<>();
         this.questions = new ArrayList<>();
-        players.add(host);
+        this.player = host;
         this.room = room;
         this.genre = genre;
         questionString = new StringBuilder();
@@ -50,8 +48,8 @@ public class GameManager {
         }
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public Player getPlayer() {
+        return player;
     }
 
     public Room getRoom() {
@@ -62,9 +60,9 @@ public class GameManager {
         return questions;
     }
 
-    public String getHost() {
+    /*public String getHost() {
         return this.players.get(0).getName();
-    }
+    }*/
 
     public String getGenre() {
         return this.genre;
@@ -75,7 +73,7 @@ public class GameManager {
     }
 
     public void storeRoom() {
-        DatabaseConnection.initializeRoom(this.getRoom().getRoomName(), this.getHost(), this.getQuestionString(),
+        DatabaseConnection.initializeRoom(this.getRoom().getRoomName(), this.getPlayer().getName(), this.getQuestionString(),
                 this.getGenre(), this.room.getRoomStatus());
     }
 

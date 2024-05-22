@@ -26,8 +26,9 @@ public class HostOrJoinController {
     @FXML
     private TextField gameNameHostTextField;
     public static String roomName;
-    public static String host = "koko!";
+    public static String host=LoginMenuController.getCurrentUser();
     public static boolean isHost = false;
+
 
     // enum is a list of constant values we hena ana esta5demtaha to make a set of
     // predefined values that the button variable can take
@@ -58,8 +59,21 @@ public class HostOrJoinController {
                         gameNamePlayerTextField.setText("");
                     } else {
                         try {
-                            buttonAudio("mouseclick");
-                            switchWaitingRoom(event);
+                            roomName = gameNamePlayerTextField.getText();
+                            int roomID= DatabaseConnection.findRoom(roomName);
+                            if(roomID!=0) {
+                                System.out.println(roomName);
+                                buttonAudio("mouseclick");
+                                switchWaitingRoom(event);
+                            }
+                            else {
+                                buttonAudio("BOO!");
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText("Oopsie!");
+                                alert.setContentText("Room does not exist ಠಿ_ಠ");
+                                alert.showAndWait();
+                                gameNamePlayerTextField.setText("");
+                            }
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
@@ -135,13 +149,26 @@ public class HostOrJoinController {
                     alert.showAndWait();
                     gameNamePlayerTextField.setText("");
                 } else {
+                    System.out.println("Ay 7aga");
                     roomName= gameNamePlayerTextField.getText();
-                    buttonAudio("mouseclick");
-                    joinButtonState = ButtonState.clicked_twice;
-                    try {
-                        switchWaitingRoom(); // No KeyEvent needed here
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    int roomID=DatabaseConnection.findRoom(roomName);
+                    if(roomID==0){
+                        buttonAudio("BOO!");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Oopsie!");
+                        alert.setContentText("Room does not exist! ಠಿ_ಠ");
+                        alert.showAndWait();
+                        gameNamePlayerTextField.setText("");
+                    }
+                    else{
+                        System.out.println(roomName);
+                        buttonAudio("mouseclick");
+                        joinButtonState = ButtonState.clicked_twice;
+                        try {
+                            switchWaitingRoom(); // No KeyEvent needed here
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
                 break;
