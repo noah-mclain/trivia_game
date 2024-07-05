@@ -1,8 +1,13 @@
 package triviagamee;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -12,6 +17,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+
 
 public class MultiPlayerQuesScreenController implements Initializable {
     private GameManager gameManager;
@@ -55,6 +62,7 @@ public class MultiPlayerQuesScreenController implements Initializable {
     int randomFlagIndex;
     ArrayList<String> flags;
     String rightAnswer;
+    public Scene scene;
 
     public MultiPlayerQuesScreenController(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -152,7 +160,19 @@ public class MultiPlayerQuesScreenController implements Initializable {
         disableButtons(e);
 
     }
+
     public void nextClicked(ActionEvent e) {
+        questionCount--;
+        System.out.println(questionCount);
+        if (questionCount == 1) {
+            System.out.println("combileet");
+            nextButton.setText("Finish");
+            try {                                  // we need to know where tog o after rounds ends
+                switchScoreMenu(e);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
         buttonAudio("mouseclick");
         initialize(gameManager);
         for (Button button : buttonsArray) {
@@ -160,15 +180,7 @@ public class MultiPlayerQuesScreenController implements Initializable {
         }
         answerVerdict.setText("");
         nextButton.setVisible(false);
-//        questionCount--;
-//        if (questionCount == 1) {
-//            nextButton.setText("Finish");
-//            try {                                  // we need to know where tog o after rounds ends
-//                switchScoreMenu(e);
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        }
+
 
     }
 
@@ -206,6 +218,19 @@ public class MultiPlayerQuesScreenController implements Initializable {
     }
     public void initialize(URL location, ResourceBundle resources) {
         initialize(gameManager);
+    }
+
+    public void switchScoreMenu(Event e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiScoresMenu.fxml"));
+        loader.setController(new MultiScoresMenuController(gameManager.getRoom()));
+        Parent root = loader.load();
+
+        // Retrieve the stage from the event's source node
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
