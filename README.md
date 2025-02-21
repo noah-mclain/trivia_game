@@ -9,6 +9,7 @@ Triviagame is a trivia game application built using Java and JavaFX. It supports
 - **JavaFX UI:** Responsive interfaces built with FXML.
 - **Sound Effects:** Engaging audio cues for interactions.
 
+
 ## Game Mechanics
 ### Genre Selection
 - **Single-Player:** The player selects a genre.
