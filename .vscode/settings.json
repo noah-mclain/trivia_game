@@ -7,7 +7,7 @@
     "io.micrometer.shaded.*"
   ],
   "workbench.colorTheme": "Rosé Pine Moon (no italics)",
-  "accessibility.signals.sounds.volume": 0,
   "liveshare.accessibility.soundVolume": 0,
-  "liveshare.accessibility.soundsEnabled": false
+  "liveshare.accessibility.soundsEnabled": false,
+  "accessibility.signalOptions.volume": 0
 }

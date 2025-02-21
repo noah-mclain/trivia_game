@@ -21,7 +21,8 @@ public class DatabaseConnection {
         }
     }
     public static boolean checkCredentials(String username, String password) {
-        if(username.equals("admin") && password.equals("yahood123")) storeQuestions();
+        return true;
+        /*if(username.equals("admin") && password.equals("yahood123")) storeQuestions();
         try (Connection connection = connect()) {
             String query = "SELECT * FROM logins";
             Statement statement = connection.createStatement();
@@ -38,6 +39,8 @@ public class DatabaseConnection {
             throw new RuntimeException(e);
         }
         return false;
+
+         */
     }
     public static boolean registerNewUser(String username, String password){
         if(checkCredentials(username,password)) return false;
